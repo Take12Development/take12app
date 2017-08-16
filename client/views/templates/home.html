@@ -1,0 +1,37 @@
+<!-- LOGIN VIEW -->
+<div layout="row">
+  <div layout-md="column" flex="33"></div>
+  <div layout="column" flex="33">
+    <h3 id="loginMessage" ng-if="message != ''">{{message}}</h3>
+    <form name="loginView" ng-submit="login()">
+      <md-input-container layout="column">
+        <div>
+          <label for="email">Email:</label>
+          <input type="text" ng-model="user.email" required/>
+          <div ng-messages="loginView.user.email.$error">
+            <div ng-message="required">An email is required!</div>
+          </div>
+        </div>
+      </md-input-container>
+      <md-input-container layout="column">
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" ng-model="user.password" required/>
+          <div ng-messages="loginView.user.password.$error">
+            <div ng-message="required">A password is required!</div>
+          </div>
+        </div>
+      </md-input-container>
+      <md-input-container layout="column" layout-align="center center">
+        <div>
+          <md-button class="md-raised" type="submit" id="loginSubmit" name="submit" aria-label="Log In" value="Log In">Log In</md-button>
+        </div>
+      </md-input-container>
+      <md-input-container layout="row" layout-align="center center">
+        <div>
+          <span>Don't have an account? </span><a href="#register">Register</a>
+        </div>
+      </md-input-container>
+    </form>
+  </div>
+</div>
