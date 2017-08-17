@@ -5,6 +5,9 @@
     <title>Take12 Maternity Leave Registry</title>
     <!-- Favicon -->
     <link rel=icon href="views/images/take12_icon.png">
+    <link rel="icon" type="image/png" href="views/assets/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="views/assets/favicons/favicon-16x16.png" sizes="16x16">
+
     <!-- Angular Material style sheet -->
     <link rel="stylesheet" href="vendors/angular-material/angular-material.css">
     <!-- Material Design Icons -->
@@ -29,8 +32,14 @@
 
   <body ng-app="take12App" layout="column">
 
-    <md-content md-theme="altTheme">
+    <md-content md-theme="altTheme" flex>
+    <!-- HEADER -->
+    <div ng-include="'views/partials/nav.html'"></div>
+
     <main ng-view></main>
+
+    <!-- FOOTER -->
+    <div ng-include="'views/partials/footer.html'"></div>
 
   </body>
 
