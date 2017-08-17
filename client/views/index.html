@@ -32,11 +32,14 @@
 
   <body ng-app="take12App" layout="column">
 
-    <md-content md-theme="altTheme">
+    <md-content md-theme="altTheme" flex>
     <!-- HEADER -->
     <div ng-include="'views/partials/nav.html'"></div>
-    
+
     <main ng-view></main>
+
+    <!-- HEADER -->
+    <div ng-include="'views/partials/footer.html'"></div>
 
   </body>
 

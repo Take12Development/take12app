@@ -8,10 +8,21 @@ body {
 main {
   font-family: 'Lato', sans-serif;
   background-color: white;
+  min-height: 680px;
 }
 
 .navBar {
+  position: fixed;
+  width: 100%;
   background-color: white;
+  z-index: 1050;
+}
+
+.contentBlock {
+  width:100%;
+  padding-top:92px;
+  z-index:5;
+  overflow:auto;
 }
 
 .imgNav {
@@ -58,4 +69,27 @@ main {
   color: #fff;
   font-weight: 400;
   text-decoration: none;
+}
+
+.footerBlock {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #136a80;
+  height: 160px;
+  color: #fff;
+}
+
+.footerOptions{
+    padding-bottom: 10px;
+}
+
+.footerOption {
+  padding: 0 15px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.footerOption:hover {
+  color: #ff4081;
 }

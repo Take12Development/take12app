@@ -11,8 +11,13 @@ take12App.config(['$routeProvider', '$locationProvider',
   $locationProvider.hashPrefix('');
 
   $routeProvider
-    // Login View
+    // Login View is our home view until integrated with static content
     .when('/home', {
+      templateUrl: '/views/templates/home.html',
+      controller: 'LoginController',
+    })
+    // Login View
+    .when('/login', {
       templateUrl: '/views/templates/home.html',
       controller: 'LoginController',
     })
