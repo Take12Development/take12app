@@ -11,6 +11,18 @@ main {
   min-height: 680px;
 }
 
+h1, h2, h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+span {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
 .navBar {
   position: fixed;
   width: 100%;
@@ -92,4 +104,38 @@ main {
 
 .footerOption:hover {
   color: #ff4081;
+}
+
+.createRegistryContainer {
+  width: 100%;
+}
+
+.createRegistryText {
+  width: 100%;
+  text-align: center;
+}
+
+.createRegistryTitle {
+  color: #f7aca0;
+  width: 100%;
+}
+
+.md-button.fbButton {
+  color: white !important;
+  background-color: #3b5998 !important;
+  font-weight: 300 !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.md-button.submitButton {
+  color: white !important;
+  background-color: #6acbc4 !important;
+  font-weight: 300 !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.md-button.submitButton:hover {
+  background-color: #136a80 !important;
 }

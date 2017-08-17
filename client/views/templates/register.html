@@ -1,52 +1,54 @@
 <!-- REGISTER NEW USER VIEW -->
 <div class="contentBlock" layout="row">
   <div layout-md="column" flex="33"></div>
-  <div layout="column" flex="33">
+  <div class="createRegistryContainer" layout="column" flex="33">
+    <div class="createRegistryText" layout="column" flex-align="center center">
+      <h1 class="createRegistryTitle">Welcome to Take12!</h1>
+      <span>Creating a registry is quick and easy.
+      To get started, simply create your account below and we'll guide you
+      through the creation process.</span>
+    </div>
     <h3 ng-if="message != ''">{{message}}</h3>
-    <form form name="registerView" ng-submit="registerUser()">
-      <md-input-container layout="column">
-        <div>
-          <label for="name">Full Name:</label>
-          <input type="text" ng-model="user.name" required/>
-          <div ng-messages="registerView.user.name.$error">
-            <div ng-message="required">A name is required!</div>
+    <div class="createRegistryForm" layout="column">
+      <form form name="registerView" ng-submit="registerUser()">
+        <md-input-container layout="column" layout-align="center center">
+          <div>
+            <md-button class="md-raised fbButton" type="submit" name="facebook" aria-label="Connect with Facebook" value="facebook">Connect with Facebook</md-button>
           </div>
-        </div>
-      </md-input-container>
-      <md-input-container layout="column">
-        <div>
-          <label for="email">Email:</label>
-          <input type="text" ng-model="user.email" required/>
-          <div ng-messages="registerView.user.email.$error">
-            <div ng-message="required">An email address is required!</div>
+          <br>
+          <span>or</span>
+        </md-input-container>
+        <md-input-container layout="column">
+          <div>
+            <label for="email">Email:</label>
+            <input type="text" ng-model="user.email" required/>
+            <div ng-messages="registerView.user.email.$error">
+              <div ng-message="required">An email address is required!</div>
+            </div>
           </div>
-        </div>
-      </md-input-container>
-      <md-input-container layout="column">
-        <div>
-          <label for="password">Create password:</label>
-          <input type="password" ng-model="user.password" required/>
-          <div ng-messages="registerView.user.password.$error">
-            <div ng-message="required">A password is required!</div>
+        </md-input-container>
+        <md-input-container layout="column">
+          <div>
+            <label for="password">Create password:</label>
+            <input type="password" ng-model="user.password" required/>
+            <div ng-messages="registerView.user.password.$error">
+              <div ng-message="required">A password is required!</div>
+            </div>
           </div>
-        </div>
-      </md-input-container>
-      <md-input-container layout="column">
-        <div>
-          <label for="password">Confirm password:</label>
-          <input type="password" ng-model="user.password" required/>
-          <div ng-messages="registerView.user.password.$error">
-            <div ng-message="required">A password is required!</div>
+        </md-input-container>
+        <md-input-container layout="column">
+          <div>
+            <label for="password">Confirm password:</label>
+            <input type="password" ng-model="user.confirmPassword" required/>
+            <div ng-messages="registerView.user.confirmPassword.$error">
+              <div ng-message="required">A password confirmation is required!</div>
+            </div>
           </div>
-        </div>
-      </md-input-container>
-      <md-input-container layout="row" layout-align="center center">
-        <div>
-          <!-- <input class="btn btn-default" type="submit" name="submit" value="Register" /> -->
-          <md-button class="md-raised" type="submit" name="submit" aria-label="Register" value="Register">Register</md-button>
-          <a href="#home">Cancel</a>
-        </div>
-      </md-input-container>
-    </form>
+        </md-input-container>
+        <md-input-container layout="row" layout-align="center center">
+          <md-button class="md-raised submitButton" type="submit" name="submit" aria-label="Submit" value="Submit">Submit</md-button>
+        </md-input-container>
+      </form>
+    </div>
   </div>
 </div>
