@@ -23,8 +23,13 @@ take12App.config(['$routeProvider', '$locationProvider',
     })
     // Register new user View
     .when('/register', {
-      templateUrl: '/views/templates/register.html',
-      controller: 'LoginController'
+      templateUrl: '/views/templates/register0.html',
+      controller: 'RegistrationController'
+    })
+    // Register new user (step1)
+    .when('/register1', {
+      templateUrl: '/views/templates/register1.html',
+      controller: 'RegistrationController'
     })
     // Main View of the app
     .when('/main', {
