@@ -12,20 +12,36 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location', 
     $location.url('/register1');
   }
 
+  // compares pasword and password confirmation entered by the user
+  function comparePasswords() {
+    var validPassword = false;
+    if ($scope.user.password === $scope.user.confirmPassword) {
+      var validPassword = true;
+    } else {
+      var validPassword = false;
+
+    }
+    return validPassword;
+  }
+
   // registers a new user
   $scope.registerUser = function() {
-    if($scope.user.email === '' || $scope.user.password === '') {
-      $scope.message = "Choose a email and password combination!";
+    if($scope.user.email === '' || $scope.user.password === '' || $scope.user.confirmPassword === '') {
+      $scope.message = "Please enter all the required information";
     } else {
-      console.log('sending to server...', $scope.user);
-      $http.post('/register', $scope.user).then(function(response) {
-        console.log('success');
-        $location.path('/home');
-      },
-      function(response) {
-        console.log('error');
-        $scope.message = "Please try again."
-      });
+        if (comparePasswords()) {
+          console.log('sending to server...', $scope.user);
+          $http.post('/register', $scope.user).then(function(response) {
+            console.log('success');
+            $location.path('/home');
+          },
+          function(response) {
+            console.log('error');
+            $scope.message = "Please try again."
+          });
+      } else {
+        $scope.message = "Password doesn't match password confirmation.";
+      }
     }
   };
 }]);
