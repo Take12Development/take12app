@@ -26,17 +26,27 @@ take12App.config(['$routeProvider', '$locationProvider',
       templateUrl: '/views/templates/registerUsername.html',
       controller: 'RegistrationController'
     })
-    // Register new user (step1)
+    // Register new user (step0)
     .when('/registerWho', {
       templateUrl: '/views/templates/registerWho.html',
       controller: 'RegistrationController'
     })
-    // Register new user (step2)
+    // Register new user (step1)
     .when('/registerMainInfo', {
       templateUrl: '/views/templates/registerMainInfo.html',
       controller: 'RegistrationController'
     })
     // Register new user (step2)
+    .when('/registerPhoto', {
+      templateUrl: '/views/templates/registerPhoto.html',
+      controller: 'RegistrationController'
+    })
+    // Register new user (step3)
+    .when('/registerStory', {
+      templateUrl: '/views/templates/registerStory.html',
+      controller: 'RegistrationController'
+    })
+    // How to plan for your maternity leave
     .when('/howToPlan', {
       templateUrl: '/views/templates/howToPlan.html',
       controller: 'RegistrationController'
