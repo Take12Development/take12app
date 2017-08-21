@@ -30,6 +30,10 @@ li {
   margin-bottom: 10px;
 }
 
+md-menu-content {
+  max-height: 90vh;
+}
+
 .navBar {
   position: fixed;
   width: 100%;
@@ -164,6 +168,30 @@ li {
 
 .md-button.submitButton:hover {
   background-color: #136a80 !important;
+}
+
+.md-button.menuButton {
+  font-weight: 300 !important;
+  font-size: 12px !important;
+  height: 18px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.md-button.loginButton {
+  font-size: 12px !important;
+  background: #136a80 !important;
+  color: #fff !important;
+  font-weight: 400 !important;
+}
+
+.menuIcon {
+  color: #136a80;
+}
+
+.floatingMenu {
+  z-index: 2050;
+  background-color: red;
 }
 
 .helpIcon {
