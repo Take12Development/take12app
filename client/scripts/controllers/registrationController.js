@@ -8,8 +8,8 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location', 
 
   $scope.message = '';
 
-  $scope.goToStep1 = function() {
-    $location.url('/register1');
+  $scope.nextStep = function(nextView) {
+    $location.url(nextView);
   }
 
   // compares pasword and password confirmation entered by the user
@@ -33,7 +33,8 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location', 
           console.log('sending to server...', $scope.user);
           $http.post('/register', $scope.user).then(function(response) {
             console.log('success');
-            $location.path('/home');
+            // $location.path('/home');
+            $scope.nextStep('/registerWho');
           },
           function(response) {
             console.log('error');
@@ -44,4 +45,5 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location', 
       }
     }
   };
+
 }]);

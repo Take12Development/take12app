@@ -139,3 +139,8 @@ span {
 .md-button.submitButton:hover {
   background-color: #136a80 !important;
 }
+
+.helpIcon {
+  color: #ff4081;
+  font-size: 14px;
+}
