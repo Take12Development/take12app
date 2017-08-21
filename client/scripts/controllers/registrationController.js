@@ -1,5 +1,5 @@
-take12App.controller('RegistrationController', ['$scope', '$http', '$location', 'UserService',
-                    function($scope, $http, $location, UserService) {
+take12App.controller('RegistrationController', ['$scope', '$http', '$location', '$window', 'UserService',
+                    function($scope, $http, $location, $window, UserService) {
 
   $scope.user = {
     email: '',
@@ -8,8 +8,13 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location', 
 
   $scope.message = '';
 
-  $scope.nextStep = function(nextView) {
-    $location.url(nextView);
+  $scope.goTo = function(view) {
+    $location.url(view);
+  }
+
+  $scope.goToHowToPlan = function() {
+    // THIS HAS TO BE REPLACED WITH CORRECT URL
+    $window.open('http://localhost:5000/#/howToPlan', '_blank');
   }
 
   // compares pasword and password confirmation entered by the user
@@ -34,7 +39,7 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location', 
           $http.post('/register', $scope.user).then(function(response) {
             console.log('success');
             // $location.path('/home');
-            $scope.nextStep('/registerWho');
+            $scope.goTo('/registerWho');
           },
           function(response) {
             console.log('error');
