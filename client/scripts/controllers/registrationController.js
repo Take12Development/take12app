@@ -1,5 +1,5 @@
-take12App.controller('RegistrationController', ['$scope', '$http', '$location', '$window', 'UserService',
-                    function($scope, $http, $location, $window, UserService) {
+take12App.controller('RegistrationController', ['$scope', '$http', '$location', '$window', '$timeout', 'Upload', 'UserService',
+                    function($scope, $http, $location, $window, $timeout, Upload, UserService) {
 
   $scope.user = {
     email: '',
@@ -50,5 +50,49 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location', 
       }
     }
   };
+
+// filename stores the picture filename assigned by the uploadPic function
+var filename;
+
+// Upload picture file Section
+$scope.uploadPic = function(file) {
+  var tempUsername = "claudia.calderas@gmail.com"
+  console.log('name:',UserService.userObject.email);
+  file.upload = Upload.upload({
+    url: '/uploads',
+    // data: {name: UserService.userObject.email, file: file},
+    data: {name: tempUsername, file: file},
+  });
+
+  file.upload.then(function (response) {
+    // console.log('0 Back from upload with data:',response.data);
+    // saves filename to use when saving recipe
+    // filename in localhost:
+    // filename = response.data.file.path + "/" + response.data.file.originalname;
+    // updated filename that works with aws
+    // filename = response.data.file.location;
+    // console.log('URL is:',filename);
+
+    $timeout(function () {
+      file.result = response.data;
+      // console.log('1 Back from upload with data:',response.data);
+      // filename in localhost:
+      // filename = response.data.file.path + "/" + response.data.file.originalname;
+      // updated filename that works with aws
+      // filename = response.data.file.location;
+      // console.log('URL is:',filename);
+
+    });
+    }, function (response) {
+      if (response.status > 0)
+        $scope.errorMsg = response.status + ': ' + response.data;
+        // console.log('2 Back from upload with data:',response.data);
+        // console.log('URL is:',filename);
+
+    }, function (evt) {
+      // Math.min is to fix IE which reports 200% sometimes
+      file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+    });
+  }
 
 }]);

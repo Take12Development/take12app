@@ -1,4 +1,4 @@
-var take12App = angular.module('take12App', ['ngRoute','ngMaterial']);
+var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload']);
 
 // Angular Material Theme Configuration
 take12App.config(['$mdThemingProvider', function($mdThemingProvider) {
