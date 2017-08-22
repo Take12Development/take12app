@@ -241,17 +241,31 @@ md-menu-content {
 }
 
 form .progress {
-    line-height: 15px;
+  line-height: 15px;
 }
 
 .progress {
-    display: inline-block;
-    width: 100px;
-    /*border: 3px groove #CCC;*/
+  display: inline-block;
+  width: 100px;
 }
 
 .progress div {
-    font-size: smaller;
-    background: orange;
-    width: 0;
+  font-size: smaller;
+  background: orange;
+  width: 0;
+}
+
+.angularTextArea .border-around {
+  border: 1px solid #590041;
+}
+
+.angularTextArea p {
+  font-size: 18px;
+  font-weight: 300;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+}
+
+.btn-toolbar {
+  margin: 0 0 10px 0;
+  text-align:center;
 }
