@@ -166,6 +166,20 @@ md-menu-content {
   padding-right: 20px;
 }
 
+.md-raised.textEditorButton {
+  background-color: lightgray !important;
+  border: 1px !important;
+  color: white !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  margin: 2px;
+  font-weight: lighter !important;
+}
+
+.md-raised.textEditorButton:hover {
+  background-color: #6acbc4 !important;
+}
+
 .md-button.submitButton:hover {
   background-color: #136a80 !important;
 }

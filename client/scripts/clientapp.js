@@ -5,6 +5,7 @@ take12App.config(['$mdThemingProvider', function($mdThemingProvider) {
    $mdThemingProvider.theme('altTheme').primaryPalette('grey').accentPalette('blue-grey');
 }]);
 
+// textAngular toolbar customization
 take12App.config(['$provide', function($provide){
 	// this demonstrates how to register a new tool and add it to the default toolbar
 	$provide.decorator('taOptions', ['$delegate', function(taOptions){
@@ -23,7 +24,7 @@ take12App.config(['$provide', function($provide){
 			focussed: 'focussed',
 			toolbar: 'btn-toolbar',
 			toolbarGroup: 'btn-group',
-			toolbarButton: 'btn btn-default',
+			toolbarButton: 'md-raised textEditorButton',
 			toolbarButtonActive: 'active',
 			disabled: 'disabled',
 			textEditor: 'form-control',
