@@ -76,6 +76,12 @@ module.exports = function(grunt){
               'angular-messages.min.js',
               'angular-messages.min.js.map'],
         dest: 'server/public/vendors/angular-messages/'
+      },
+      ngfileupload: {
+        expand: true,
+        cwd: 'node_modules/ng-file-upload/dist/',
+        src: ['ng-file-upload-all.min.js'],
+        dest: 'server/public/vendors/ng-file-upload/'
       }
     },
     watch: {

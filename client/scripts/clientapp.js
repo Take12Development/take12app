@@ -1,4 +1,4 @@
-var take12App = angular.module('take12App', ['ngRoute','ngMaterial']);
+var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload']);
 
 // Angular Material Theme Configuration
 take12App.config(['$mdThemingProvider', function($mdThemingProvider) {
@@ -23,12 +23,32 @@ take12App.config(['$routeProvider', '$locationProvider',
     })
     // Register new user View
     .when('/register', {
-      templateUrl: '/views/templates/register0.html',
+      templateUrl: '/views/templates/registerUsername.html',
+      controller: 'RegistrationController'
+    })
+    // Register new user (step0)
+    .when('/registerWho', {
+      templateUrl: '/views/templates/registerWho.html',
       controller: 'RegistrationController'
     })
     // Register new user (step1)
-    .when('/register1', {
-      templateUrl: '/views/templates/register1.html',
+    .when('/registerMainInfo', {
+      templateUrl: '/views/templates/registerMainInfo.html',
+      controller: 'RegistrationController'
+    })
+    // Register new user (step2)
+    .when('/registerPhoto', {
+      templateUrl: '/views/templates/registerPhoto.html',
+      controller: 'RegistrationController'
+    })
+    // Register new user (step3)
+    .when('/registerStory', {
+      templateUrl: '/views/templates/registerStory.html',
+      controller: 'RegistrationController'
+    })
+    // How to plan for your maternity leave
+    .when('/howToPlan', {
+      templateUrl: '/views/templates/howToPlan.html',
       controller: 'RegistrationController'
     })
     // Main View of the app

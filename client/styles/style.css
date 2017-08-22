@@ -11,7 +11,7 @@ main {
   min-height: 680px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   font-weight: lighter;
@@ -21,6 +21,17 @@ span {
   font-family: 'Lato', sans-serif;
   font-size: 14px;
   font-weight: lighter;
+}
+
+li {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: lighter;
+  margin-bottom: 10px;
+}
+
+md-menu-content {
+  max-height: 90vh;
 }
 
 .navBar {
@@ -157,4 +168,90 @@ span {
 
 .md-button.submitButton:hover {
   background-color: #136a80 !important;
+}
+
+.md-button.menuButton {
+  font-weight: 300 !important;
+  font-size: 12px !important;
+  height: 18px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.md-button.loginButton {
+  font-size: 12px !important;
+  background: #136a80 !important;
+  color: #fff !important;
+  font-weight: 400 !important;
+}
+
+.menuIcon {
+  color: #136a80;
+}
+
+.floatingMenu {
+  z-index: 2050;
+  background-color: red;
+}
+
+.helpIcon {
+  color: #136a80;
+  font-size: 14px;
+}
+
+.helpIcon:focus {
+    outline: none;
+    border: 0;
+}
+
+.howToPlanTitle {
+  color: #f7aca0;
+  text-align: center;
+}
+
+.howToPlanSubtitle {
+  color: #136a80;
+  text-align: center;
+}
+
+.photoPicker:focus {
+  outline: none;
+  border: 0;
+}
+
+.photoPicker {
+  font-weight: 300 !important;
+}
+
+.pictureUploadContainer {
+  text-align: center;
+}
+
+.uploadPhotoDiv {
+  padding-top: 30px;
+  text-align:center;
+}
+
+.registrationPhotoPreview {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  max-width: 100%;
+  height: 200px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    /*border: 3px groove #CCC;*/
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
 }
