@@ -75,6 +75,11 @@ take12App.config(['$routeProvider', '$locationProvider',
       templateUrl: '/views/templates/registerStory.html',
       controller: 'RegistrationController'
     })
+    // Register new user (step4)
+    .when('/registerPrivacy', {
+      templateUrl: '/views/templates/registerPrivacy.html',
+      controller: 'RegistrationController'
+    })
     // How to plan for your maternity leave
     .when('/howToPlan', {
       templateUrl: '/views/templates/howToPlan.html',

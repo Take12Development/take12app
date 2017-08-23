@@ -1,9 +1,12 @@
-take12App.controller('RegistrationController', ['$scope', '$http', '$location', '$window', '$timeout', 'Upload', 'UserService',
-                    function($scope, $http, $location, $window, $timeout, Upload, UserService) {
+take12App.controller('RegistrationController', ['$scope', '$http', '$location',
+                      '$window', '$timeout', 'Upload', 'UserService', 'UtilitiesService',
+                    function($scope, $http, $location, $window, $timeout, Upload,
+                    UserService,UtilitiesService) {
 
   $scope.user = {
     email: '',
-    password: ''
+    password: '',
+    registryURL: ''
   };
 
   $scope.message = '';
@@ -38,8 +41,9 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location', 
           console.log('sending to server...', $scope.user);
           $http.post('/register', $scope.user).then(function(response) {
             console.log('success');
+            UtilitiesService.showAlert('Your account has been created, please login to create your registry');
             // $location.path('/home');
-            $scope.goTo('/registerWho');
+            $scope.goTo('/login');
           },
           function(response) {
             console.log('error');
