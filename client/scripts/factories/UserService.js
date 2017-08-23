@@ -19,7 +19,8 @@ take12App.factory('UserService', ['$http', '$location', function($http, $locatio
         if(response.data.email) {
           // user has a curret session on the server
           userObject.email = response.data.email;
-          console.log('User Data: ', userObject.email);
+          userObject.registryURL = response.data.registryURL;
+          console.log('User Data: ', userObject);
         } else {
           // user has no session, bounce them back to the login page
           $location.path("/home");

@@ -13,7 +13,7 @@
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column">
-      <form name="photoView">
+      <form name="photoView" ng-submit="saveAndContinue(2)">
         <!-- PICTURE UPLOAD FORM-->
         <div class="pictureUploadContainer">
           <input class="photoPicker" type="file" ngf-select ng-model="picFile" name="file"
@@ -39,6 +39,7 @@
         </div>
 
         <md-input-container layout="row" layout-align="center center">
+          <md-button class="md-raised submitButton" name="back" aria-label="Back" value="Back" ng-click="goBack(2)">Back</md-button>
           <md-button class="md-raised submitButton" type="submit" name="submit" aria-label="Next" value="Next">Next</md-button>
         </md-input-container>
       </form>

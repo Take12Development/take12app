@@ -9,6 +9,13 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location',
     registryURL: ''
   };
 
+  $scope.registry = {
+    firstName: '',
+    lastName: '',
+    goalAmount: 0,
+    dueDate: ''
+  }
+
   $scope.message = '';
 
   $scope.goTo = function(view) {
@@ -98,5 +105,43 @@ $scope.uploadPic = function(file) {
       file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
     });
   }
+
+  $scope.saveAndContinue = function(step) {
+    console.log('Registry:', $scope.registry);
+
+    switch (parseInt(step)) {
+      case 1:
+        $location.url('/registerPhoto');
+        break;
+      case 2:
+        $location.url('/registerStory');
+        break;
+      case 3:
+        $location.url('/registerPrivacy');
+        break;
+      default:
+    }
+  }
+
+  $scope.goBack = function(step) {
+
+    switch (parseInt(step)) {
+      case 1:
+        $location.url('/registerWho');
+        break;
+      case 2:
+        $location.url('/registerMainInfo');
+        break;
+      case 3:
+        $location.url('/registerPhoto');
+        break;
+      case 4:
+        $location.url('/registerStory');
+        break;
+      default:
+    }
+  }
+
+
 
 }]);
