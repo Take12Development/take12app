@@ -3,7 +3,7 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location',
                     function($scope, $http, $location, $window, $timeout, Upload,
                     UserService,UtilitiesService) {
 
-  $scope.user = {
+  $scope.newUser = {
     email: '',
     password: '',
     registryURL: ''
@@ -23,7 +23,7 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location',
   // compares pasword and password confirmation entered by the user
   function comparePasswords() {
     var validPassword = false;
-    if ($scope.user.password === $scope.user.confirmPassword) {
+    if ($scope.newUser.password === $scope.newUser.confirmPassword) {
       var validPassword = true;
     } else {
       var validPassword = false;
@@ -34,12 +34,12 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location',
 
   // registers a new user
   $scope.registerUser = function() {
-    if($scope.user.email === '' || $scope.user.password === '' || $scope.user.confirmPassword === '') {
+    if($scope.newUser.email === '' || $scope.newUser.password === '' || $scope.newUser.confirmPassword === '') {
       $scope.message = "Please enter all the required information";
     } else {
         if (comparePasswords()) {
-          console.log('sending to server...', $scope.user);
-          $http.post('/register', $scope.user).then(function(response) {
+          console.log('sending to server...', $scope.newUser);
+          $http.post('/register', $scope.newUser).then(function(response) {
             console.log('success');
             UtilitiesService.showAlert('Your account has been created, please login to create your registry');
             // $location.path('/home');

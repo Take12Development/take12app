@@ -48,16 +48,24 @@ md-menu-content {
   overflow:auto;
 }
 
-.loginBlock {
+.loginBlock, .createRegistryBlock {
   border: 2px solid #8f6a89;
   border-radius: 5px;
+  margin-bottom: 20px;
+  min-height: 550px;
+}
+
+.loginContainer, .createRegistryContainer {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
 }
 
 .loginContent {
   margin: 0 !important;
 }
 
-.loginHeader {
+.loginHeader, .registerHeader{
   background-color: #8f6a89;
   color: white;
   padding: 15px;
@@ -134,10 +142,6 @@ md-menu-content {
 
 .footerOption:hover {
   color: #ff4081;
-}
-
-.createRegistryContainer {
-  width: 100%;
 }
 
 .createRegistryText {
