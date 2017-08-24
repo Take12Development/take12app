@@ -57,6 +57,7 @@ router.post('/add', function(req,res) {
       registry.firstName = first;
       registry.lastName = last;
       registry.goalAmount = req.body.goalAmount;
+      registry.currentAmount = 0;
       registry.dueDate = req.body.dueDate;
       registry.save(function(err, savedRegistry){
       if(err){
