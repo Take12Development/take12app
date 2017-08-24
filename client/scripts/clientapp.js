@@ -56,8 +56,8 @@ take12App.config(['$routeProvider', '$locationProvider',
       controller: 'RegistrationController'
     })
     // Register new user (step0)
-    .when('/registerWho', {
-      templateUrl: '/views/templates/registerWho.html',
+    .when('/registration', {
+      templateUrl: '/views/templates/registration.html',
       controller: 'RegistrationController',
       resolve: {
         getuser : ['UserService', function(UserService){
@@ -65,46 +65,56 @@ take12App.config(['$routeProvider', '$locationProvider',
         }]
       }
     })
-    // Register new user (step1)
-    .when('/registerMainInfo', {
-      templateUrl: '/views/templates/registerMainInfo.html',
-      controller: 'RegistrationController',
-      resolve: {
-        getuser : ['UserService', function(UserService){
-          return UserService.getuser();
-        }]
-      }
-    })
-    // Register new user (step2)
-    .when('/registerPhoto', {
-      templateUrl: '/views/templates/registerPhoto.html',
-      controller: 'RegistrationController',
-      resolve: {
-        getuser : ['UserService', function(UserService){
-          return UserService.getuser();
-        }]
-      }
-    })
-    // Register new user (step3)
-    .when('/registerStory', {
-      templateUrl: '/views/templates/registerStory.html',
-      controller: 'RegistrationController',
-      resolve: {
-        getuser : ['UserService', function(UserService){
-          return UserService.getuser();
-        }]
-      }
-    })
-    // Register new user (step4)
-    .when('/registerPrivacy', {
-      templateUrl: '/views/templates/registerPrivacy.html',
-      controller: 'RegistrationController',
-      resolve: {
-        getuser : ['UserService', function(UserService){
-          return UserService.getuser();
-        }]
-      }
-    })
+    // // Register new user (step0)
+    // .when('/registerWho', {
+    //   templateUrl: '/views/templates/registerWho.html',
+    //   controller: 'RegistrationController',
+    //   resolve: {
+    //     getuser : ['UserService', function(UserService){
+    //       return UserService.getuser();
+    //     }]
+    //   }
+    // })
+    // // Register new user (step1)
+    // .when('/registerMainInfo', {
+    //   templateUrl: '/views/templates/registerMainInfo.html',
+    //   controller: 'RegistrationController',
+    //   resolve: {
+    //     getuser : ['UserService', function(UserService){
+    //       return UserService.getuser();
+    //     }]
+    //   }
+    // })
+    // // Register new user (step2)
+    // .when('/registerPhoto', {
+    //   templateUrl: '/views/templates/registerPhoto.html',
+    //   controller: 'RegistrationController',
+    //   resolve: {
+    //     getuser : ['UserService', function(UserService){
+    //       return UserService.getuser();
+    //     }]
+    //   }
+    // })
+    // // Register new user (step3)
+    // .when('/registerStory', {
+    //   templateUrl: '/views/templates/registerStory.html',
+    //   controller: 'RegistrationController',
+    //   resolve: {
+    //     getuser : ['UserService', function(UserService){
+    //       return UserService.getuser();
+    //     }]
+    //   }
+    // })
+    // // Register new user (step4)
+    // .when('/registerPrivacy', {
+    //   templateUrl: '/views/templates/registerPrivacy.html',
+    //   controller: 'RegistrationController',
+    //   resolve: {
+    //     getuser : ['UserService', function(UserService){
+    //       return UserService.getuser();
+    //     }]
+    //   }
+    // })
     // How to plan for your maternity leave
     .when('/howToPlan', {
       templateUrl: '/views/templates/howToPlan.html',

@@ -59,6 +59,7 @@ router.post('/add', function(req,res) {
       registry.goalAmount = req.body.goalAmount;
       registry.currentAmount = 0;
       registry.dueDate = req.body.dueDate;
+      registry.stripeConnected = false;
       registry.save(function(err, savedRegistry){
       if(err){
         console.log("Mongo error:", err);

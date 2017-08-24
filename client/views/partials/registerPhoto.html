@@ -1,4 +1,4 @@
-<!-- REGISTER NEW USER VIEW -->
+<!-- REGISTER NEW USER PHOTO VIEW -->
 <div class="contentBlock" layout="row">
   <div layout="column" flex-gt-md="33" flex-xs="10" flex-sm="10" flex-md="20"></div>
   <div class="createRegistryBlock" layout="column" flex-gt-md="33" flex-xs="80" flex-sm="80" flex-md="60">
@@ -13,7 +13,7 @@
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column">
-      <form name="photoView" ng-submit="saveAndContinue(2)">
+      <form name="photoView" ng-submit="goNext(2)">
         <!-- PICTURE UPLOAD FORM-->
         <div class="pictureUploadContainer">
           <input class="photoPicker" type="file" ngf-select ng-model="picFile" name="file"

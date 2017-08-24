@@ -17,10 +17,16 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location',
     dueDate: ''
   }
 
+  // variables used for navigation among registration views. Possible values:
+  // registerWho = 0, registerMainInfo = 1, registerPhoto = 2,
+  // registerStory = 3, registerPrivacy 4
+  $scope.visibleStep = 0;
+
   $scope.message = '';
 
-  $scope.goTo = function(view) {
-    $location.url(view);
+  $scope.startRegistration = function(who) {
+    // add code to differentiate between self and lovedOne
+    $scope.visibleStep = 1;
   }
 
   $scope.goToHowToPlan = function() {
@@ -111,39 +117,41 @@ $scope.uploadPic = function(file) {
     console.log('Registry:', $scope.registry);
     RegistryDataService.postRegistry($scope.registry);
 
+    $scope.goNext(step);
+  }
+
+  // moves forward - registration view
+  $scope.goNext = function(step) {
     switch (parseInt(step)) {
       case 1:
-        $location.url('/registerPhoto');
+        $scope.visibleStep = 2;
         break;
       case 2:
-        $location.url('/registerStory');
+        $scope.visibleStep = 3;
         break;
       case 3:
-        $location.url('/registerPrivacy');
+        $scope.visibleStep = 4;
         break;
-      default:
     }
   }
 
+  // moves backwards - registration view
   $scope.goBack = function(step) {
-
     switch (parseInt(step)) {
       case 1:
-        $location.url('/registerWho');
+        $scope.visibleStep = 0;
         break;
       case 2:
-        $location.url('/registerMainInfo');
+        $scope.visibleStep = 1;
         break;
       case 3:
-        $location.url('/registerPhoto');
+        $scope.visibleStep = 2;
         break;
       case 4:
-        $location.url('/registerStory');
+        $scope.visibleStep = 3;
         break;
-      default:
     }
   }
-
 
 
 }]);

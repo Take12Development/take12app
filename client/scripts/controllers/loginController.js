@@ -22,7 +22,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$location', 'UserSe
             $location.path('/main');
           } else {
             // New user: Presents register views
-            $location.path('/registerWho');
+            $location.path('/registration');
           }
         } else {
           console.log('failure: ', response);

@@ -1,4 +1,4 @@
-<!-- REGISTER NEW USER VIEW -->
+<!-- REGISTER NEW USER STORY VIEW -->
 <div class="contentBlock" layout="row">
   <div layout="column" flex-gt-md="33" flex-xs="10" flex-sm="10" flex-md="20"></div>
   <div class="createRegistryBlock" layout="column" flex-gt-md="33" flex-xs="80" flex-sm="80" flex-md="60">
@@ -13,7 +13,7 @@
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column">
-      <form form name="storyView" ng-submit="saveAndContinue(3)">
+      <form form name="storyView" ng-submit="goNext(3)">
         <!-- TEXT EDITOR -->
         <div class="angularTextArea" text-angular ng-model="registry.description2" name="editor2" ta-text-editor-class="border-around" ta-html-editor-class="border-around" ng-change="registry.addedMessage(registry.description2)"></div>
         <!-- SAVE AND COMPLETE REGISTRY BUTTON -->
