@@ -1,7 +1,8 @@
 take12App.controller('RegistrationController', ['$scope', '$http', '$location',
-                      '$window', '$timeout', 'Upload', 'UserService', 'UtilitiesService',
+                      '$window', '$timeout', 'Upload', 'UserService',
+                      'UtilitiesService', 'RegistryDataService',
                     function($scope, $http, $location, $window, $timeout, Upload,
-                    UserService,UtilitiesService) {
+                    UserService, UtilitiesService, RegistryDataService) {
 
   $scope.newUser = {
     email: '',
@@ -108,6 +109,7 @@ $scope.uploadPic = function(file) {
 
   $scope.saveAndContinue = function(step) {
     console.log('Registry:', $scope.registry);
+    RegistryDataService.postRegistry($scope.registry);
 
     switch (parseInt(step)) {
       case 1:

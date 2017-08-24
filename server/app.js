@@ -12,6 +12,7 @@ var session = require('express-session');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
+var registry = require('./routes/registry');
 
 var mongoDB = require('./modules/db');
 
@@ -39,6 +40,8 @@ app.use(passport.session());
 // Routes
 app.use('/register', register);
 app.use('/user', user);
+app.use('/registry', registry);
+
 
 // Login error response
 app.get('/error', function(req, res) {

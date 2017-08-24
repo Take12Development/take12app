@@ -17,12 +17,12 @@ take12App.controller('LoginController', ['$scope', '$http', '$location', 'UserSe
         if(response.data.email) {
           UserService.userObject.email = response.data.email;
           console.log('success: ', response.data);
-          if(response.data.registryURL == "") {
-            // New user: Presents register views
-            $location.path('/registerWho');
-          } else {
+          if(response.data.registryURL && response.data.registryURL != "") {
             // Existing user: Presents registry dashboard
             $location.path('/main');
+          } else {
+            // New user: Presents register views
+            $location.path('/registerWho');
           }
         } else {
           console.log('failure: ', response);
