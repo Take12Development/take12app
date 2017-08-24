@@ -1,7 +1,7 @@
-take12App.controller('RegistrationController', ['$scope', '$http', '$location',
+take12App.controller('RegistrationController', ['$scope', '$http',
                       '$window', '$timeout', 'Upload', 'UserService',
                       'UtilitiesService', 'RegistryDataService',
-                    function($scope, $http, $location, $window, $timeout, Upload,
+                    function($scope, $http, $window, $timeout, Upload,
                     UserService, UtilitiesService, RegistryDataService) {
 
   $scope.newUser = {
@@ -43,7 +43,6 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location',
       var validPassword = true;
     } else {
       var validPassword = false;
-
     }
     return validPassword;
   }
@@ -58,8 +57,7 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location',
           $http.post('/register', $scope.newUser).then(function(response) {
             console.log('success');
             UtilitiesService.showAlert('Your account has been created, please login to create your registry');
-            // $location.path('/home');
-            $scope.goTo('/login');
+            UtilitiesService.redirect('/login');
           },
           function(response) {
             console.log('error');
@@ -115,6 +113,7 @@ $scope.uploadPic = function(file) {
     });
   }
 
+  // Calls factory function that saves registry to the Database
   $scope.saveAndComplete = function() {
     console.log('Registry:', $scope.registry);
     RegistryDataService.postRegistry($scope.registry);
@@ -125,37 +124,13 @@ $scope.uploadPic = function(file) {
   // moves forward - registration view
   $scope.goNext = function(step) {
     console.log('Registry:', $scope.registry);
-    switch (parseInt(step)) {
-      case 1:
-        $scope.visibleStep = 2;
-        break;
-      case 2:
-        $scope.visibleStep = 3;
-        break;
-      case 3:
-        $scope.visibleStep = 4;
-        break;
-    }
+    $scope.visibleStep = parseInt(step) + 1;
   }
 
   // moves backwards - registration view
   $scope.goBack = function(step) {
     console.log('Registry:', $scope.registry);
-    switch (parseInt(step)) {
-      case 1:
-        $scope.visibleStep = 0;
-        break;
-      case 2:
-        $scope.visibleStep = 1;
-        break;
-      case 3:
-        $scope.visibleStep = 2;
-        break;
-      case 4:
-        $scope.visibleStep = 3;
-        break;
-    }
+    $scope.visibleStep = parseInt(step) - 1;
   }
-
 
 }]);

@@ -1,6 +1,7 @@
-take12App.factory('UtilitiesService', ['$mdDialog', function($mdDialog){
+take12App.factory('UtilitiesService', ['$mdDialog', '$location',
+                  function($mdDialog, $location){
 
-
+  // shows alert modal window
   showAlert = function(message) {
       $mdDialog.show(
         $mdDialog.alert()
@@ -11,8 +12,14 @@ take12App.factory('UtilitiesService', ['$mdDialog', function($mdDialog){
       );
   };
 
+  // Redirects to view received as a parameter
+  function redirect(page) {
+    $location.url(page);
+  }
+
 return {
-    showAlert: showAlert
+    showAlert: showAlert,
+    redirect : redirect
 };
 
-}]);//end of UtilitiesService
+}]);

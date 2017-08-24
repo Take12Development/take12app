@@ -4,15 +4,8 @@ take12App.factory('UserService', ['$http', '$location', function($http, $locatio
   // Stores logged user information
   var userObject = {};
 
-  // Redirects to view received as a parameter
-  function redirect(page) {
-    console.log('inpage navigation', page);
-    $location.url(page);
-  }
-
   return {
     userObject : userObject,
-    redirect : redirect,
     // Gets logged user
     getuser : function(){
       $http.get('/user').then(function(response) {
