@@ -15,7 +15,7 @@
     <div class="createRegistryContainer" layout="column">
       <form form name="storyView" ng-submit="goNext(3)">
         <!-- TEXT EDITOR -->
-        <div class="angularTextArea" text-angular ng-model="registry.description2" name="editor2" ta-text-editor-class="border-around" ta-html-editor-class="border-around" ng-change="registry.addedMessage(registry.description2)"></div>
+        <div class="angularTextArea" text-angular ng-model="registry.story" name="editor2" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
         <!-- SAVE AND COMPLETE REGISTRY BUTTON -->
         <md-input-container layout="row" layout-align="center center">
           <md-button class="md-raised submitButton" name="back" aria-label="Back" value="Back" ng-click="goBack(3)">Back</md-button>

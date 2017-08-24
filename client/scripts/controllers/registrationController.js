@@ -14,7 +14,9 @@ take12App.controller('RegistrationController', ['$scope', '$http', '$location',
     firstName: '',
     lastName: '',
     goalAmount: 0,
-    dueDate: ''
+    dueDate: '',
+    story: '',
+    privacy: 'public'
   }
 
   // variables used for navigation among registration views. Possible values:
@@ -113,7 +115,7 @@ $scope.uploadPic = function(file) {
     });
   }
 
-  $scope.saveAndContinue = function(step) {
+  $scope.saveAndComplete = function() {
     console.log('Registry:', $scope.registry);
     RegistryDataService.postRegistry($scope.registry);
 
@@ -122,6 +124,7 @@ $scope.uploadPic = function(file) {
 
   // moves forward - registration view
   $scope.goNext = function(step) {
+    console.log('Registry:', $scope.registry);
     switch (parseInt(step)) {
       case 1:
         $scope.visibleStep = 2;
@@ -137,6 +140,7 @@ $scope.uploadPic = function(file) {
 
   // moves backwards - registration view
   $scope.goBack = function(step) {
+    console.log('Registry:', $scope.registry);
     switch (parseInt(step)) {
       case 1:
         $scope.visibleStep = 0;

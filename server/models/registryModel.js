@@ -10,7 +10,7 @@ var RegistrySchema = mongoose.Schema({
   startDate: Date,
   dueDate: Date,
   imageURL: String,
-  description: String,
+  story: String,
   privacy: String,
   stripeConnected: Boolean,
   comments: [],

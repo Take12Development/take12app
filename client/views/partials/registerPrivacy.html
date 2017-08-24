@@ -13,19 +13,19 @@
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column">
-      <form form name="privacyView" ng-submit="">
+      <form form name="privacyView" ng-submit="saveAndComplete()">
         <!-- PRIVACY SETTING RADIO GROUP -->
         <br>
-        <md-radio-group ng-model="data.group">
-          <md-radio-button value="Public">Public:
+        <md-radio-group ng-model="registry.privacy">
+          <md-radio-button value="public">Public:
             <span>Your registry will be displayed on our public registry page and can be found via our search function based on name.</span>
           </md-radio-button>
           <br>
-          <md-radio-button value="Semi-Private">Semi-Private:
+          <md-radio-button value="semi">Semi-Private:
             <span>Your registry can be found via our search function based on name.</span>
           </md-radio-button>
           <br>
-          <md-radio-button value="Private">Private:
+          <md-radio-button value="private">Private:
             <span>Your name can be found via our search function but a request must be sent to you in order to view the contents of your registry page. You can also share your private link with whomever you wish.</span>
           </md-radio-button>
         </md-radio-group>
