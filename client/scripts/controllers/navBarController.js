@@ -1,6 +1,7 @@
-take12App.controller('navBarController', ['$scope', '$location','UserService', function($scope, $location, UserService) {
+take12App.controller('navBarController', ['$scope', '$location','UtilitiesService',
+                      function($scope, $location, UtilitiesService) {
   var originatorEv;
-  $scope.redirect = UserService.redirect;
+  $scope.redirect = UtilitiesService.redirect;
 
   // Displays menu options
   $scope.openMenu = function($mdMenu, ev) {
