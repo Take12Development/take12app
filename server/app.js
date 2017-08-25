@@ -10,6 +10,7 @@ var session = require('express-session');
 
 // Route includes
 var index = require('./routes/index');
+var uploads = require('./routes/uploads');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var registry = require('./routes/registry');
@@ -41,7 +42,7 @@ app.use(passport.session());
 app.use('/register', register);
 app.use('/user', user);
 app.use('/registry', registry);
-
+app.use('/uploads', uploads);
 
 // Login error response
 app.get('/error', function(req, res) {

@@ -4,12 +4,14 @@ take12App.controller('RegistrationController', ['$scope', '$http',
                     function($scope, $http, $window, $timeout, Upload,
                     UserService, UtilitiesService, RegistryDataService) {
 
+  // stores information to save a new user into the DB
   $scope.newUser = {
     email: '',
     password: '',
     registryURL: ''
   };
 
+  // new registry information
   $scope.registry = {
     firstName: '',
     lastName: '',
@@ -24,13 +26,16 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   // registerStory = 3, registerPrivacy 4
   $scope.visibleStep = 0;
 
+  // validation's message
   $scope.message = '';
 
+  // starts registration based on parameter(self or lovedOne)
   $scope.startRegistration = function(who) {
     // add code to differentiate between self and lovedOne
     $scope.visibleStep = 1;
   }
 
+  // opens how to plan information on separate window
   $scope.goToHowToPlan = function() {
     // THIS HAS TO BE REPLACED WITH CORRECT URL
     $window.open('http://localhost:5000/#/howToPlan', '_blank');
@@ -74,39 +79,36 @@ var filename;
 
 // Upload picture file Section
 $scope.uploadPic = function(file) {
-  var tempUsername = "claudia.calderas@gmail.com"
+  var tempURL = "claudiacalderas2registry"
   console.log('name:',UserService.userObject.email);
   file.upload = Upload.upload({
     url: '/uploads',
     // data: {name: UserService.userObject.email, file: file},
-    data: {name: tempUsername, file: file},
+    data: {registryURL: tempURL, file: file},
   });
 
   file.upload.then(function (response) {
-    // console.log('0 Back from upload with data:',response.data);
+    console.log('0 Back from upload with data:',response.data);
     // saves filename to use when saving recipe
     // filename in localhost:
     // filename = response.data.file.path + "/" + response.data.file.originalname;
     // updated filename that works with aws
     // filename = response.data.file.location;
     // console.log('URL is:',filename);
-
     $timeout(function () {
       file.result = response.data;
-      // console.log('1 Back from upload with data:',response.data);
+      console.log('1 Back from upload with data:',response.data);
       // filename in localhost:
       // filename = response.data.file.path + "/" + response.data.file.originalname;
       // updated filename that works with aws
       // filename = response.data.file.location;
       // console.log('URL is:',filename);
-
     });
     }, function (response) {
       if (response.status > 0)
         $scope.errorMsg = response.status + ': ' + response.data;
-        // console.log('2 Back from upload with data:',response.data);
-        // console.log('URL is:',filename);
-
+        console.log('2 Back from upload with data:',response.data);
+        console.log('URL is:',filename);
     }, function (evt) {
       // Math.min is to fix IE which reports 200% sometimes
       file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
