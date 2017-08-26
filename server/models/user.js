@@ -8,7 +8,7 @@ var UserSchema = new Schema({
     password: {type: String, required: true},
     name: {type: String, required: false},
     email: {type: String, required: true, index: {unique: true}},
-    registryURL : {type: String, required: false}
+    registries : []
 });
 
 // Called before adding a new user to the DB. Encrypts password.

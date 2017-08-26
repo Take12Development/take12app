@@ -19,8 +19,12 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     dueDate: '',
     imageURL: '',
     story: '',
-    privacy: 'public'
+    privacy: 'public',
+    email: '',
+    organizerEmail: ''
   }
+
+  console.log('in the controller: ',UserService.userObject);
 
   // variables used for navigation among registration views. Possible values:
   // registerWho = 0, registerMainInfo = 1, registerPhoto = 2,
@@ -34,13 +38,18 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   $scope.startRegistration = function(who) {
     // add code to differentiate between self and lovedOne
     $scope.visibleStep = 1;
-  }
+    if (who == 'self') {
+      $scope.registry.email = UserService.userObject.email;
+    } else {
+      $scope.registry.organizerEmail = UserService.userObject.email;
+    }
+  };
 
   // opens how to plan information on separate window
   $scope.goToHowToPlan = function() {
     // THIS HAS TO BE REPLACED WITH CORRECT URL
     $window.open('http://localhost:5000/#/howToPlan', '_blank');
-  }
+  };
 
   // compares pasword and password confirmation entered by the user
   function comparePasswords() {
@@ -51,7 +60,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
       var validPassword = false;
     }
     return validPassword;
-  }
+  };
 
   // registers a new user
   $scope.registerUser = function() {
@@ -112,7 +121,7 @@ $scope.uploadPic = function(file) {
       // Math.min is to fix IE which reports 200% sometimes
       file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
     });
-  }
+  };
 
   // Calls factory function that saves registry to the Database
   $scope.saveAndComplete = function() {
@@ -121,18 +130,18 @@ $scope.uploadPic = function(file) {
 
     // go to registry dashboard
     UtilitiesService.redirect('/dashboard');
-  }
+  };
 
   // moves forward - registration view
   $scope.goNext = function(step) {
     console.log('Registry:', $scope.registry);
     $scope.visibleStep = parseInt(step) + 1;
-  }
+  };
 
   // moves backwards - registration view
   $scope.goBack = function(step) {
     console.log('Registry:', $scope.registry);
     $scope.visibleStep = parseInt(step) - 1;
-  }
+  };
 
 }]);

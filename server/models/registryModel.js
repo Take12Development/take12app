@@ -12,6 +12,8 @@ var RegistrySchema = mongoose.Schema({
   imageURL: String,
   story: String,
   privacy: String,
+  email: String,
+  organizerEmail: String,
   stripeConnected: Boolean,
   comments: [],
   facebookId: String,
