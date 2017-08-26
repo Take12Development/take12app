@@ -1,26 +1,28 @@
 <!-- LOGIN VIEW -->
 <div class="contentBlock" layout="row">
-  <div layout-md="row" flex="33">
-  </div>
-  <div class = "loginBlock" layout="column" flex="33">
-    <h1 class = "loginHeader">Welcome Back to Take12</h1>
-    <!-- ***Use this Facebook button once FB is integrated -->
-    <!-- <div class="fb-login-button" data-max-rows="1" data-size="large"
-          data-button-type="continue_with" data-show-faces="false"
-          data-auto-logout-link="false" data-use-continue-as="false"></div> -->
-    <md-input-container layout="column" layout-align="center center">
-      <div>
-        <md-button class="md-raised fbButton" type="submit" name="facebook"
-                    aria-label="Connect with Facebook" value="facebook">
-                    Connect with Facebook
+  <div layout="column" flex-gt-md="33" flex-xs="10" flex-sm="10" flex-md="20"></div>
+  <div class="loginBlock" layout="column" flex-gt-md="33" flex-xs="80" flex-sm="80" flex-md="60">
+    <div layout="column" flex-align="center center">
+      <h1 class = "loginHeader">Welcome to Take12</h1>
+    </div>
+    <div class="loginContainer" layout="column" flex-align="center center">
+      <form name="loginView" ng-submit="login()">
+        <!-- ***Use this Facebook button once FB is integrated -->
+        <!-- <div class="fb-login-button" data-max-rows="1" data-size="large"
+              data-button-type="continue_with" data-show-faces="false"
+              data-auto-logout-link="false" data-use-continue-as="false"></div> -->
+        <md-input-container layout="column" layout-align="center center">
+          <md-button class="md-raised fbButton" type="submit" name="facebook"
+                     aria-label="Connect with Facebook" value="facebook">
+                     Connect with Facebook
           </md-button>
-      </div>
-      <br>
-      <span>or</span>
-    </md-input-container>
-    <md-input-container layout="column" layout-align="center center" class = "loginContent">
-      <h3 id="loginMessage" ng-if="message != ''">{{message}}</h3>
-      <form class = "loginForm" name="loginView" ng-submit="login()">
+          <br>
+          <span>or</span>
+        </md-input-container>
+        <md-input-container layout="column" layout-align="center center" class = "loginContent">
+          <h3 id="loginMessage" ng-if="message != ''">{{message}}</h3>
+        </md-input-container>
+
         <md-input-container layout="column" class = "loginContent">
           <div>
             <label for="email">Email:</label>
@@ -57,6 +59,6 @@
           </div>
         </md-input-container>
       </form>
-    </md-input-container>
+    </div>
   </div>
 </div>

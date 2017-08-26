@@ -82,6 +82,15 @@ module.exports = function(grunt){
         cwd: 'node_modules/ng-file-upload/dist/',
         src: ['ng-file-upload-all.min.js'],
         dest: 'server/public/vendors/ng-file-upload/'
+      },
+      textangular: {
+        expand: true,
+        cwd: 'node_modules/textangular/dist/',
+        src: ['textAngular-rangy.min.js',
+              'textAngular-sanitize.min.js',
+              'textAngular.min.js',
+              'textAngular.css'],
+        dest: 'server/public/vendors/textangular/'
       }
     },
     watch: {
