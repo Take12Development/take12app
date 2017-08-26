@@ -6,8 +6,9 @@ var SALT_WORK_FACTOR = 10;
 // Mongoose Schema
 var UserSchema = new Schema({
     password: {type: String, required: true},
-    name: {type: String, required: true},
-    email: {type: String, required: true, index: {unique: true}}
+    name: {type: String, required: false},
+    email: {type: String, required: true, index: {unique: true}},
+    registries : []
 });
 
 // Called before adding a new user to the DB. Encrypts password.
