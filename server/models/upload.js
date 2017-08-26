@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 // Picture upload Schema
 var UploadSchema = mongoose.Schema({
-  registryURL: String,
   created: Date,
   file: Object
 });

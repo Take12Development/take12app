@@ -80,6 +80,16 @@ take12App.config(['$routeProvider', '$locationProvider',
         }]
       }
     })
+    // Registry dashboard
+    .when('/dashboard', {
+      templateUrl: '/views/templates/dashboard.html',
+      controller: 'DashboardController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });

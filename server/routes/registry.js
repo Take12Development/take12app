@@ -59,6 +59,9 @@ router.post('/add', function(req,res) {
       registry.goalAmount = req.body.goalAmount;
       registry.currentAmount = 0;
       registry.dueDate = req.body.dueDate;
+      registry.imageURL = req.body.imageURL;
+      registry.story = req.body.story;
+      registry.privacy = req.body.privacy;
       registry.stripeConnected = false;
       registry.save(function(err, savedRegistry){
       if(err){
@@ -70,10 +73,10 @@ router.post('/add', function(req,res) {
   });
 });
 
-// updates recipe information
+// updates registry information
 router.put("/update", function(req,res){
   var registry = req.body;
-  Recipe.findById(registry._id, function(err, foundRegistry){
+  Registry.findById(registry._id, function(err, foundRegistry){
     if(err){
       console.log(err);
       res.sendStatus(500);
@@ -91,6 +94,5 @@ router.put("/update", function(req,res){
     });
   });
 });
-
 
 module.exports = router;

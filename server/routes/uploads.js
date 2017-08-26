@@ -25,7 +25,6 @@ router.post('/', upload.single('file'), function (req, res, next) {
   console.log(req.body);
   console.log(req.file);
   var newUpload = {
-    name: req.body.name,
     created: Date.now(),
     file: req.file
   };

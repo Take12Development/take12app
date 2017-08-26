@@ -17,6 +17,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     lastName: '',
     goalAmount: 0,
     dueDate: '',
+    imageURL: '',
     story: '',
     privacy: 'public'
   }
@@ -79,30 +80,28 @@ var filename;
 
 // Upload picture file Section
 $scope.uploadPic = function(file) {
-  var tempURL = "claudiacalderas2registry"
-  console.log('name:',UserService.userObject.email);
   file.upload = Upload.upload({
     url: '/uploads',
     // data: {name: UserService.userObject.email, file: file},
-    data: {registryURL: tempURL, file: file},
+    data: {file: file},
   });
 
   file.upload.then(function (response) {
     console.log('0 Back from upload with data:',response.data);
-    // saves filename to use when saving recipe
+    // saves filename to use when saving registry
     // filename in localhost:
-    // filename = response.data.file.path + "/" + response.data.file.originalname;
+    filename = response.data.file.path + "/" + response.data.file.originalname;
     // updated filename that works with aws
     // filename = response.data.file.location;
-    // console.log('URL is:',filename);
+    $scope.registry.imageURL = filename;
     $timeout(function () {
       file.result = response.data;
       console.log('1 Back from upload with data:',response.data);
       // filename in localhost:
-      // filename = response.data.file.path + "/" + response.data.file.originalname;
+      filename = response.data.file.path + "/" + response.data.file.originalname;
       // updated filename that works with aws
       // filename = response.data.file.location;
-      // console.log('URL is:',filename);
+      $scope.registry.imageURL = filename;
     });
     }, function (response) {
       if (response.status > 0)
@@ -120,7 +119,8 @@ $scope.uploadPic = function(file) {
     console.log('Registry:', $scope.registry);
     RegistryDataService.postRegistry($scope.registry);
 
-    $scope.goNext(step);
+    // go to registry dashboard
+    UtilitiesService.redirect('/dashboard');
   }
 
   // moves forward - registration view

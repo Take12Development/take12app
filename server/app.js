@@ -54,8 +54,6 @@ app.use('/*', index);
 // App Set //
 app.set('port', (process.env.PORT || 5000));
 
-
-
 // App Set //
 app.set('port', (process.env.PORT || 5000));
 
