@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Registry = require('../models/registryModel');
+var Users = require('../models/user');
 var Promise = require('promise');
 
 // gets all registries from the database
@@ -49,27 +50,54 @@ router.post('/add', function(req,res) {
 
   var first = req.body.firstName.toLowerCase();
   var last = req.body.lastName.toLowerCase();
+  var email = req.body.email.toLowerCase();
+  var organizerEmail = req.body.organizerEmail.toLowerCase();
+  console.log('organizerEmail', organizerEmail)
 
   createURL(first, last).then(function(data) {
-      console.log('Data',data);
-      var registry = new Registry();
-      registry.registryURL = data;
-      registry.firstName = first;
-      registry.lastName = last;
-      registry.goalAmount = req.body.goalAmount;
-      registry.currentAmount = 0;
-      registry.dueDate = req.body.dueDate;
-      registry.imageURL = req.body.imageURL;
-      registry.story = req.body.story;
-      registry.privacy = req.body.privacy;
-      registry.stripeConnected = false;
-      registry.save(function(err, savedRegistry){
-      if(err){
-        console.log("Mongo error:", err);
-        res.sendStatus(500);
+    console.log('Data',data);
+    var createdRegistryURL = data;
+    var registry = new Registry();
+    registry.registryURL = createdRegistryURL;
+    registry.firstName = first;
+    registry.lastName = last;
+    registry.goalAmount = req.body.goalAmount;
+    registry.currentAmount = 0;
+    registry.dueDate = req.body.dueDate;
+    registry.imageURL = req.body.imageURL;
+    registry.story = req.body.story;
+    registry.privacy = req.body.privacy;
+    registry.email = email;
+    registry.organizerEmail = organizerEmail;
+    registry.stripeConnected = false;
+    registry.save(function(err, savedRegistry){
+    if(err){
+      console.log("Mongo error:", err);
+      res.sendStatus(500);
+    } else {
+      // saves registryURL into user table
+      Users.findOneAndUpdate(
+          {email: email},
+          {$push: {registries: createdRegistryURL}},
+          {safe: true},
+          function(err, model) {
+              console.log(err);
+          }
+      );
+      // saves registryURL for organizer user
+      if (organizerEmail != '' && organizerEmail != null) {
+        Users.findOneAndUpdate(
+            {email: organizerEmail},
+            {$push: {registries: createdRegistryURL}},
+            {safe: true},
+            function(err, model) {
+                console.log(err);
+            }
+        );
       }
       res.send(savedRegistry);
-      });
+    }
+    });
   });
 });
 
@@ -89,8 +117,9 @@ router.put("/update", function(req,res){
       if(err){
         console.log(err);
         res.sendStatus(500);
+      } else {
+        res.send(savedRegistry);
       }
-      res.send(savedRegistry);
     });
   });
 });
