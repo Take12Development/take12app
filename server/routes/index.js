@@ -15,7 +15,7 @@ router.post('/',
 // Handle index file separately
 // Also catches any other request not explicitly matched elsewhere
 router.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../server/public/views/index.html'));
+  res.sendFile(path.join(__dirname, '../public/views/index.html'));
 });
 
 module.exports = router;
