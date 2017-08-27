@@ -20,7 +20,7 @@ router.get('/all', function(req,res){
 router.get('/:registryURL', function(req,res){
   console.log("/registry/:registryURL get route hit");
   var searchURL = req.params.registryURL;
-  Registry.find({registryURL: searchURL},function(err, foundRegistry) {
+  Registry.findOne({registryURL: searchURL},function(err, foundRegistry) {
     if(err) {
       console.log('Mongo error: ',err);
     }

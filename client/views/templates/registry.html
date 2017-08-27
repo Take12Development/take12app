@@ -1,7 +1,24 @@
 <!-- REGISTRY VIEW -->
 <div class="contentBlock" layout="row">
-  <div layout="column" flex-gt-md="20" flex-xs="10" flex-sm="10" flex-md="20"></div>
-  <div layout="column" flex-gt-md="60" flex-xs="80" flex-sm="80" flex-md="60">
-    <h1 class="howToPlanTitle">Registry</h1>
+  <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
+  <div layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+    <div layout="row">
+      <div layout="column" flex-gt-md="55">
+        <div>
+          <img id="primaryImage" ng-src="{{currentRegistry.imageURL}}">
+        </div>
+        <div>
+          <h1> {{currentRegistry.firstName}} {{currentRegistry.lastName}} & Family</h1>
+        </div>
+        <div ng-bind-html="currentRegistry.story"></div>
+      </div>
+      <div layout="column" flex-gt-md="5"></div>
+      <div layout="column" flex-gt-md="40">
+        <div>
+          <h1>Let's make sure {{currentRegistry.firstName}} has time at home!</h1>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
