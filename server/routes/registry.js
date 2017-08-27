@@ -42,7 +42,7 @@ function createURL(firstName, lastName) {
         }
       });
   });
-};
+}
 
 // saves a registry into the database
 router.post('/add', function(req,res) {
