@@ -28,6 +28,18 @@ router.get('/:registryURL', function(req,res){
   });
 });
 
+// gets all registries that are part of array received as a parameter
+router.post('/getuserregistries', function(req,res) {
+  console.log("/getuserregistries post route hit");
+  var arrayOfRegistries = req.body.registries;
+  Registry.find({ registryURL: { $in: arrayOfRegistries } } ,function(err, foundRegistries) {
+    if(err) {
+      console.log('Mongo error: ',err);
+    }
+    res.send(foundRegistries);
+  });
+});
+
 // creates newURL based on first and last name
 function createURL(firstName, lastName) {
   var newURL;
@@ -44,10 +56,10 @@ function createURL(firstName, lastName) {
         } else {
           console.log('Number of registries with same name', count);
           if(count === 0) {
-            newURL = name + "registry";
+            newURL = name;
           } else {
             var num = count + 1;
-            newURL = name + num + "registry";
+            newURL = name + num;
           }
           console.log('newURL:',newURL);
           resolve(newURL);

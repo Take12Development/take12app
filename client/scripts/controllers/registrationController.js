@@ -8,7 +8,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   $scope.newUser = {
     email: '',
     password: '',
-    registryURL: ''
+    registries: []
   };
 
   // new registry information

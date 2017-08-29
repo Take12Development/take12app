@@ -4,7 +4,8 @@ take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
 
   // Stores all registries in the DB
   var registriesObject = {
-    allRegistries: []
+    allRegistries: [],
+    userRegistries: []
   };
 
   // Gets all registries in the database
@@ -28,6 +29,15 @@ take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
       deferred.reject(response);
     });
     return deferred.promise;
+  };
+
+  // gets all registries that are part of array received as a parameter
+  getUserRegistries = function(arrayOfRegistries) {
+    console.log('Finding registries: ', arrayOfRegistries);
+    $http.post('/registry/getuserregistries', arrayOfRegistries).then(function(response) {
+      console.log('success:',response);
+      registriesObject.userRegistries = response.data;
+    });
   };
 
 
@@ -62,6 +72,7 @@ take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
     registriesObject : registriesObject,
     getRegistries : getRegistries,
     getRegistry : getRegistry,
+    getUserRegistries : getUserRegistries,
     postRegistry : postRegistry,
     updateRegistry : updateRegistry
   };
