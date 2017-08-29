@@ -308,8 +308,39 @@ form .progress {
   padding: 25px;
 }
 
-.registryStoryText {
-  font-size: 14px;
-  font-weight: 300;
+.registryCommentCount {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  background-color: #dedede;
+  /*border-top: 1px solid #dedede;*/
+  /*border-bottom: 1px solid #dedede;*/
+}
+
+.commentContainerCount {
+  font-size: 12px;
+  font-weight: bold;
+  color: #136a80;
   font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+}
+
+.commentContainer {
+  border-bottom: 1px solid #dedede;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.commentContainerDonorName {
+  font-size: 12px;
+  font-weight: 300;
+  color: #136a80;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+}
+
+.commentContainerComment {
+  font-size: 12px;
+  font-weight: 300;
+  color: black;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+  padding-bottom: 10px;
 }

@@ -11,6 +11,17 @@
           <h1> {{currentRegistry.firstName}} {{currentRegistry.lastName}} & Family</h1>
           <div class="registryStoryText" ng-bind-html="currentRegistry.story"></div>
         </div>
+        <div class="registryCommentCount" layout="row">
+          <span class="commentContainerCount">{{numberOfComments}}</span>
+          <span class="commentContainerCount">&nbsp comments</span>
+        </div>
+        <div class="registryCommentSection" layout="column" ng-repeat="comment in currentRegistry.comments">
+          <div class="commentContainer" layout="column" layout-align="start start">
+            <span class="commentContainerDonorName">{{comment.donorName}}</span>
+            <span class="commentContainerComment">{{comment.comment}}</span>
+          </div>
+        </div>
+
 
       </div>
       <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>

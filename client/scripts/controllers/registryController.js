@@ -14,6 +14,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     $scope.currentRegistry = data.data;
     $scope.currentRegistry.firstName = UtilitiesService.titleCase($scope.currentRegistry.firstName);
     $scope.currentRegistry.lastName = UtilitiesService.titleCase($scope.currentRegistry.lastName);
+    $scope.numberOfComments = $scope.currentRegistry.comments.length;
     console.log('$scope.currentRegistry',$scope.currentRegistry);
   })
   .catch(function(response){
