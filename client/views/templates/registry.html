@@ -1,7 +1,10 @@
 <!-- REGISTRY VIEW -->
 <div class="contentBlock" layout="row">
   <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
-  <div layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+  <div ng-if="validRegistry==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+    <h1>Registry Not Found!</h1>
+  </div>
+  <div ng-if="validRegistry==true" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
     <div class="registryContainer" layout="row">
       <div layout="column" flex-gt-md="60">
         <!-- IMAGE -->
@@ -79,4 +82,5 @@
 
     </div>
   </div>
+
 </div>
