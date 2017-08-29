@@ -52,4 +52,16 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
         }
     });
 
+    // Slider
+    $scope.slider = {
+      minValue: 15,
+      options: {
+        floor: 0,
+        ceil: 500,
+        step: 15,
+        showTicks: false,
+        hidePointerLabels: true,
+      }
+    };
+
 }]);

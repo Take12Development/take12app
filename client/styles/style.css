@@ -313,8 +313,6 @@ form .progress {
   padding-bottom: 10px;
   padding-left: 10px;
   background-color: #dedede;
-  /*border-top: 1px solid #dedede;*/
-  /*border-bottom: 1px solid #dedede;*/
 }
 
 .commentContainerCount {
@@ -343,4 +341,53 @@ form .progress {
   color: black;
   font-family: "Lato","Helvetica Neue", Arial, sans-serif;
   padding-bottom: 10px;
+}
+
+.registrySliderSection {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border: 1px solid #dedede;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.registrySliderMoment {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6acbc4;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+}
+
+.custom-slider.rzslider .rz-bar {
+  background: #dedede;
+  height: 5px;
+}
+.custom-slider.rzslider .rz-selection {
+  background: orange;
+}
+
+.custom-slider.rzslider .rz-pointer {
+  width: 10px;
+  height: 26px;
+  background-color: #6acbc4;
+  background: url(/views/assets/slider.png);
+  background-size: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.custom-slider.rzslider .rz-pointer:focus {
+  outline: none;
+  border: 0;
+}
+
+.custom-slider.rzslider .rz-pointer:after {
+  display: none;
+}
+
+.custom-slider.rzslider .rz-bubble {
+  /*bottom: 14px;*/
 }

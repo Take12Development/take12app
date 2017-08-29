@@ -32,6 +32,33 @@
         <div class="registryChart">
           <canvas id="myChart" height="100%" width="100%" border="1px"></canvas>
         </div>
+        <div class="registrySliderSection" layout="column">
+          <div class="registrySliderMoment" ng-switch="slider.minValue">
+            <span class="registrySliderMoment" ng-switch-when="15">Diaper Time</span>
+            <span class="registrySliderMoment" ng-switch-when="30">Tummy Time</span>
+            <span class="registrySliderMoment" ng-switch-when="45">Nap with Mom</span>
+            <span class="registrySliderMoment" ng-switch-when="60">Baby’s first Giggle</span>
+            <span class="registrySliderMoment" ng-switch-when="75">Read with Mom</span>
+            <span class="registrySliderMoment" ng-switch-when="90">Parent Date Night</span>
+            <span class="registrySliderMoment" ng-switch-when="180">Visit with Grandma!</span>
+            <span class="registrySliderMoment" ng-switch-when="300">Full Night Sleep!</span>
+            <span class="registrySliderMoment" ng-switch-when="495">NICU Visit</span>
+            <span class="registrySliderMoment" ng-switch-default>&nbsp</span>
+          </div>
+          <div>
+            <rzslider class="custom-slider"
+            rz-slider-model="slider.minValue"
+            rz-slider-high="slider.maxValue"
+            rz-slider-options="slider.options"></rzslider>
+          </div>
+          <div layout="row" layout-align="center center">
+            <span>Your Gift:&nbsp&nbsp</span>
+            <h2>${{slider.minValue}}</h2>
+          </div>
+          <div layout="row" layout-align="center center">
+            <md-button class="md-raised submitButton" name="giftNow" aria-label="Gift now" value="giftNow" ng-click="">Gift Now!</md-button>
+          </div>
+        </div>
       </div>
 
     </div>

@@ -97,7 +97,16 @@ module.exports = function(grunt){
         cwd: 'node_modules/chart.js/dist/',
         src: ['Chart.min.js'],
         dest: 'server/public/vendors/chartjs/'
+      },
+      chartjs: {
+        expand: true,
+        cwd: 'node_modules/angularjs-slider/dist/',
+        src: ['rzslider.min.js',
+              'rzslider.min.css',
+              'rzslider.css'],
+        dest: 'server/public/vendors/angularjsslider/'
       }
+
     },
     watch: {
       files: [
