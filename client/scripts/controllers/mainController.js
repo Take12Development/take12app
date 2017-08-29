@@ -28,7 +28,12 @@ take12App.controller('MainController', ['$scope', 'UserService', 'UtilitiesServi
 
   $scope.newRegistry = function() {
     UtilitiesService.redirect('/registration')
-  }
+  };
+
+  $scope.goToRegistryDashboard = function(registry) {
+    UserService.userObject.currentRegistry = angular.copy(registry);
+    UtilitiesService.redirect('/dashboard');
+  };
 
 
 

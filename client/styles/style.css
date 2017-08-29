@@ -335,6 +335,10 @@ form .progress {
   font-family: "Lato","Helvetica Neue", Arial, sans-serif;
 }
 
+.registryCommentSection {
+    margin-bottom: 25px;
+}
+
 .commentContainerComment {
   font-size: 12px;
   font-weight: 300;

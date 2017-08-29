@@ -23,7 +23,8 @@ take12App.controller('LoginController', ['$scope', '$http', '$location', 'UserSe
             $location.path('/main');
           } else {
             // New user: Presents registration views
-            $location.path('/registration',response.data);
+            // $location.path('/registration',response.data);
+            $location.path('/registration');
           }
         } else {
           console.log('failure: ', response);

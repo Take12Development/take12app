@@ -4,5 +4,7 @@ take12App.controller('DashboardController', ['$scope', '$http',
                     function($scope, $http, $window, $timeout, Upload,
                     UserService, UtilitiesService, RegistryDataService) {
 
+$scope.dashboardRegistry = UserService.userObject.currentRegistry;
+
 
 }]);

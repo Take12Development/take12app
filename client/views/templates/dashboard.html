@@ -1,7 +1,53 @@
-<!-- HOW TO PLAN FOR YOUR MATERNITY LEAVE VIEW -->
+<!-- REGISTRY VIEW -->
 <div class="contentBlock" layout="row">
-  <div layout="column" flex-gt-md="20" flex-xs="10" flex-sm="10" flex-md="20"></div>
-  <div layout="column" flex-gt-md="60" flex-xs="80" flex-sm="80" flex-md="60">
-    <h1 class="howToPlanTitle">Registry Dashboard</h1>
+  <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
+  <div layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+    <div class="registryContainer" layout="row">
+      <div layout="column" flex-gt-md="60">
+        <!-- IMAGE -->
+        <div>
+          <img id="primaryImage" ng-src="{{dashboardRegistry.imageURL}}">
+        </div>
+        <!-- STORY -->
+        <div class="registryStorySection">
+          <h1> {{dashboardRegistry.firstName}} {{dashboardRegistry.lastName}} & Family</h1>
+          <div class="registryStoryText" ng-bind-html="dashboardRegistry.story"></div>
+        </div>
+        <!-- PRIVACY -->
+      </div>
+      <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
+      <div layout="column" flex-gt-md="30" flex-xs="30" flex-sm="30" flex-md="30">
+
+        <!-- NAME -->
+
+        <!-- LOCATION -->
+
+        <!-- BABY'S DUE DATE -->
+
+        <!-- REGISTRY GOAL AMOUNT -->
+
+        <!-- CURRENT AMOUNT GIFTED -->
+
+        <!-- SOCIAL MEDIA -->
+        <div class="regitrySocialMediaSection" layout="column">
+          <div layout="column" layout-align="center center">
+            <h2>Share your registry</h1>
+            <span>This is your link:</span>
+            <span>{{dashboardRegistry.registryURL}}</span>
+            <span>You can also use the media buttons to share your link on social media.</span>
+            <br>
+          </div>
+          <div layout="row" layout-align="center center">
+              <img class="socialMediaIcon" src="views/assets/twitter.png" alt="Twitter">
+              <img class="socialMediaIcon" src="views/assets/facebook.png" alt="Facebook">
+              <img class="socialMediaIcon" src="views/assets/instagram.png" alt="Instagram">
+              <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
+              <img class="socialMediaIcon" src="views/assets/pinterest.png" alt="Pinterest">
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
 </div>
