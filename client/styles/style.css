@@ -401,3 +401,39 @@ form .progress {
   height: auto;
   padding: 2px;
 }
+
+.mainViewContainer h1 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.registryCard {
+  width: 230px;
+  height: 300px;
+  font-size: 10px;
+}
+
+.registryCardPhoto {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.registryCardPhoto:focus {
+    outline: none;
+    border: 0;
+}
+
+.cardTitle {
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+  color: darkslategray;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.cardTitle:focus {
+  outline: none;
+  border: 0;
+}

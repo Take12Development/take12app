@@ -33,22 +33,18 @@ take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
 
   // gets all registries that are part of array received as a parameter
   getUserRegistries = function(arrayOfRegistries) {
-    console.log('Finding registries: ', arrayOfRegistries);
-    $http.post('/registry/getuserregistries', arrayOfRegistries).then(function(response) {
-      console.log('success:',response);
-      registriesObject.userRegistries = response.data;
+    var deferred = $q.defer();
+    $http.post('/registry/getuserregistries', {registries: arrayOfRegistries})
+    .then(function(response) {
+        deferred.resolve(response);
+        registriesObject.userRegistries = response.data;
+    })
+    .catch(function(response) {
+      deferred.reject(response);
     });
+    return deferred.promise;
   };
 
-
-  // Gets a specific registry from the database
-  // getRegistry = function(){
-  //   $http.get('/registry').then(function(response) {
-  //     console.log('Back from the server with:', response);
-  //     registriesObject.allRegistries = response.data;
-  //     console.log('Updated registriesObject:', registriesObject.allRegistries);
-  //   });
-  // };
 
   // Posts a new registry to the database
   postRegistry = function(registry) {

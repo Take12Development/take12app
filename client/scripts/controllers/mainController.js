@@ -8,10 +8,29 @@ take12App.controller('MainController', ['$scope', 'UserService', 'UtilitiesServi
 
   console.log('userObject:', $scope.userObject);
 
-  // get information of registries associated with user
-  RegistryDataService.getUserRegistries($scope.userObject.registries);
-  console.log('factory', RegistryDataService.registriesObject.userRegistries);
-  console.log('scope',$scope.userRegistries);
+  var registriesArray = $scope.userObject.registries;
+  console.log('registriesArray', registriesArray);
+
+  // Calls Factory function that gets registries information for current user from the database
+  RegistryDataService.getUserRegistries($scope.userObject.registries).then(function(data){
+
+    console.log('back from server with:', data);
+    if (data.data != "") {
+      $scope.userRegistries = RegistryDataService.registriesObject.userRegistries;
+
+      console.log('factory', RegistryDataService.registriesObject.userRegistries);
+      console.log('scope',$scope.userRegistries);
+    }
+  })
+  .catch(function(response){
+      console.log(response.status);
+  });
+
+  $scope.newRegistry = function() {
+    UtilitiesService.redirect('/registration')
+  }
+
+
 
 
 }]);
