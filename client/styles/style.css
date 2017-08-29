@@ -283,7 +283,33 @@ form .progress {
   text-align:center;
 }
 
+.registryContainer h1 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.registryContainer h2 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
 #primaryImage {
-  width: 80%;
+  width: 100%;
   height: auto;
+}
+
+.registryStorySection {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: #136a80;
+  color: white;
+  padding: 25px;
+}
+
+.registryStoryText {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
 }

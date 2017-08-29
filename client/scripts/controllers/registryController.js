@@ -12,6 +12,8 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
 
     console.log('back from server with:', data);
     $scope.currentRegistry = data.data;
+    $scope.currentRegistry.firstName = UtilitiesService.titleCase($scope.currentRegistry.firstName);
+    $scope.currentRegistry.lastName = UtilitiesService.titleCase($scope.currentRegistry.lastName);
     console.log('$scope.currentRegistry',$scope.currentRegistry);
   })
   .catch(function(response){
