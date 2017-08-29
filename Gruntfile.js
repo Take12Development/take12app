@@ -91,6 +91,12 @@ module.exports = function(grunt){
               'textAngular.min.js',
               'textAngular.css'],
         dest: 'server/public/vendors/textangular/'
+      },
+      chartjs: {
+        expand: true,
+        cwd: 'node_modules/chart.js/dist/',
+        src: ['Chart.min.js'],
+        dest: 'server/public/vendors/chartjs/'
       }
     },
     watch: {

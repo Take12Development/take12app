@@ -20,4 +20,28 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
       console.log(response.status);
   });
 
+  // PIE Chart
+  var ctx = "myChart";
+  var myStaticChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+      datasets: [
+          {
+              data: [20, 50, 30],
+              backgroundColor: [
+                  "#dedede",
+                  "#6acbc4",
+                  "#f7aca0"
+              ],
+              hoverBackgroundColor: [
+                  "#dedede",
+                  "#6acbc4",
+                  "#f7aca0"
+              ]
+          }],
+      labels: ["Days Left", "Days Provided", "Days Gifted"]
+
+    }
+    });
+
 }]);
