@@ -12,6 +12,10 @@ take12App.factory('UtilitiesService', ['$mdDialog', '$location',
       );
   };
 
+  titleCase = function (stringParam) {
+    return stringParam.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  };
+
   // Redirects to view received as a parameter
   function redirect(page) {
     $location.url(page);
@@ -19,7 +23,8 @@ take12App.factory('UtilitiesService', ['$mdDialog', '$location',
 
 return {
     showAlert: showAlert,
-    redirect : redirect
+    redirect : redirect,
+    titleCase : titleCase
 };
 
 }]);
