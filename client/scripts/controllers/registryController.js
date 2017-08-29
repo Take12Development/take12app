@@ -25,23 +25,30 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
   var myStaticChart = new Chart(ctx, {
       type: 'pie',
       data: {
-      datasets: [
-          {
-              data: [20, 50, 30],
-              backgroundColor: [
-                  "#dedede",
-                  "#6acbc4",
-                  "#f7aca0"
-              ],
-              hoverBackgroundColor: [
-                  "#dedede",
-                  "#6acbc4",
-                  "#f7aca0"
-              ]
-          }],
-      labels: ["Days Left", "Days Provided", "Days Gifted"]
-
-    }
+              labels: ["Days Left", "Days Provided", "Days Gifted"],
+              datasets: [{
+                backgroundColor: [
+                    "#dedede",
+                    "#6acbc4",
+                    "#f7aca0"
+                ],
+                hoverBackgroundColor: [
+                    "#dedede",
+                    "#6acbc4",
+                    "#f7aca0"
+                ],
+                data: [20, 50, 30]
+              }]
+          },
+        options: {
+          legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                  fontColor: 'rgb(255, 99, 132)'
+              }
+          }
+        }
     });
 
 }]);
