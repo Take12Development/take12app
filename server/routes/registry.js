@@ -16,6 +16,18 @@ router.get('/all', function(req,res){
   }).sort( { dueDate: -1 } );
 });
 
+// gets a specific registry from the database
+router.get('/:registryURL', function(req,res){
+  console.log("/registry/:registryURL get route hit");
+  var searchURL = req.params.registryURL;
+  Registry.findOne({registryURL: searchURL},function(err, foundRegistry) {
+    if(err) {
+      console.log('Mongo error: ',err);
+    }
+    res.send(foundRegistry);
+  });
+});
+
 // creates newURL based on first and last name
 function createURL(firstName, lastName) {
   var newURL;

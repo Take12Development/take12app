@@ -282,3 +282,122 @@ form .progress {
   margin: 0 0 10px 0;
   text-align:center;
 }
+
+.registryContainer h1 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.registryContainer h2 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+#primaryImage {
+  width: 100%;
+  height: auto;
+}
+
+.registryStorySection {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: #136a80;
+  color: white;
+  padding: 25px;
+}
+
+.registryCommentCount {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  background-color: #dedede;
+}
+
+.commentContainerCount {
+  font-size: 12px;
+  font-weight: bold;
+  color: #136a80;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+}
+
+.commentContainer {
+  border-bottom: 1px solid #dedede;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.commentContainerDonorName {
+  font-size: 12px;
+  font-weight: 300;
+  color: #136a80;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+}
+
+.commentContainerComment {
+  font-size: 12px;
+  font-weight: 300;
+  color: black;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+  padding-bottom: 10px;
+}
+
+.registryChartSection {
+  margin-bottom: 25px;
+}
+
+.registrySliderSection {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border: 1px solid #dedede;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.registrySliderMoment {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6acbc4;
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+}
+
+.custom-slider.rzslider .rz-bar {
+  background: #dedede;
+  height: 5px;
+}
+.custom-slider.rzslider .rz-selection {
+  background: orange;
+}
+
+.custom-slider.rzslider .rz-pointer {
+  width: 10px;
+  height: 26px;
+  background-color: #6acbc4;
+  background: url(/views/assets/slider.png);
+  background-size: 100%;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.custom-slider.rzslider .rz-pointer:focus {
+  outline: none;
+  border: 0;
+}
+
+.custom-slider.rzslider .rz-pointer:after {
+  display: none;
+}
+
+.regitrySocialMediaSection {
+  margin-bottom: 25px;
+}
+
+.socialMediaIcon {
+  width: 30px;
+  height: auto;
+  padding: 2px;
+}

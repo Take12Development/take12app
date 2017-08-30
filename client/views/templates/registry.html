@@ -1,0 +1,86 @@
+<!-- REGISTRY VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
+  <div ng-if="validRegistry==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+    <h1>Registry Not Found!</h1>
+  </div>
+  <div ng-if="validRegistry==true" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+    <div class="registryContainer" layout="row">
+      <div layout="column" flex-gt-md="60">
+        <!-- IMAGE -->
+        <div>
+          <img id="primaryImage" ng-src="{{currentRegistry.imageURL}}">
+        </div>
+        <!-- STORY -->
+        <div class="registryStorySection">
+          <h1> {{currentRegistry.firstName}} {{currentRegistry.lastName}} & Family</h1>
+          <div class="registryStoryText" ng-bind-html="currentRegistry.story"></div>
+        </div>
+        <!-- COMMENTS -->
+        <div class="registryCommentCount" layout="row">
+          <span class="commentContainerCount">{{numberOfComments}}</span>
+          <span class="commentContainerCount">&nbsp comments</span>
+        </div>
+        <div class="registryCommentSection" layout="column" ng-repeat="comment in currentRegistry.comments">
+          <div class="commentContainer" layout="column" layout-align="start start">
+            <span class="commentContainerDonorName">{{comment.donorName}}</span>
+            <span class="commentContainerComment">{{comment.comment}}</span>
+          </div>
+        </div>
+      </div>
+      <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
+      <div layout="column" flex-gt-md="30" flex-xs="30" flex-sm="30" flex-md="30">
+        <div>
+          <h2>Let's Make Sure {{currentRegistry.firstName}} Has Time at Home!</h1>
+        </div>
+        <!-- CHART -->
+        <div class="registryChartSection">
+          <canvas id="myChart" height="100%" width="100%" border="1px"></canvas>
+        </div>
+        <!-- SLIDER -->
+        <div class="registrySliderSection" layout="column">
+          <div class="registrySliderMoment" ng-switch="slider.minValue">
+            <span class="registrySliderMoment" ng-switch-when="15">Diaper Time</span>
+            <span class="registrySliderMoment" ng-switch-when="30">Tummy Time</span>
+            <span class="registrySliderMoment" ng-switch-when="45">Nap with Mom</span>
+            <span class="registrySliderMoment" ng-switch-when="60">Baby’s first Giggle</span>
+            <span class="registrySliderMoment" ng-switch-when="75">Read with Mom</span>
+            <span class="registrySliderMoment" ng-switch-when="90">Parent Date Night</span>
+            <span class="registrySliderMoment" ng-switch-when="180">Visit with Grandma!</span>
+            <span class="registrySliderMoment" ng-switch-when="300">Full Night Sleep!</span>
+            <span class="registrySliderMoment" ng-switch-when="495">NICU Visit</span>
+            <span class="registrySliderMoment" ng-switch-default>&nbsp</span>
+          </div>
+          <div>
+            <rzslider class="custom-slider"
+            rz-slider-model="slider.minValue"
+            rz-slider-high="slider.maxValue"
+            rz-slider-options="slider.options"></rzslider>
+          </div>
+          <div layout="row" layout-align="center center">
+            <span>Your Gift:&nbsp&nbsp</span>
+            <h2>${{slider.minValue}}</h2>
+          </div>
+          <div layout="row" layout-align="center center">
+            <md-button class="md-raised submitButton" name="giftNow" aria-label="Gift now" value="giftNow" ng-click="">Gift Now!</md-button>
+          </div>
+        </div>
+        <!-- SOCIAL MEDIA -->
+        <div class="regitrySocialMediaSection" layout="column">
+          <div layout="row" layout-align="center center">
+            <h2>Share!</h1>
+          </div>
+          <div layout="row" layout-align="center center">
+              <img class="socialMediaIcon" src="views/assets/twitter.png" alt="Twitter">
+              <img class="socialMediaIcon" src="views/assets/facebook.png" alt="Facebook">
+              <img class="socialMediaIcon" src="views/assets/instagram.png" alt="Instagram">
+              <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
+              <img class="socialMediaIcon" src="views/assets/pinterest.png" alt="Pinterest">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
