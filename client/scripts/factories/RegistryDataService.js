@@ -1,4 +1,5 @@
-take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
+take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
+                  function($http,$q,UserService) {
 
   console.log('Registry Data Service Loaded');
 
@@ -48,11 +49,19 @@ take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
 
   // Posts a new registry to the database
   postRegistry = function(registry) {
+    var deferred = $q.defer();
     var registryToPost = angular.copy(registry);
-    console.log('Posting registry: ', registryToPost);
-    $http.post('/registry/add', registryToPost).then(function(response) {
-      console.log('success:',response);
+
+    $http.post('/registry/add', registryToPost)
+    .then(function(response) {
+        deferred.resolve(response);
+        console.log('Back from POST with', response.data);
+        UserService.userObject.currentRegistry = angular.copy(response.data);
+    })
+    .catch(function(response) {
+      deferred.reject(response);
     });
+    return deferred.promise;
   };
 
   // Updates a specific registry
