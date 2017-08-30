@@ -2,38 +2,78 @@
 <div class="contentBlock" layout="row">
   <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
   <div layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
-    <div class="registryContainer" layout="row">
-      <div layout="column" flex-gt-md="60">
-        <!-- IMAGE -->
-        <div>
-          <img id="primaryImage" ng-src="{{dashboardRegistry.imageURL}}">
+    <div class="dashboardContainer" layout="row">
+      <!-- <form name="editRegistryForm"> -->
+        <div layout="column" flex-gt-md="60">
+          <!-- IMAGE -->
+          <div>
+            <img id="primaryImage" ng-src="{{dashboardRegistry.imageURL}}">
+          </div>
+          <!-- STORY -->
+          <div class="registryStorySection">
+            <h1> {{dashboardRegistry.firstName}} {{dashboardRegistry.lastName}} & Family</h1>
+            <div class="registryStoryText" ng-bind-html="dashboardRegistry.story"></div>
+          </div>
+          <!-- PRIVACY -->
         </div>
-        <!-- STORY -->
-        <div class="registryStorySection">
-          <h1> {{dashboardRegistry.firstName}} {{dashboardRegistry.lastName}} & Family</h1>
-          <div class="registryStoryText" ng-bind-html="dashboardRegistry.story"></div>
-        </div>
-        <!-- PRIVACY -->
-      </div>
-      <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
-      <div layout="column" flex-gt-md="30" flex-xs="30" flex-sm="30" flex-md="30">
+        <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
+        <div layout="column" flex-gt-md="30" flex-xs="30" flex-sm="30" flex-md="30">
 
-        <!-- NAME -->
+        <!-- FIRST NAME -->
+          <md-input-container layout="column">
+            <div>
+              <label for="firstName">First name:</label>
+              <input type="text" ng-model="dashboardRegistry.firstName" required/>
+              <div ng-messages="editRegistryForm.dashboardRegistry.firstName.$error">
+                <div ng-message="required">An first name is required!</div>
+            </div>
+          </md-input-container>
 
+        <!-- LAST NAME -->
+          <md-input-container layout="column">
+            <div>
+              <label for="firstName">Last name:</label>
+              <input type="text" ng-model="dashboardRegistry.lastName" required/>
+              <div ng-messages="editRegistryForm.dashboardRegistry.lastName.$error">
+                <div ng-message="required">An last name is required!</div>
+            </div>
+          </md-input-container>
         <!-- LOCATION -->
 
         <!-- BABY'S DUE DATE -->
+        <br>
+        <span>Baby's due date:</span>
+        <md-input-container layout="column" flex="45" class="eventInputs">
+          <div>
+            <md-datepicker ng-model="dashboardRegistry.dueDate" md-current-view="year" md-placeholder="Enter date" required></md-datepicker>
+            <div ng-messages="editRegistryForm.dashboardRegistry.dueDate.$error" ng-if='submitted'>
+              <div ng-message="required">A date is required!</div>
+            </div>
+          </div>
+        </md-input-container>
 
         <!-- REGISTRY GOAL AMOUNT -->
+        <md-input-container layout="column">
+          <div>
+            <label for="goalAmount">Goal amount:</label>
+            <input ng-model="dashboardRegistry.goalAmount" type="number" step="100.00" required>
+            <div ng-messages="editRegistryForm.dashboardRegistry.goalAmount.$error">
+              <div ng-message="required">A goal amount is required!</div>
+            </div>
+          </div>
+        </md-input-container>
 
         <!-- CURRENT AMOUNT GIFTED -->
+        <span>Current amount gifted:</span>
+        <span>{{dashboardRegistry.currentAmount}}</span>
+
 
         <!-- SOCIAL MEDIA -->
         <div class="regitrySocialMediaSection" layout="column">
           <div layout="column" layout-align="center center">
             <h2>Share your registry</h1>
-            <span>This is your link:</span>
-            <span>{{dashboardRegistry.registryURL}}</span>
+            <span>This is your link:</span><br>
+            <a ng-href="{{fullURL}}" target="_blank">{{fullURL}}</a><br>
             <span>You can also use the media buttons to share your link on social media.</span>
             <br>
           </div>
@@ -46,7 +86,7 @@
           </div>
         </div>
       </div>
-
+    <!-- </form> -->
     </div>
   </div>
 

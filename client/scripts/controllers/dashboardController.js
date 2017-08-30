@@ -5,6 +5,7 @@ take12App.controller('DashboardController', ['$scope', '$http',
                     UserService, UtilitiesService, RegistryDataService) {
 
 $scope.dashboardRegistry = UserService.userObject.currentRegistry;
+$scope.fullURL = REGISTRY_URL + $scope.dashboardRegistry.registryURL;
 
 
 }]);

@@ -48,7 +48,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   // opens how to plan information on separate window
   $scope.goToHowToPlan = function() {
     // THIS HAS TO BE REPLACED WITH CORRECT URL
-    $window.open('http://localhost:5000/#/howToPlan', '_blank');
+    $window.open(HOW_TO_PLAN_URL, '_blank');
   };
 
   // compares pasword and password confirmation entered by the user
