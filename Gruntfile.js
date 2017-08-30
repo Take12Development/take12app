@@ -98,7 +98,7 @@ module.exports = function(grunt){
         src: ['Chart.min.js'],
         dest: 'server/public/vendors/chartjs/'
       },
-      chartjs: {
+      angularjsslider: {
         expand: true,
         cwd: 'node_modules/angularjs-slider/dist/',
         src: ['rzslider.min.js',
