@@ -46,7 +46,6 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
     return deferred.promise;
   };
 
-
   // Posts a new registry to the database
   postRegistry = function(registry) {
     var deferred = $q.defer();
