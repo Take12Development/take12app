@@ -272,6 +272,12 @@ form .progress {
   border: 1px solid #590041;
 }
 
+/* To remove the outline in the textarea of text-angular */
+div[contenteditable="true"] {
+  outline: none;
+}
+
+
 .angularTextArea p, li{
   font-size: 14px;
   font-weight: 300;

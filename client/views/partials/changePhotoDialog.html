@@ -1,0 +1,27 @@
+<md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Change photo</h2>
+        <span flex></span>
+        <md-button class="md-icon-button md-button md-ink-ripple material-icons" type="button" aria-label="Close dialog" ng-click="cancel()">close</md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="answer('cancel')">
+       Cancel
+      </md-button>
+      <md-button ng-click="answer('ok')">
+        Ok
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

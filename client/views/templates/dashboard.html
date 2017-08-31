@@ -7,7 +7,7 @@
         <div class="dashboardHeader" layout="row">
           <div class="regitryPhotoSection" flex="30" layout="column" layout-align="center center">
             <img id="dashboardImage" ng-src="{{dashboardRegistry.imageURL}}">
-            <md-button class="md-raised submitButton" name="changePhoto" aria-label="Change Photo" value="changePhoto" ng-click="">Change photo</md-button>
+            <md-button class="md-raised submitButton" name="changePhoto" aria-label="Change Photo" value="changePhoto" ng-click="showPhotoDialog($event)">Change photo</md-button>
             <span>This is the photo that will be displayed in your Registry.</span>
           </div>
           <div flex="20"></div>
@@ -117,15 +117,11 @@
           </div>
         </div>
 
-
         <!-- STORY -->
         <div class="registryStoryTitle" layout="column" layout-align="center center">
           <h2> {{dashboardRegistry.firstName}} {{dashboardRegistry.lastName}}'s story</h2>
-          <md-button class="md-raised submitButton" name="editStory" aria-label="Edit Story" value="editStory" ng-click="">Edit Story</md-button>
         </div>
-        <div class="registryStorySection">
-          <div class="registryStoryText" ng-bind-html="dashboardRegistry.story"></div>
-        </div>
+        <div class="angularTextArea" text-angular ng-model="dashboardRegistry.story" name="editor1" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
 
         <!-- SOCIAL MEDIA -->
         <div class="regitrySocialMediaSection" layout="column">
