@@ -95,6 +95,11 @@ take12App.config(['$routeProvider', '$locationProvider',
       templateUrl: '/views/templates/registry.html',
       controller: 'RegistryController',
     })
+    // Find registry
+    .when('/findRegistry', {
+      templateUrl: '/views/templates/findRegistry.html',
+      controller: 'FindRegistryController',
+    })
     .otherwise({
       redirectTo: 'home'
     });
