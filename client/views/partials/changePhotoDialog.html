@@ -1,7 +1,7 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog class="photoDialog" ng-controller="DashboardController">
   <form ng-cloak>
     <md-toolbar>
-      <div class="md-toolbar-tools">
+      <div class="md-toolbar-tools dialogHeader">
         <h2>Change photo</h2>
         <span flex></span>
         <md-button class="md-icon-button md-button md-ink-ripple material-icons" type="button" aria-label="Close dialog" ng-click="cancel()">close</md-button>
@@ -9,7 +9,7 @@
     </md-toolbar>
 
     <md-dialog-content>
-      <div class="pictureUploadContainer">
+      <div class="dialogUploadContainer">
         <input class="photoPicker" type="file" ngf-select ng-model="picFile" name="file"
                accept="image/*" ngf-max-size="2MB"
                ngf-model-invalid="errorFile" aria-label="File Upload">

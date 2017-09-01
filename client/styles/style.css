@@ -234,6 +234,7 @@ md-menu-content {
 
 .photoPicker {
   font-weight: 300 !important;
+  padding: 20px !important;
 }
 
 .pictureUploadContainer {
@@ -493,4 +494,19 @@ div[contenteditable="true"] {
 #dashboardImage {
   width: 80%;
   height: auto;
+}
+
+.photoDialog {
+  width: 40%;
+}
+
+.dialogHeader {
+  background-color: color:#136a80;
+  color: white;
+}
+
+.dialogUploadContainer {
+  text-align: center;
+  padding: 10px;
+  height: 100%
 }
