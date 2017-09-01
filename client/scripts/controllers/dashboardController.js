@@ -92,5 +92,10 @@ $scope.uploadPic = function(file) {
     });
   };
 
+  // Discard Changes
+  $scope.discardChanges = function() {
+    UtilitiesService.redirect('/main');
+  }
+
 
 }]);

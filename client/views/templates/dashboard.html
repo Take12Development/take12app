@@ -5,7 +5,7 @@
     <h1>Registry Not Found!</h1>
   </div>
   <div ng-if="validRegistry==true" class="dashboardContainer" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
-      <form name="editRegistryForm">
+      <form name="editRegistryForm" ng-submit="saveChanges()">
         <!-- IMAGE -->
         <div class="dashboardHeader" layout="row">
           <div class="regitryPhotoSection" flex="30" layout="column" layout-align="center center">
@@ -164,7 +164,10 @@
           </md-radio-group>
           <br>
         </div>
-
+        <md-input-container layout="row" layout-align="center center">
+          <md-button class="md-raised submitButton" name="discardChanges" aria-label="Discard changes" value="discardChanges" ng-click="discardChanges()">Discard Changes</md-button>
+          <md-button class="md-raised submitButton" type="submit" name="submit" aria-label="Save changes" value="saveChanges">Save Changes</md-button>
+        </md-input-container>
     </form>
   </div>
 </div>
