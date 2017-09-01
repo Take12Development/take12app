@@ -90,6 +90,11 @@ md-menu-content {
   padding-right: 43px;
 }
 
+.newAccount {
+  text-align: center;
+  color: #757575;
+}
+
 .menuOption {
   font-family: 'Lato', sans-serif;
   height: 60px;
