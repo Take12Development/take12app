@@ -4,22 +4,16 @@ take12App.factory('UserService', ['$http', '$location', function($http, $locatio
   // Stores logged user information
   var userObject = {};
 
-  // Redirects to view received as a parameter
-  function redirect(page) {
-    console.log('inpage navigation', page);
-    $location.url(page);
-  }
-
   return {
     userObject : userObject,
-    redirect : redirect,
     // Gets logged user
     getuser : function(){
       $http.get('/user').then(function(response) {
         if(response.data.email) {
           // user has a curret session on the server
           userObject.email = response.data.email;
-          console.log('User Data: ', userObject.email);
+          userObject.registryURL = response.data.registryURL;
+          console.log('User Data: ', userObject);
         } else {
           // user has no session, bounce them back to the login page
           $location.path("/home");

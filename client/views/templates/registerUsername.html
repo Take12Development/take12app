@@ -1,13 +1,16 @@
 <!-- REGISTER NEW USER VIEW -->
 <div class="contentBlock" layout="row">
   <div layout="column" flex-gt-md="33" flex-xs="10" flex-sm="10" flex-md="20"></div>
-  <div class="createRegistryContainer" layout="column" flex-gt-md="33" flex-xs="80" flex-sm="80" flex-md="60">
+  <div class="createRegistryBlock" layout="column" flex-gt-md="33" flex-xs="80" flex-sm="80" flex-md="60">
+    <div layout="column" flex-align="center center">
+      <h1 class = "registerHeader">Create your account</h1>
+    </div>
     <div class="createRegistryText" layout="column" flex-align="center center">
-      <h1 class="createRegistryTitle">Create your account</h1>
+      <br>
       <span>To get started, simply create your account below.</span>
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
-    <div class="createRegistryForm" layout="column">
+    <div class="createRegistryContainer" layout="column">
       <form form name="registerView" ng-submit="registerUser()">
         <md-input-container layout="column" layout-align="center center">
           <div>
@@ -19,8 +22,8 @@
         <md-input-container layout="column">
           <div>
             <label for="email">Email:</label>
-            <input type="text" ng-model="user.email" required/>
-            <div ng-messages="registerView.user.email.$error">
+            <input type="text" ng-model="newUser.email" required/>
+            <div ng-messages="registerView.newUser.email.$error">
               <div ng-message="required">An email address is required!</div>
             </div>
           </div>
@@ -28,8 +31,8 @@
         <md-input-container layout="column">
           <div>
             <label for="password">Create password:</label>
-            <input type="password" ng-model="user.password" required/>
-            <div ng-messages="registerView.user.password.$error">
+            <input type="password" ng-model="newUser.password" required/>
+            <div ng-messages="registerView.newUser.password.$error">
               <div ng-message="required">A password is required!</div>
             </div>
           </div>
@@ -37,8 +40,8 @@
         <md-input-container layout="column">
           <div>
             <label for="password">Confirm password:</label>
-            <input type="password" ng-model="user.confirmPassword" required/>
-            <div ng-messages="registerView.user.confirmPassword.$error">
+            <input type="password" ng-model="newUser.confirmPassword" required/>
+            <div ng-messages="registerView.newUser.confirmPassword.$error">
               <div ng-message="required">A password confirmation is required!</div>
             </div>
           </div>
