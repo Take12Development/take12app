@@ -1,0 +1,62 @@
+<!--Find Registry View -->
+<!--Defaults to Displaying all registries with a Public Setting-->
+  <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap
+               ng-init = "vm.getRegistries()">
+    <!-- Search Feature - Searches All Registries -->
+    <div class="contentBlock textFormat" layout="Row">
+      <div layout="column" flex = "15"></div>
+      <div layout="column" flex = "70" layout-align = "center center">
+        <h1>Search All Registries</h1>
+        <md-content layout-padding layout = "row">
+          <div>
+            <md-input-container>
+              <input ng-model ="searchText" placeholder="Find your loved one by Name">
+            </md-input-container>
+            <md-input-container>
+              <md-button class = "md-raised submitButton">SEARCH</md-button>
+            </md-input-container>
+          </div>
+        </md-content>
+      </div>
+    </div>
+    <div class="contentBlock textFormat" layout="Row">
+      <div layout="column" flex = "15"></div>
+      <div layout="column" flex = "70">
+        <h1>Public Registry</h1>
+        <p>The public registry is a community of moms who have decided to share their
+        Unpaid Leave journey. These women have chosen to share their story because they
+        need help from our greater community and want to spread awareness of what
+        partially/unpaid leave really looks like in the US.
+        </p>
+      </div>
+    </div>
+    <div flex-xs flex-gt-xs="33" layout="column"
+          ng-repeat = "registry in vm.registriesObject.allRegistries | filter:searchText"
+           ng-if = "registry.privacy === 'public'">
+      <md-card id="registryCard">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{registry.firstName}} {{registry.lastName}}</span>
+            <span class="md-subhead">Baby Due: {{registry.dueDate | date}}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <img src="views/assets/Take12Logo100px.png" class = "md-card-image"
+                alt="profile picture">
+            <!-- <div class="md-media-lg"> -->
+                <!-- <img ng-src="{{registry.imageURL}}" class = "md-card-image"
+                      alt="profile picture"> -->
+              <!-- <img src="views/assets/Take12Logo100px.png" alt="profile picture">
+            </div> -->
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-content>
+          <p ng-bind-html ="registry.story | limitTo: vm.limit"></p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class = "md-raised submitButton">View Full Regisry</md-button>
+          <!-- <md-button class = "md-raised submitButton">Request Access</md-button> -->
+        </md-card-actions>
+      </md-card>
+    </div>
+  </md-content>
+</div>

@@ -1,22 +1,22 @@
 <!--Find Registry View -->
-<!-- Search Feature - Searches All Registries -->
 
-<!--Defaults to Displaying all registries with a Public Setting-->
-<div class="contentBlock textFormat" layout="Row" ng-init = "vm.getRegistries()">
-  <div layout="column" flex = "15"></div>
-  <div layout="column" flex = "70">
-    <h1>Public Registries</h1>
-    <p>The public registry is a community of moms who have decided to share their
-    Unpaid Leave journey. These women have chosen to share their story because they
-    need help from our greater community and want to spread awareness of what
-    partially/unpaid leave really looks like in the US.
-    </p>
-  </div>
-</div>
   <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap>
+    <!-- Search Feature - Searches All Registries -->
+    <div class="contentBlock textFormat" layout="Row">
+      <div layout="column" flex = "15"></div>
+      <div layout="column" flex = "70" layout-align = "center center">
+        <h1>Search All Registries</h1>
+        <md-content layout-padding layout = "row">
+          <div>
+            <md-input-container>
+              <input ng-model ="searchText" placeholder="Find your loved one by Name">
+            </md-input-container>
+          </div>
+        </md-content>
+      </div>
+    </div>
     <div flex-xs flex-gt-xs="33" layout="column"
-          ng-repeat = "registry in vm.registriesObject.allRegistries"
-           ng-if = "registry.privacy === 'public'">
+          ng-repeat = "registry in vm.registriesObject.allRegistries | filter:searchText">
       <md-card id="registryCard">
         <md-card-title>
           <md-card-title-text>
@@ -38,7 +38,7 @@
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
           <md-button class = "md-raised submitButton">View Full Regisry</md-button>
-          <md-button class = "md-raised submitButton">Request Access</md-button>
+          <!-- <md-button class = "md-raised submitButton">Request Access</md-button> -->
         </md-card-actions>
       </md-card>
     </div>
