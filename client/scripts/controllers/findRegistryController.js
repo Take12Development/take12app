@@ -8,5 +8,7 @@ take12App.controller('FindRegistryController', ['$http',
   vm.getRegistries = RegistryDataService.getRegistries;
   //Stores all registries from db
   vm.registriesObject = RegistryDataService.registriesObject;
+  //Limit for the string length of the story
+  vm.limit = 200;
 
   }]);

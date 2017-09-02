@@ -34,9 +34,9 @@ md-menu-content {
   max-height: 90vh;
 }
 
-
-.card-media {
-  background-color: #999999;
+#registryCard {
+  height: 300px;
+  /*background-color: #8f6a89;*/
 }
 .navBar {
   position: fixed;
