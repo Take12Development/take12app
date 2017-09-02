@@ -128,15 +128,27 @@ router.post('/add', function(req,res) {
 // updates registry information
 router.put("/update", function(req,res){
   var registry = req.body;
+  var first = req.body.firstName.toLowerCase();
+  var last = req.body.lastName.toLowerCase();
+
   Registry.findById(registry._id, function(err, foundRegistry){
     if(err){
       console.log(err);
       res.sendStatus(500);
     }
-    foundRegistry.firstName = req.body.firstName;
-    foundRegistry.lastName = req.body.lastName;
-    foundRegistry.goalAmount = req.body.goalAmount;
+
+    foundRegistry.firstName = first;
+    foundRegistry.lastName = last;
     foundRegistry.dueDate = req.body.dueDate;
+    foundRegistry.goalAmount = req.body.goalAmount;
+
+    foundRegistry.imageURL = req.body.imageURL;
+    foundRegistry.story = req.body.story;
+    foundRegistry.privacy = req.body.privacy;
+    foundRegistry.city = req.body.city;
+    foundRegistry.state = req.body.state;
+    foundRegistry.country = req.body.country;
+    
     foundRegistry.save(function(err, savedRegistry){
       if(err){
         console.log(err);
