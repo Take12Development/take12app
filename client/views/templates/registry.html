@@ -17,14 +17,16 @@
           <div class="registryStoryText" ng-bind-html="currentRegistry.story"></div>
         </div>
         <!-- COMMENTS -->
-        <div class="registryCommentCount" layout="row">
-          <span class="commentContainerCount">{{numberOfComments}}</span>
-          <span class="commentContainerCount">&nbsp comments</span>
-        </div>
-        <div class="registryCommentSection" layout="column" ng-repeat="comment in currentRegistry.comments">
-          <div class="commentContainer" layout="column" layout-align="start start">
-            <span class="commentContainerDonorName">{{comment.donorName}}</span>
-            <span class="commentContainerComment">{{comment.comment}}</span>
+        <div class="registryCommentSection">
+          <div class="registryCommentCount" layout="row">
+            <span class="commentContainerCount">{{numberOfComments}}</span>
+            <span class="commentContainerCount">&nbsp comments</span>
+          </div>
+          <div layout="column" ng-repeat="comment in currentRegistry.comments">
+            <div class="commentContainer" layout="column" layout-align="start start">
+              <span class="commentContainerDonorName">{{comment.donorName}}</span>
+              <span class="commentContainerComment">{{comment.comment}}</span>
+            </div>
           </div>
         </div>
       </div>
