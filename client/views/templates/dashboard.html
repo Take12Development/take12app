@@ -25,7 +25,7 @@
           <!-- FIRST AND LAST NAME -->
           <div layout="row">
             <!-- FIRST NAME -->
-            <div flex="40">
+            <div flex="45">
               <md-input-container layout="column">
                 <div>
                   <label for="firstName">First name:</label>
@@ -38,7 +38,7 @@
             </div>
             <div flex="10"></div>
             <!-- LAST NAME -->
-            <div flex="50">
+            <div flex="45">
               <md-input-container layout="column">
                 <div>
                   <label for="firstName">Last name:</label>
@@ -53,7 +53,7 @@
           <!-- LOCATION -->
           <div layout="row">
             <!-- CITY -->
-            <div flex="40">
+            <div flex="45">
               <md-input-container layout="column">
                 <div>
                   <label for="city">City:</label>
@@ -63,31 +63,24 @@
             </div>
             <div flex="10"></div>
             <!-- STATE -->
-            <div flex="20">
+            <div flex="45">
               <md-input-container class="md-block" flex-gt-sm>
                 <label>State</label>
-                <md-select ng-model="dashboardRegistry.state">
-                  <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                <md-select ng-model="dashboardRegistry.state" required/>
+                  <md-option ng-repeat="state in states" value="{{state.abbrev}}" required/>
                     {{state.abbrev}}
                   </md-option>
+                  <div ng-messages="editRegistryForm.dashboardRegistry.state.$error">
+                    <div ng-message="required">A state is required!</div>
+                  </div>
                 </md-select>
-              </md-input-container>
-            </div>
-            <div flex="10"></div>
-            <!-- COUNTRY -->
-            <div flex="20">
-              <md-input-container layout="column">
-                <div>
-                  <label for="country">Country:</label>
-                  <input type="text" ng-model="dashboardRegistry.country"/>
-                </div>
               </md-input-container>
             </div>
           </div>
           <!-- DUE DATE AND AMOUNTS -->
           <div layout="row">
             <!-- BABY'S DUE DATE -->
-            <div flex="40">
+            <div flex="45">
               <span>Baby's due date:</span>
               <md-input-container layout="column" flex="45" class="eventInputs">
                 <div>
@@ -100,7 +93,7 @@
             </div>
             <div flex="10"></div>
             <!-- AMOUNTS -->
-            <div flex="60" layout="column">
+            <div flex="45" layout="column">
               <!-- REGISTRY GOAL AMOUNT -->
               <div>
                 <md-input-container layout="column">
