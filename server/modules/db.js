@@ -9,9 +9,7 @@ if(process.env.MONGODB_URI != undefined) {
   mongoURI = process.env.MONGODB_URI;
 } else {
   // use the local database server
-  // mongoURI = 'mongodb://localhost:27017/take12db';
-  //mlab Heroku add on
-  mongoURI = 'mongodb://heroku_b2qkgz11:hb000ec6gbahvtv41r1r9h2onc@ds161713.mlab.com:61713/heroku_b2qkgz11';
+  mongoURI = 'mongodb://localhost:27017/take12db';
 }
 
 var mongoDB = mongoose.connect(mongoURI).connection;

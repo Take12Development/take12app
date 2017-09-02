@@ -1,10 +1,12 @@
-take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
+take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
+                  function($http,$q,UserService) {
 
   console.log('Registry Data Service Loaded');
 
   // Stores all registries in the DB
   var registriesObject = {
-    allRegistries: []
+    allRegistries: [],
+    userRegistries: []
   };
 
   // Gets all registries in the database
@@ -30,23 +32,35 @@ take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
     return deferred.promise;
   };
 
-
-  // Gets a specific registry from the database
-  // getRegistry = function(){
-  //   $http.get('/registry').then(function(response) {
-  //     console.log('Back from the server with:', response);
-  //     registriesObject.allRegistries = response.data;
-  //     console.log('Updated registriesObject:', registriesObject.allRegistries);
-  //   });
-  // };
+  // gets all registries that are part of array received as a parameter
+  getUserRegistries = function(arrayOfRegistries) {
+    var deferred = $q.defer();
+    $http.post('/registry/getuserregistries', {registries: arrayOfRegistries})
+    .then(function(response) {
+        deferred.resolve(response);
+        registriesObject.userRegistries = response.data;
+    })
+    .catch(function(response) {
+      deferred.reject(response);
+    });
+    return deferred.promise;
+  };
 
   // Posts a new registry to the database
   postRegistry = function(registry) {
+    var deferred = $q.defer();
     var registryToPost = angular.copy(registry);
-    console.log('Posting registry: ', registryToPost);
-    $http.post('/registry/add', registryToPost).then(function(response) {
-      console.log('success:',response);
+
+    $http.post('/registry/add', registryToPost)
+    .then(function(response) {
+        deferred.resolve(response);
+        console.log('Back from POST with', response.data);
+        UserService.userObject.currentRegistry = angular.copy(response.data);
+    })
+    .catch(function(response) {
+      deferred.reject(response);
     });
+    return deferred.promise;
   };
 
   // Updates a specific registry
@@ -62,6 +76,7 @@ take12App.factory('RegistryDataService', ['$http','$q', function($http,$q) {
     registriesObject : registriesObject,
     getRegistries : getRegistries,
     getRegistry : getRegistry,
+    getUserRegistries : getUserRegistries,
     postRegistry : postRegistry,
     updateRegistry : updateRegistry
   };
