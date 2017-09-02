@@ -99,6 +99,7 @@ take12App.config(['$routeProvider', '$locationProvider',
     .when('/findRegistry', {
       templateUrl: '/views/templates/findRegistry.html',
       controller: 'FindRegistryController',
+      controllerAs: 'vm'
     })
     .otherwise({
       redirectTo: 'home'

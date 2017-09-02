@@ -34,6 +34,10 @@ md-menu-content {
   max-height: 90vh;
 }
 
+
+.card-media {
+  background-color: #999999;
+}
 .navBar {
   position: fixed;
   width: 100%;

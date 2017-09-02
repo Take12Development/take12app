@@ -2,7 +2,7 @@
 <!-- Search Feature - Searches All Registries -->
 
 <!--Defaults to Displaying all registries with a Public Setting-->
-<div class="contentBlock textFormat" layout="Row">
+<div class="contentBlock textFormat" layout="Row" ng-init = "vm.getRegistries()">
   <div layout="column" flex = "15"></div>
   <div layout="column" flex = "70">
     <h1>Public Registries</h1>
@@ -11,6 +11,33 @@
     need help from our greater community and want to spread awareness of what
     partially/unpaid leave really looks like in the US.
     </p>
-
+  </div>
+</div>
+  <div ng-repeat = "registry in vm.registriesObject.allRegistries">
+    <md-content class="md-padding" layout-xs="column" layout="row">
+      <div flex-xs flex-gt-xs="33" layout="column">
+        <md-card>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{registry.firstName}} {{registry.lastName}}</span>
+              <span class="md-subhead">Baby Due: {{registry.dueDate | date}}</span>
+              <span class="md-subhead">{{registry.story}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-lg card-media">
+                  <!-- <img ng-src="{{registry.imageURL}}" class = "md-card-image"
+                        alt="profile picture"> -->
+                <img src="views/assets/Take12Logo100px.png" class = "md-card-image"
+                              alt="profile picture">
+              </div>
+            </md-card-title-media>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button class = "md-raised submitButton">View Full Regisry</md-button>
+            <md-button class = "md-raised submitButton">Request Access</md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </md-content>
   </div>
 </div>

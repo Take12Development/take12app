@@ -1,7 +1,12 @@
-take12App.controller('FindRegistryController', ['$scope', '$http',
+take12App.controller('FindRegistryController', ['$http',
                       'RegistryDataService',
-  function($scope, $http, RegistryDataService) {
+  function($http, RegistryDataService) {
 
-    console.log("Find Registry Controller is loaded");
+  //controller reference
+  var vm = this;
+  // Calls Factory Function that GETS all registries from the db
+  vm.getRegistries = RegistryDataService.getRegistries;
+  //Stores all registries from db
+  vm.registriesObject = RegistryDataService.registriesObject;
 
   }]);
