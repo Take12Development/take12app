@@ -59,7 +59,9 @@
               This is a private registry. The owner must grant you access.</p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button class = "md-raised submitButton">View Full Regisry</md-button>
+          <md-button class = "md-raised submitButton"
+                      href = "#/registry/{{registry.registryURL}}">
+                      View Full Regisry</md-button>
           <md-button class = "md-raised submitButton"
                       ng-if = "registry.privacy === 'private'">
                       Request Access</md-button>

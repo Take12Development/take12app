@@ -40,7 +40,9 @@
           <p ng-bind-html ="registry.story | limitTo: vm.limit"></p>
         </md-card-content>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button class = "md-raised submitButton">View Full Regisry</md-button>
+          <md-button class = "md-raised submitButton"
+                      href = "#/registry/{{registry.registryURL}}">
+                      View Full Regisry</md-button>
           <!-- <md-button class = "md-raised submitButton">Request Access</md-button> -->
         </md-card-actions>
       </md-card>
