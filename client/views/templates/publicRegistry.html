@@ -5,7 +5,7 @@
     <div class="contentBlock textFormat" layout="Row">
       <div layout="column" flex = "15"></div>
       <div layout="column" flex = "70">
-        <h1 class = "findHeading">Public Registry</h1>
+        <h1 class = "badScriptHeading">Public Registry</h1>
         <p>The public registry is a community of moms who have decided to share their
         Unpaid Leave journey. These women have chosen to share their story because they
         need help from our greater community and want to spread awareness of what
@@ -31,9 +31,10 @@
             <span class="md-subhead">Baby Due: {{registry.dueDate | date}}</span>
           </md-card-title-text>
           <md-card-title-media>
-            <img src="views/assets/Take12Logo100px.png" alt="profile picture">
-            <!-- <img ng-src="{{registry.imageURL}}" alt="profile picture"
-                  ng-if = "registry.imageURL !==''"> -->
+            <img src="views/assets/Take12Logo100px.png" alt="Take12 Logo"
+                  ng-if = "registry.imageURL === ''" id = "resultsImg">
+            <img ng-src="{{registry.imageURL}}" alt="profile picture"
+                  ng-if = "registry.imageURL !==''" id = "resultsImg">
           </md-card-title-media>
         </md-card-title>
         <md-card-content>
