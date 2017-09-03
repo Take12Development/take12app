@@ -1,4 +1,4 @@
-var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload','textAngular']);
+var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload','textAngular','rzModule']);
 
 // Angular Material Theme Configuration
 take12App.config(['$mdThemingProvider', function($mdThemingProvider) {
@@ -89,6 +89,23 @@ take12App.config(['$routeProvider', '$locationProvider',
           return UserService.getuser();
         }]
       }
+    })
+    // Public registry
+    .when('/registry/:registryUrl', {
+      templateUrl: '/views/templates/registry.html',
+      controller: 'RegistryController',
+    })
+    // Find registry
+    .when('/findRegistry', {
+      templateUrl: '/views/templates/findRegistry.html',
+      controller: 'FindRegistryController',
+      controllerAs: 'vm'
+    })
+    // Public registry
+    .when('/publicRegistry', {
+      templateUrl: '/views/templates/publicRegistry.html',
+      controller: 'FindRegistryController',
+      controllerAs: 'vm'
     })
     .otherwise({
       redirectTo: 'home'
