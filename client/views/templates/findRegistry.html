@@ -1,0 +1,72 @@
+<!--Find Registry View -->
+
+  <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap
+              ng-init = "vm.getRegistries()">
+    <!-- Search Feature - Searches All Registries -->
+    <div class="contentBlock textFormat" layout="Row">
+      <div layout="column" flex = "15"></div>
+      <div layout="column" flex = "70" layout-align = "center center">
+        <h1 class = "badScriptHeading">Find a Registry</h1>
+        <p>Find your loved one by name. Regardless of the privacy setting your
+          loved one has selected, you can search for their registry listing here.
+        </p>
+        <md-content layout-padding layout = "row">
+          <div>
+            <md-input-container>
+              <input ng-model ="search" placeholder="Enter Name">
+            </md-input-container>
+          </div>
+        </md-content>
+      </div>
+      <div layout="column" flex = "15">
+        <md-content layout = "row">
+          <div>
+              <md-button class = "md-raised submitButton"
+                          href = "#/publicRegistry">
+                          View Public Registry</md-button>
+          </div>
+        </md-content>
+      </div>
+    </div>
+    <div flex-xs flex-gt-xs="33" layout="column"
+          ng-repeat = "registry in vm.registriesObject.allRegistries | filter:search"
+          ng-if = "search === registry.firstName || search === registry.lastName ||
+                  search === registry.firstName + ' ' + registry.lastName">
+      <md-card id="registryCard">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{registry.firstName}} {{registry.lastName}}
+            </span>
+            <span class="md-subhead"
+                  ng-if = "registry.privacy !== 'private'">
+              Baby Due: {{registry.dueDate | date}}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <img src="views/assets/Take12Logo100px.png" alt="Take12 Logo"
+                ng-if = "registry.privacy === 'private' ||
+                        registry.imageURL === ''"
+                id = "resultsImg">
+            <img ng-src="{{registry.imageURL}}" alt="profile picture"
+                  ng-if = "registry.privacy !== 'private' &&
+                          registry.imageURL !== ''"
+                  id = "resultsImg">
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-content>
+          <p ng-bind-html ="registry.story | limitTo: vm.limit"
+              ng-if = "registry.privacy !== 'private'"></p>
+          <p ng-if = "registry.privacy === 'private'">
+              This is a private registry. The owner must grant you access.</p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class = "md-raised submitButton"
+                      href = "#/registry/{{registry.registryURL}}">
+                      View Full Regisry</md-button>
+          <md-button class = "md-raised submitButton"
+                      ng-if = "registry.privacy === 'private'">
+                      Request Access</md-button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </md-content>
+</div>

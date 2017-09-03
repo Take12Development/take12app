@@ -34,6 +34,16 @@ md-menu-content {
   max-height: 90vh;
 }
 
+#registryCard {
+  height: 300px;
+  background-color: #8f6a89;
+}
+
+#resultsImg {
+    width: 150px;
+    height: 150px;
+}
+
 .navBar {
   position: fixed;
   width: 100%;
@@ -46,6 +56,12 @@ md-menu-content {
   padding-top:92px;
   z-index:5;
   overflow:auto;
+}
+
+.badScriptHeading{
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
 }
 
 .loginBlock, .createRegistryBlock {
@@ -88,6 +104,11 @@ md-menu-content {
 
 .navBarOptions {
   padding-right: 43px;
+}
+
+.textFormat {
+  text-align: center;
+  color: #757575;
 }
 
 .menuOption {
@@ -234,6 +255,7 @@ md-menu-content {
 
 .photoPicker {
   font-weight: 300 !important;
+  padding: 20px !important;
 }
 
 .pictureUploadContainer {
@@ -271,6 +293,12 @@ form .progress {
 .angularTextArea .border-around {
   border: 1px solid #590041;
 }
+
+/* To remove the outline in the textarea of text-angular */
+div[contenteditable="true"] {
+  outline: none;
+}
+
 
 .angularTextArea p, li{
   font-size: 14px;
@@ -333,6 +361,12 @@ form .progress {
   font-weight: 300;
   color: #136a80;
   font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+}
+
+.registryCommentSection {
+    margin-bottom: 25px;
+    max-height: 400px;
+    overflow: scroll;
 }
 
 .commentContainerComment {
@@ -400,4 +434,100 @@ form .progress {
   width: 30px;
   height: auto;
   padding: 2px;
+}
+
+.mainViewContainer h1 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.registryCard {
+  width: 230px;
+  height: 300px;
+  font-size: 10px;
+}
+
+.registryCardPhoto {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.registryCardPhoto:focus {
+    outline: none;
+    border: 0;
+}
+
+.cardTitle {
+  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+  color: darkslategray;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.cardTitle:focus {
+  outline: none;
+  border: 0;
+}
+
+.dashboardContainer h1 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  color: #554846;
+}
+
+.dashboardContainer h2 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.dashboardContainer h3 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #8f6a89;
+}
+
+.dashboardContainer a {
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: lighter;
+  color:#136a80;
+}
+
+.dashboardContainer span {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.dashboardHeader {
+  background-color: rgba(0,0,0,.02);
+  padding: 25px;
+  margin-bottom: 25px
+}
+
+#dashboardImage {
+  width: 80%;
+  height: auto;
+}
+
+.photoDialog {
+  width: 40%;
+}
+
+.dialogHeader {
+  background-color: color:#136a80;
+  color: white;
+}
+
+.dialogUploadContainer {
+  text-align: center;
+  padding: 10px;
+  height: 100%
 }
