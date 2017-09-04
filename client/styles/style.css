@@ -34,6 +34,16 @@ md-menu-content {
   max-height: 90vh;
 }
 
+#registryCard {
+  height: 300px;
+  background-color: #8f6a89;
+}
+
+#resultsImg {
+    width: 150px;
+    height: 150px;
+}
+
 .navBar {
   position: fixed;
   width: 100%;
@@ -46,6 +56,12 @@ md-menu-content {
   padding-top:92px;
   z-index:5;
   overflow:auto;
+}
+
+.badScriptHeading{
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 500;
 }
 
 .loginBlock, .createRegistryBlock {
@@ -88,6 +104,11 @@ md-menu-content {
 
 .navBarOptions {
   padding-right: 43px;
+}
+
+.textFormat {
+  text-align: center;
+  color: #757575;
 }
 
 .menuOption {
