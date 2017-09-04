@@ -4,6 +4,9 @@ take12App.controller('RegistrationController', ['$scope', '$http',
                     function($scope, $http, $window, $timeout, Upload,
                     UserService, UtilitiesService, RegistryDataService) {
 
+  // variable used to display labels for self or loved one's registry
+  $scope.self = true;
+
   // stores information to save a new user into the DB
   $scope.newUser = {
     email: '',
@@ -37,12 +40,14 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   // starts registration based on parameter(self or lovedOne)
   $scope.startRegistration = function(who) {
     // add code to differentiate between self and lovedOne
-    $scope.visibleStep = 1;
     if (who == 'self') {
+      $scope.self = true;
       $scope.registry.email = UserService.userObject.email;
     } else {
+      $scope.self = false;
       $scope.registry.organizerEmail = UserService.userObject.email;
     }
+    $scope.visibleStep = 1;
   };
 
   // opens how to plan information on separate window

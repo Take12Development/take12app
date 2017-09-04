@@ -12,7 +12,8 @@
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column">
       <form form name="mainInfoView" ng-submit="goNext(1)">
-        <span>What's your name?</span>
+        <span ng-if="self==false">What is your loved one's name?</span>
+        <span ng-if="self==true">What's your name?</span>
         <md-input-container layout="column">
           <div>
             <label for="firstName">First name:</label>
