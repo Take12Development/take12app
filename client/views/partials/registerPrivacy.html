@@ -18,15 +18,18 @@
         <br>
         <md-radio-group ng-model="registry.privacy">
           <md-radio-button value="public">Public:
-            <span>Your registry will be displayed on our public registry page and can be found via our search function based on name.</span>
+            <span ng-if="self==true">Your registry will be displayed on our public registry page and can be found via our search function based on name.</span>
+            <span ng-if="self==false">Her registry will be displayed on our public registry page and can be found via our search function based on name.</span>
           </md-radio-button>
           <br>
           <md-radio-button value="semi">Semi-Private:
-            <span>Your registry can be found via our search function based on name.</span>
+            <span ng-if="self==true">Your registry can be found via our search function based on name.</span>
+            <span ng-if="self==false">Her registry can be found via our search function based on name.</span>
           </md-radio-button>
           <br>
           <md-radio-button value="private">Private:
-            <span>Your name can be found via our search function but a request must be sent to you in order to view the contents of your registry page. You can also share your private link with whomever you wish.</span>
+            <span ng-if="self==true">Your name can be found via our search function but a request must be sent to you in order to view the contents of your registry page. You can also share your private link with whomever you wish.</span>
+            <span ng-if="self==false">Her name can be found via our search function but a request must be sent to her in order to view the contents of her registry page. She can also share her private link with whomever she wishes.</span>
           </md-radio-button>
         </md-radio-group>
         <br>

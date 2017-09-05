@@ -87,7 +87,11 @@ router.post('/add', function(req,res) {
     registry.lastName = last;
     registry.goalAmount = req.body.goalAmount;
     registry.currentAmount = 0;
+    registry.paidDays = req.body.paidDays;
+    registry.createDate = req.body.createDate;
     registry.dueDate = req.body.dueDate;
+    registry.city = req.body.city;
+    registry.state = req.body.state;
     registry.imageURL = req.body.imageURL;
     registry.story = req.body.story;
     registry.privacy = req.body.privacy;
@@ -148,7 +152,7 @@ router.put("/update", function(req,res){
     foundRegistry.city = req.body.city;
     foundRegistry.state = req.body.state;
     foundRegistry.country = req.body.country;
-    
+
     foundRegistry.save(function(err, savedRegistry){
       if(err){
         console.log(err);
