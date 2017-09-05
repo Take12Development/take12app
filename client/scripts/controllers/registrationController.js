@@ -19,13 +19,20 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     firstName: '',
     lastName: '',
     goalAmount: 0,
+    createDate: new Date(),
     dueDate: '',
     imageURL: '',
     story: '',
     privacy: 'public',
     email: '',
-    organizerEmail: ''
+    organizerEmail: '',
+    city: '',
+    state: '',
+    paidDays: 0
   }
+
+  // list of states for state selection
+  $scope.states = UtilitiesService.states;
 
   console.log('in the controller: ',UserService.userObject);
 
