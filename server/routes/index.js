@@ -8,7 +8,7 @@ router.post('/',
     passport.authenticate('local', {
         // request stays within node/express and is routed as a new request
         successRedirect: '/user',   // goes to routes/user.js
-        failureRedirect: '/error'   
+        failureRedirect: '/error'
     })
 );
 

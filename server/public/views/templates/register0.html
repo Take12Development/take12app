@@ -1,0 +1,20 @@
+<!-- REGISTER NEW USER VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout-md="column" flex="33"></div>
+  <div class="createRegistryContainer" layout="column" flex="33">
+    <div class="createRegistryText" layout="column" flex-align="center center">
+      <h1 class="createRegistryTitle">Welcome to Take12!</h1>
+      <br>
+      <span>Creating a registry is quick and easy.
+        We'll guide you through the creation process.</span>
+      <br><br>
+      <span>What would you like to do?</span>
+      <br><br>
+    </div>
+    <div class="createRegistryOptions" layout="column">
+      <md-button class="md-raised submitButton" type="submit" name="yourRegistry" aria-label="Create a registry for you" value="yourRegistry" ng-click="goToStep1(yourRegistry)">Create a registry for you</md-button>
+      <br>
+      <md-button class="md-raised submitButton" type="submit" name="lovedOneRegistry" aria-label="Create a registry for a loved one" value="lovedOneRegistry" ng-click="goToStep1(lovedOneRegistry)">Create a registry for a loved one</md-button>
+    </div>
+  </div>
+</div>

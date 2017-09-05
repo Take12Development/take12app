@@ -1,0 +1,52 @@
+<!-- REGISTER NEW USER VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout-md="column" flex="33"></div>
+  <div class="createRegistryContainer" layout="column" flex="33">
+    <div class="createRegistryText" layout="column" flex-align="center center">
+      <h1 class="createRegistryTitle">Step 1/3</h1>
+      <span>To get started, simply create your account below.</span>
+    </div>
+    <h3 ng-if="message != ''">{{message}}</h3>
+    <div class="createRegistryForm" layout="column">
+      <form form name="registerView" ng-submit="registerUser()">
+        <md-input-container layout="column" layout-align="center center">
+          <div>
+            <md-button class="md-raised fbButton" type="submit" name="facebook" aria-label="Connect with Facebook" value="facebook">Connect with Facebook</md-button>
+          </div>
+          <br>
+          <span>or</span>
+        </md-input-container>
+        <md-input-container layout="column">
+          <div>
+            <label for="email">Email:</label>
+            <input type="text" ng-model="user.email" required/>
+            <div ng-messages="registerView.user.email.$error">
+              <div ng-message="required">An email address is required!</div>
+            </div>
+          </div>
+        </md-input-container>
+        <md-input-container layout="column">
+          <div>
+            <label for="password">Create password:</label>
+            <input type="password" ng-model="user.password" required/>
+            <div ng-messages="registerView.user.password.$error">
+              <div ng-message="required">A password is required!</div>
+            </div>
+          </div>
+        </md-input-container>
+        <md-input-container layout="column">
+          <div>
+            <label for="password">Confirm password:</label>
+            <input type="password" ng-model="user.confirmPassword" required/>
+            <div ng-messages="registerView.user.confirmPassword.$error">
+              <div ng-message="required">A password confirmation is required!</div>
+            </div>
+          </div>
+        </md-input-container>
+        <md-input-container layout="row" layout-align="center center">
+          <md-button class="md-raised submitButton" type="submit" name="submit" aria-label="Submit" value="Submit">Submit</md-button>
+        </md-input-container>
+      </form>
+    </div>
+  </div>
+</div>
