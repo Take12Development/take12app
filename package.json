@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/protractor test/conf.js",
+    "postinstall": "grunt concat copy",
     "start": "node server/app.js"
   },
   "author": "Betsy Rowley and Claudia Calderas",
