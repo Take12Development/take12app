@@ -1,0 +1,133 @@
+<!-- REGISTER NEW USER MAIN INFO VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="33" flex-xs="10" flex-sm="10" flex-md="20"></div>
+  <div class="createRegistryBlock" layout="column" flex-gt-md="33" flex-xs="80" flex-sm="80" flex-md="60">
+    <div layout="column" flex-align="center center">
+      <h1 class = "registerHeader">Step 1 of 4</h1>
+    </div>
+    <div class="createRegistryText" layout="column" flex-align="center center">
+      <!-- <span>To get started, simply create your account below.</span> -->
+      <br>
+    </div>
+    <h3 ng-if="message != ''">{{message}}</h3>
+    <div class="createRegistryContainer" layout="column">
+      <form form name="mainInfoView" ng-submit="goNext(1)">
+        <span ng-if="self==false">What is your loved one's email?</span>
+        <md-input-container ng-if="self==false" layout="column">
+          <div>
+            <label for="email">Email:</label>
+            <input type="text" ng-model="registry.email" required/>
+            <div ng-messages="mainInfoView.registry.email.$error">
+              <div ng-message="required">An email address is required!</div>
+            </div>
+          </div>
+        </md-input-container>
+        <span ng-if="self==false">What is your loved one's name?</span>
+        <span ng-if="self==true">What's your name?</span>
+        <div layout="row">
+          <div flex="45">
+            <md-input-container layout="column">
+              <div>
+                <label for="firstName">First name:</label>
+                <input type="text" ng-model="registry.firstName" required/>
+                <div ng-messages="mainInfoView.registry.firstName.$error">
+                  <div ng-message="required">An first name is required!</div>
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+          <div flex="10"></div>
+          <div flex="45">
+            <md-input-container layout="column">
+              <div>
+                <label for="lastName">Last name:</label>
+                <input type="text" ng-model="registry.lastName" required/>
+                <div ng-messages="mainInfoView.registry.lastName.$error">
+                  <div ng-message="required">An last name is required!</div>
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+        </div>
+
+        <div layout="row">
+          <div flex="45">
+            <span>Baby's due date:</span>
+            <md-input-container layout="column" flex="45" class="eventInputs">
+              <div>
+                <!-- <label for="user.dueDate">Baby's due date:</label> -->
+                <md-datepicker ng-model="registry.dueDate" md-current-view="year" md-placeholder="Enter date" required></md-datepicker>
+                <div ng-messages="mainInfoView.registry.dueDate.$error" ng-if='submitted'>
+                  <div ng-message="required">A date is required!</div>
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+        </div>
+
+        <div layout="row">
+          <div flex="45">
+            <span ng-if="self==true">Amount of money needed to Take your 12 weeks?  </span>
+            <span ng-if="self==false">Amount of money needed for her to Take 12 weeks?  </span>
+            <span class="material-icons md-14 helpIcon" ng-click="goToHowToPlan()">help</span>
+
+            <md-input-container layout="column">
+              <div>
+                <label for="goalAmount">Amount:</label>
+                <input ng-model="registry.goalAmount" type="number" step="100.00" required>
+                <div ng-messages="mainInfoView.registry.goalAmount.$error">
+                  <div ng-message="required">A goal amount is required!</div>
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+          <div flex="10"></div>
+          <div flex="45">
+            <span ng-if="self==true">Paid leave benefit that your company offer (in days):</span>
+            <span ng-if="self==false">Paid leave benefit that her company offer (in days):</span>
+            <md-input-container layout="column">
+              <div>
+                <label for="paidDays">Days:</label>
+                <input ng-model="registry.paidDays" type="number" step="1.00" required>
+                <div ng-messages="mainInfoView.registry.paidDays.$error">
+                  <div ng-message="required">The number of paid days is required!</div>
+                </div>
+              </div>
+            </md-input-container>
+          </div>
+        </div>
+
+        <div layout="row">
+          <div flex="45">
+            <span ng-if="self==true">City:  </span>
+            <md-input-container layout="column">
+              <div>
+                <label for="city">City:</label>
+                <input type="text" ng-model="registry.city"/>
+              </div>
+            </md-input-container>
+          </div>
+          <div flex="10"></div>
+          <div flex="45">
+            <span ng-if="self==true">State:</span>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>State</label>
+              <md-select ng-model="registry.state" >
+                <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                  {{state.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+        </div>
+
+
+
+        <md-input-container layout="row" layout-align="center center">
+          <md-button class="md-raised submitButton" name="back" aria-label="Back" value="Back" ng-click="goBack(1)">Back</md-button>
+          <md-button class="md-raised submitButton" type="submit" name="submit" aria-label="Next" value="Next">Next</md-button>
+        </md-input-container>
+      </form>
+    </div>
+  </div>
+</div>
