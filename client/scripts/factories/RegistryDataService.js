@@ -56,6 +56,7 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
         deferred.resolve(response);
         console.log('Back from POST with', response.data);
         UserService.userObject.currentRegistry = angular.copy(response.data);
+        console.log('factory currentRegistry',UserService.userObject.currentRegistry);
     })
     .catch(function(response) {
       deferred.reject(response);

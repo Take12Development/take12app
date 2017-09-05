@@ -4,6 +4,9 @@ take12App.controller('RegistrationController', ['$scope', '$http',
                     function($scope, $http, $window, $timeout, Upload,
                     UserService, UtilitiesService, RegistryDataService) {
 
+  // variable used to display labels for self or loved one's registry
+  $scope.self = true;
+
   // stores information to save a new user into the DB
   $scope.newUser = {
     email: '',
@@ -16,13 +19,20 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     firstName: '',
     lastName: '',
     goalAmount: 0,
+    createDate: new Date(),
     dueDate: '',
     imageURL: '',
     story: '',
     privacy: 'public',
     email: '',
-    organizerEmail: ''
+    organizerEmail: '',
+    city: '',
+    state: '',
+    paidDays: 0
   }
+
+  // list of states for state selection
+  $scope.states = UtilitiesService.states;
 
   console.log('in the controller: ',UserService.userObject);
 
@@ -37,12 +47,14 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   // starts registration based on parameter(self or lovedOne)
   $scope.startRegistration = function(who) {
     // add code to differentiate between self and lovedOne
-    $scope.visibleStep = 1;
     if (who == 'self') {
+      $scope.self = true;
       $scope.registry.email = UserService.userObject.email;
     } else {
+      $scope.self = false;
       $scope.registry.organizerEmail = UserService.userObject.email;
     }
+    $scope.visibleStep = 1;
   };
 
   // opens how to plan information on separate window
@@ -126,10 +138,12 @@ $scope.uploadPic = function(file) {
   // Calls factory function that saves registry to the Database
   $scope.saveAndComplete = function() {
     console.log('Registry:', $scope.registry);
-    RegistryDataService.postRegistry($scope.registry);
-
-    // go to registry dashboard
-    UtilitiesService.redirect('/dashboard');
+    RegistryDataService.postRegistry($scope.registry).then(function() {
+      // go to registry dashboard
+      UtilitiesService.redirect('/dashboard');
+    }).catch(function(response){
+        console.log(response.status);
+    });
   };
 
   // moves forward - registration view

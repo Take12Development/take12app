@@ -7,7 +7,8 @@
     </div>
     <div class="createRegistryText" layout="column" flex-align="center center">
       <br>
-      <span>Upload an image for your registry.</span>
+      <span ng-if="self==true">Upload an image for your registry.</span>
+      <span ng-if="self==false">Upload an image for her registry.</span>
       <span>(This can be changed at any time)</span>
       <br>
     </div>
