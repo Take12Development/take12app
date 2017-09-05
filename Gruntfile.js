@@ -4,7 +4,7 @@ module.exports = function(grunt){
     uglify: {
       build: {
         src: ['client/scripts/*.js',
-              'client/scripts/**/*.js']
+              'client/scripts/**/*.js'],
         dest: 'server/public/scripts/client.min.js'
       }
     },
@@ -113,7 +113,7 @@ module.exports = function(grunt){
       files: [
         'client/**/*.*'
       ],
-      tasks: ['uglify','copy']
+      tasks: ['uglify', 'copy']
     }
   });
 
@@ -121,5 +121,5 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['uglify','copy', 'watch']);
+  grunt.registerTask('default', ['uglify', 'copy', 'watch']);
 };
