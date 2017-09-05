@@ -1,0 +1,28 @@
+<!-- REGISTER NEW USER STORY VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="33" flex-xs="10" flex-sm="10" flex-md="20"></div>
+  <div class="createRegistryBlock" layout="column" flex-gt-md="33" flex-xs="80" flex-sm="80" flex-md="60">
+    <div layout="column" flex-align="center center">
+      <h1 class = "registerHeader">Step 3 of 4</h1>
+    </div>
+    <div class="createRegistryText" layout="column" flex-align="center center">
+      <br>
+      <span ng-if="self==true">Create a message to welcome friends and family to your registry.</span>
+      <span ng-if="self==false">Create a message to welcome friends and family to her registry.</span>
+      <span>(This can be changed at any time)</span>
+      <br>
+    </div>
+    <h3 ng-if="message != ''">{{message}}</h3>
+    <div class="createRegistryContainer" layout="column">
+      <form form name="storyView" ng-submit="goNext(3)">
+        <!-- TEXT EDITOR -->
+        <div class="angularTextArea" text-angular ng-model="registry.story" name="editor2" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
+        <!-- SAVE AND COMPLETE REGISTRY BUTTON -->
+        <md-input-container layout="row" layout-align="center center">
+          <md-button class="md-raised submitButton" name="back" aria-label="Back" value="Back" ng-click="goBack(3)">Back</md-button>
+          <md-button class="md-raised submitButton" type="submit" name="submit" aria-label="Next" value="Next">Next</md-button>
+        </md-input-container>
+      </form>
+    </div>
+  </div>
+</div>

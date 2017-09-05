@@ -1,0 +1,52 @@
+<!--Public Registry View -->
+<!--Defaults to Displaying all registries with a Public Setting-->
+  <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap
+               ng-init = "vm.getRegistries()">
+    <div class="contentBlock textFormat" layout="Row">
+      <div layout="column" flex = "15"></div>
+      <div layout="column" flex = "70">
+        <h1 class = "badScriptHeading">Public Registry</h1>
+        <p>The public registry is a community of moms who have decided to share their
+        Unpaid Leave journey. These women have chosen to share their story because they
+        need help from our greater community and want to spread awareness of what
+        partially/unpaid leave really looks like in the US.
+        </p>
+      </div>
+      <div layout="column" flex = "15">
+        <md-content layout = "row">
+          <div>
+              <md-button class = "md-raised submitButton"
+                          href = "#/findRegistry">Find a Loved One</md-button>
+          </div>
+        </md-content>
+      </div>
+    </div>
+    <div flex-xs flex-gt-xs="25" layout="column"
+          ng-repeat = "registry in vm.registriesObject.allRegistries | filter:searchText"
+           ng-if = "registry.privacy === 'public'">
+      <md-card id="registryCard">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{registry.firstName}} {{registry.lastName}}</span>
+            <span class="md-subhead">Baby Due: {{registry.dueDate | date}}</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <img src="views/assets/Take12Logo100px.png" alt="Take12 Logo"
+                  ng-if = "registry.imageURL === ''" id = "resultsImg">
+            <img ng-src="{{registry.imageURL}}" alt="profile picture"
+                  ng-if = "registry.imageURL !==''" id = "resultsImg">
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-content>
+          <p ng-bind-html ="registry.story | limitTo: vm.limit"></p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class = "md-raised submitButton"
+                      href = "#/registry/{{registry.registryURL}}">
+                      View Full Regisry</md-button>
+          <!-- <md-button class = "md-raised submitButton">Request Access</md-button> -->
+        </md-card-actions>
+      </md-card>
+    </div>
+  </md-content>
+</div>
