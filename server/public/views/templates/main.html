@@ -1,0 +1,40 @@
+<!-- MAIN VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex="10"></div>
+  <div class="mainViewContainer" layout="column" flex="80">
+    <h1>My registries</h1>
+
+    <div layout="row" layout-align="center center" layout-wrap>
+      <md-card class="registryCard" ng-repeat="registry in userRegistries">
+         <img ng-src="{{registry.imageURL}}" class="md-card-image registryCardPhoto" alt="" ng-click="goToRegistryDashboard(registry)">
+         <md-card-title layout="column">
+           <md-card-title-text>
+           </md-card-title-text>
+         </md-card-title>
+         <md-card-content layout="row" layout-align="center center">
+           <span class="md-headline cardTitle" layout-align="center center" ng-click="goToRegistryDashboard(registry)">{{registry.firstName}} {{registry.lastName}}</span>
+         </md-card-content>
+         <md-card-actions layout="row" layout-align="start center">
+           <md-card-icon-actions>
+           </md-card-icon-actions>
+         </md-card-actions>
+       </md-card>
+       <md-card class="registryCard">
+          <img ng-src="views/assets/plusImage.png" class="md-card-image registryCardPhoto" alt="New registry" ng-click="newRegistry()">
+          <md-card-title layout="column">
+            <md-card-title-text>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content layout="row" layout-align="center center">
+            <span class="md-headline cardTitle" ng-click="newRegistry()">Create New Registry</span>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="start center">
+            <md-card-icon-actions>
+            </md-card-icon-actions>
+          </md-card-actions>
+        </md-card>
+     </div>
+  </div>
+  <div layout="column" flex="10"></div>
+
+</div>

@@ -1,0 +1,168 @@
+<!-- REGISTRY VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
+  <div ng-if="validRegistry==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+    <h1>Registry Not Found!</h1>
+  </div>
+  <div ng-if="validRegistry==true" class="dashboardContainer" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+      <form name="editRegistryForm" ng-submit="saveChanges()">
+        <!-- IMAGE -->
+        <div class="dashboardHeader" layout="row">
+          <div class="regitryPhotoSection" flex="30" layout="column" layout-align="center center">
+            <img id="dashboardImage" ng-src="{{dashboardRegistry.imageURL}}">
+            <md-button class="md-raised submitButton" name="changePhoto" aria-label="Change Photo" value="changePhoto" ng-click="showPhotoDialog($event)">Change photo</md-button>
+            <span>This is the photo that will be displayed in your Registry.</span>
+          </div>
+          <div flex="20"></div>
+          <div class="regitryName" flex="50" layout="column" layout-align="center center">
+            <h1> {{dashboardRegistry.firstName}} {{dashboardRegistry.lastName}} & Family</h1>
+            <a ng-href="{{fullURL}}" target="_blank">{{fullURL}}</a><br>
+          </div>
+        </div>
+
+        <!-- MAIN INFO -->
+        <div class="dasboardMainInfo" layout="column">
+          <!-- FIRST AND LAST NAME -->
+          <div layout="row">
+            <!-- FIRST NAME -->
+            <div flex="45">
+              <md-input-container layout="column">
+                <div>
+                  <label for="firstName">First name:</label>
+                  <input type="text" ng-model="dashboardRegistry.firstName" required/>
+                  <div ng-messages="editRegistryForm.dashboardRegistry.firstName.$error">
+                    <div ng-message="required">An first name is required!</div>
+                  </div>
+                </div>
+              </md-input-container>
+            </div>
+            <div flex="10"></div>
+            <!-- LAST NAME -->
+            <div flex="45">
+              <md-input-container layout="column">
+                <div>
+                  <label for="firstName">Last name:</label>
+                  <input type="text" ng-model="dashboardRegistry.lastName" required/>
+                  <div ng-messages="editRegistryForm.dashboardRegistry.lastName.$error">
+                    <div ng-message="required">An last name is required!</div>
+                  </div>
+                </div>
+              </md-input-container>
+            </div>
+          </div>
+          <!-- LOCATION -->
+          <div layout="row">
+            <!-- CITY -->
+            <div flex="45">
+              <md-input-container layout="column">
+                <div>
+                  <label for="city">City:</label>
+                  <input type="text" ng-model="dashboardRegistry.city"/>
+                </div>
+              </md-input-container>
+            </div>
+            <div flex="10"></div>
+            <!-- STATE -->
+            <div flex="45">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>State</label>
+                <md-select ng-model="dashboardRegistry.state" required/>
+                  <md-option ng-repeat="state in states" value="{{state.abbrev}}" required/>
+                    {{state.abbrev}}
+                  </md-option>
+                  <div ng-messages="editRegistryForm.dashboardRegistry.state.$error">
+                    <div ng-message="required">A state is required!</div>
+                  </div>
+                </md-select>
+              </md-input-container>
+            </div>
+          </div>
+          <!-- DUE DATE AND AMOUNTS -->
+          <div layout="row">
+            <!-- BABY'S DUE DATE -->
+            <div flex="45">
+              <span>Baby's due date:</span>
+              <md-input-container layout="column" flex="45" class="eventInputs">
+                <div>
+                  <md-datepicker ng-model="dashboardRegistry.dueDate" md-current-view="year" md-placeholder="Enter date" required></md-datepicker>
+                  <div ng-messages="editRegistryForm.dashboardRegistry.dueDate.$error" ng-if='submitted'>
+                    <div ng-message="required">A date is required!</div>
+                  </div>
+                </div>
+              </md-input-container>
+            </div>
+            <div flex="10"></div>
+            <!-- AMOUNTS -->
+            <div flex="45" layout="column">
+              <!-- REGISTRY GOAL AMOUNT -->
+              <div>
+                <md-input-container layout="column">
+                  <div>
+                    <label for="goalAmount">Goal amount:</label>
+                    <input ng-model="dashboardRegistry.goalAmount" type="number" step="100.00" required>
+                    <div ng-messages="editRegistryForm.dashboardRegistry.goalAmount.$error">
+                      <div ng-message="required">A goal amount is required!</div>
+                    </div>
+                  </div>
+                </md-input-container>
+              </div>
+              <!-- CURRENT AMOUNT GIFTED -->
+              <div layout="row" layout-align="center center">
+                <h3>Current amount gifted: $</h3>
+                <h3>{{dashboardRegistry.currentAmount}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STORY -->
+        <div class="registryStoryTitle" layout="column" layout-align="center center">
+          <h2> {{dashboardRegistry.firstName}} {{dashboardRegistry.lastName}}'s story</h2>
+        </div>
+        <div class="angularTextArea" text-angular ng-model="dashboardRegistry.story" name="editor1" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
+
+        <!-- SOCIAL MEDIA -->
+        <div class="regitrySocialMediaSection" layout="column">
+          <div layout="column" layout-align="center center">
+            <h2>Share your registry</h2>
+            <span>This is your link:</span><br>
+            <a ng-href="{{fullURL}}" target="_blank">{{fullURL}}</a><br>
+            <span>You can also use the media buttons to share your link on social media.</span>
+            <br>
+          </div>
+          <div layout="row" layout-align="center center">
+              <img class="socialMediaIcon" src="views/assets/twitter.png" alt="Twitter">
+              <img class="socialMediaIcon" src="views/assets/facebook.png" alt="Facebook">
+              <img class="socialMediaIcon" src="views/assets/instagram.png" alt="Instagram">
+              <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
+              <img class="socialMediaIcon" src="views/assets/pinterest.png" alt="Pinterest">
+          </div>
+        </div>
+
+        <!-- PRIVACY -->
+        <div class="registryPrivacySection">
+          <div layout="column" layout-align="center center">
+            <h2>Privacy setting</h2>
+          </div>
+          <md-radio-group ng-model="dashboardRegistry.privacy">
+            <md-radio-button value="public">Public:
+              <span>Your registry will be displayed on our public registry page and can be found via our search function based on name.</span>
+            </md-radio-button>
+            <br>
+            <md-radio-button value="semi">Semi-Private:
+              <span>Your registry can be found via our search function based on name.</span>
+            </md-radio-button>
+            <br>
+            <md-radio-button value="private">Private:
+              <span>Your name can be found via our search function but a request must be sent to you in order to view the contents of your registry page. You can also share your private link with whomever you wish.</span>
+            </md-radio-button>
+          </md-radio-group>
+          <br>
+        </div>
+        <md-input-container layout="row" layout-align="center center">
+          <md-button class="md-raised submitButton" name="discardChanges" aria-label="Discard changes" value="discardChanges" ng-click="discardChanges()">Discard Changes</md-button>
+          <md-button class="md-raised submitButton" type="submit" name="submit" aria-label="Save changes" value="saveChanges">Save Changes</md-button>
+        </md-input-container>
+    </form>
+  </div>
+</div>
