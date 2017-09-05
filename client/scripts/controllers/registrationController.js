@@ -138,10 +138,12 @@ $scope.uploadPic = function(file) {
   // Calls factory function that saves registry to the Database
   $scope.saveAndComplete = function() {
     console.log('Registry:', $scope.registry);
-    RegistryDataService.postRegistry($scope.registry);
-
-    // go to registry dashboard
-    UtilitiesService.redirect('/dashboard');
+    RegistryDataService.postRegistry($scope.registry).then(function() {
+      // go to registry dashboard
+      UtilitiesService.redirect('/dashboard');
+    }).catch(function(response){
+        console.log(response.status);
+    });
   };
 
   // moves forward - registration view

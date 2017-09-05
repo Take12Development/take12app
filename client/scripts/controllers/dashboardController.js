@@ -6,6 +6,7 @@ take12App.controller('DashboardController', ['$scope', '$http',
 
 $scope.validRegistry = true;
 
+console.log('currentRegistry in dashboard:', UserService.userObject.currentRegistry);
 $scope.dashboardRegistry = UserService.userObject.currentRegistry;
 
 // list of states for state selection
