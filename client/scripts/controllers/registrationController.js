@@ -98,30 +98,24 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
 // filename stores the picture filename assigned by the uploadPic function
 var filename;
-
 // Upload picture file Section
 $scope.uploadPic = function(file) {
   file.upload = Upload.upload({
     url: '/uploads',
-    // data: {name: UserService.userObject.email, file: file},
     data: {file: file},
   });
 
   file.upload.then(function (response) {
-    console.log('0 Back from upload with data:',response.data);
+    console.log('0 Back from upload with data:',response);
     // saves filename to use when saving registry
-    // filename in localhost:
-    filename = response.data.file.path + "/" + response.data.file.originalname;
-    // updated filename that works with aws
-    // filename = response.data.file.location;
+    filename = response.data.secure_url;
     $scope.registry.imageURL = filename;
+
     $timeout(function () {
       file.result = response.data;
-      console.log('1 Back from upload with data:',response.data);
-      // filename in localhost:
-      filename = response.data.file.path + "/" + response.data.file.originalname;
-      // updated filename that works with aws
-      // filename = response.data.file.location;
+      console.log('1 Back from upload with data:',response);
+      // saves filename to use when saving registry
+      filename = response.data.secure_url;
       $scope.registry.imageURL = filename;
     });
     }, function (response) {

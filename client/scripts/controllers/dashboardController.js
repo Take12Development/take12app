@@ -67,35 +67,28 @@ function DialogController($scope, $mdDialog, photoURL ) {
   // Upload picture file Section
   var filename;
   $scope.uploadPic = function(file) {
-    console.log('uploadPic()',file);
     file.upload = Upload.upload({
       url: '/uploads',
-      // data: {name: UserService.userObject.email, file: file},
       data: {file: file},
     });
 
     file.upload.then(function (response) {
-      console.log('0 Back from upload with data:',response.data);
+      console.log('0 Back from upload with data:',response);
       // saves filename to use when saving registry
-      // filename in localhost:
-      filename = response.data.file.path + "/" + response.data.file.originalname;
-      // updated filename that works with aws
-      // filename = response.data.file.location;
+      filename = response.data.secure_url;
       dialogCtrl.photoURL = filename;
 
       $timeout(function () {
         file.result = response.data;
-        console.log('1 Back from upload with data:',response.data);
-        // filename in localhost:
-        filename = response.data.file.path + "/" + response.data.file.originalname;
-        // updated filename that works with aws
-        // filename = response.data.file.location;
+        console.log('1 Back from upload with data:',response);
+        // saves filename to use when saving registry
+        filename = response.data.secure_url;
         dialogCtrl.photoURL = filename;
       });
       }, function (response) {
         if (response.status > 0)
           $scope.errorMsg = response.status + ': ' + response.data;
-          console.log('2 Back from upload with data:',response.data);
+          console.log('2 Back from upload with data:',response);
           console.log('URL is:',filename);
       }, function (evt) {
         // Math.min is to fix IE which reports 200% sometimes
