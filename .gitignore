@@ -1,4 +1,6 @@
 .DS_Store/
+server/conf/settings.json
+server/public/
 node_modules/
 *.log
 uploads/
