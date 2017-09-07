@@ -1,4 +1,5 @@
-var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload','textAngular','rzModule']);
+var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload',
+                'textAngular','rzModule','720kb.socialshare']);
 
 // Angular Material Theme Configuration
 take12App.config(['$mdThemingProvider', function($mdThemingProvider) {
