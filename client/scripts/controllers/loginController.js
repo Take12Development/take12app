@@ -8,8 +8,9 @@ take12App.controller('LoginController', ['$scope', '$http', '$location', 'UserSe
 
   $scope.message = '';
 
-  // checks facebook login state
+  // Facebook methods in UserService:
   $scope.checkLoginState = UserService.checkLoginState;
+  $scope.fblogin = UserService.fblogin;
 
   // logs a user into the system
   $scope.login = function() {

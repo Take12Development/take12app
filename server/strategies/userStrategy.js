@@ -1,6 +1,25 @@
 var passport = require('passport');
+var FacebookTokenStrategy = require('passport-facebook-token');
 var localStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
+var fs = require('fs');
+var path = require('path');
+
+// Facebook Strategy takes json config file if config vars are not available
+var facebookAppId = '';
+var facebookAppSecret = '';
+if(process.env.FACEBOOK_APP_ID != undefined &&
+  process.env.FACEBOOK_APP_SECRET != undefined) {
+    facebookAppId = process.env.FACEBOOK_APP_ID;
+    facebookAppSecret = process.env.FACEBOOK_APP_SECRET;
+} else {
+  var jsonPath = path.join(__dirname, '..', 'conf', 'settings.json');
+  var rawdata = fs.readFileSync(jsonPath);
+  var configValues = JSON.parse(rawdata);
+
+  facebookAppId = configValues.facebook.FACEBOOK_APP_ID;
+  facebookAppSecret = configValues.facebook.FACEBOOK_APP_SECRET;
+}
 
 // Store this user's unique id in the session for later reference
 // Only runs during authentication
@@ -59,6 +78,43 @@ passport.use('local', new localStrategy({
       } // end else
     }); // end findOne
   } // end callback
+));
+
+// Facebook Strategy
+passport.use(new FacebookTokenStrategy({
+    clientID: facebookAppId,
+    clientSecret: facebookAppSecret
+  }, function(accessToken, refreshToken, profile, done) {
+
+    User.findOne({facebookId: profile.id}, function(err, user) {
+      if(err) {
+        throw err;
+      }
+      if(!user) {
+        // user not found
+        console.log('Facebook Strategy :: New User');
+        console.log('profile is:', profile);
+        // inserts newUser in user table
+        var newUser = {};
+        newUser.facebookId = profile.id;
+        newUser.registries = [];
+
+        User.create(newUser, function(err, user) {
+             if(err) {
+               console.log('ERR',err);
+              //  return done(null, false, {message: 'There was a problem creating your user in Take12'});
+             } else {
+              console.log('USER', user);
+              return(done(null, user));
+             }
+        });
+      } else {
+        // found user!
+        console.log('Facebook Strategy.js :: all good');
+        return(done(null, user));
+      } // end else
+    }); // end findOne
+  }
 ));
 
 module.exports = passport;
