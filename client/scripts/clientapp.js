@@ -118,7 +118,7 @@ take12App.run([ function() {
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1871430496451740',
+      appId      : FACEBOOK_APP_ID,
       xfbml      : true,
       version    : 'v2.10'
     });

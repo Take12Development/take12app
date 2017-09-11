@@ -48,10 +48,8 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // checks if email is empty (the user has logged in with facebook)
   if (UserService.userObject.email) {
-    console.log("NOT EMPTY EMAIL", UserService.userObject.email);
     $scope.requestEmail = false;
   } else {
-    console.log("EMPTY EMAIL");
     $scope.requestEmail = true;
   }
 
@@ -111,46 +109,17 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   $scope.fbSignUp = function() {
     FB.login(function(response) {
     if (response.authResponse) {
-      console.log('REGISTRATION CONTROLLER: Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
           console.log('RC: Good to see you, ' + response.name + '.');
           var token = FB.getAuthResponse().accessToken;
-
-          if(response.name) {
-              var fullName = response.name;
-          } else {
-              var fullName = "UPDATE NAME";
-          }
-
-          console.log(fullName);
-          var fName = fullName.split(' ').slice(0, -1).join(' ');
-          var lName = fullName.split(' ').slice(-1).join(' ');
-
-          var lowerFirst = fName.toLowerCase();
-          var lowerLast = lName.toLowerCase();
-
-          console.log(lowerFirst, lowerLast);
-
-          var sendData = {};
-          sendData.facebookid = response.id;
-          sendData.firstName = lowerFirst;
-          sendData.lastName = lowerLast;
-          sendData.email = response.email;
-
-          console.log('RC: sendData',sendData);
-
-          $http.post('fblogin/auth/facebook/token?access_token=' + token, sendData).then(handleSuccess, handleFailure);
-
+          $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
           function handleSuccess(response) {
-            console.log('REGISTRATION CONTROLLER: created or found FB user', response.data);
             if(response.data.registries.length != 0) {
               // Existing user: Presents registry dashboard
               UtilitiesService.redirect('/main');
-              console.log('MAIN');
             } else {
               // New user: Presents registration views
               UtilitiesService.redirect('/registration');
-              console.log('REGISTRATION');
             }
           };
           function handleFailure(response) {
