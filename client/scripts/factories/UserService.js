@@ -6,6 +6,7 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
 
   // Gets logged user
   function getuser() {
+    console.log('IN GETUSER');
     $http.get('/user').then(function(response) {
       console.log('GETUSER', response);
       if(response.data.email) {
@@ -16,7 +17,10 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
       } else if (response.data.facebookId)  {
         userObject.facebookId = response.data.facebookId;
         userObject.registries = response.data.registries;
+        console.log('FB GETUSER: User Data: ', userObject);
       } else {
+        console.log('NO SESSION: ', response);
+
         // user has no session, bounce them back to the login page
         UtilitiesService.redirect("/home");
       }

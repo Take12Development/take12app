@@ -40,18 +40,14 @@ take12App.controller('LoginController', ['$scope', '$http', 'UserService',
 
   // logs a facebook user into the system
   $scope.fblogin = function() {
-    console.log('LOGIN CONTROLLER fblogin');
     FB.login(function(response) {
       if (response.authResponse) {
         console.log('LC: Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
           console.log(response);
-          console.log('US: Good to see you, ' + response.name + '.');
+          console.log('LC: Good to see you, ' + response.name + '.');
           var token = FB.getAuthResponse().accessToken;
-
-          // $http.post('fblogin/auth/facebook/token?access_token=' + token, sendData).then(handleSuccess, handleFailure);
           $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
-
           function handleSuccess(response) {
             console.log('LC CONTROLLER: created or found FB user', response.data);
             if(response.data.email) {
@@ -64,6 +60,9 @@ take12App.controller('LoginController', ['$scope', '$http', 'UserService',
                 // New user: Presents registration views
                 UtilitiesService.redirect('/registration');
               }
+            } else {
+              // New user: Presents registration views
+              UtilitiesService.redirect('/registration');
             }
           };
           function handleFailure(response) {
