@@ -68,9 +68,33 @@ function createURL(firstName, lastName) {
   });
 }
 
+// creates newURL based on first and last name
+function updateFBUser(facebookId, email) {
+  console.log('Updating user email:', email);
+  return new Promise(function(resolve,reject) {
+    Users.findOneAndUpdate(
+      {facebookId: facebookId},
+      {email: email},
+      function(err, user) {
+        if(err) {
+          console.log(err);
+          reject(err);
+        } else {
+          resolve(user);
+        }
+      }
+    );
+  });
+}
+
 // saves a registry into the database
 router.post('/add', function(req,res) {
   console.log("/add post route hit");
+
+  // for facebook new users we insert email to user in users table
+  if (req.body.facebookId) {
+    updateFBUser(req.body.facebookId,req.body.email);
+  };
 
   var first = req.body.firstName.toLowerCase();
   var last = req.body.lastName.toLowerCase();
