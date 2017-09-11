@@ -93,7 +93,7 @@ passport.use(new FacebookTokenStrategy({
       if(!user) {
         // user not found
         console.log('Facebook Strategy :: New User');
-        console.log('profile is:', profile);
+        // console.log('profile is:', profile);
         // inserts newUser in user table
         var newUser = {};
         newUser.facebookId = profile.id;

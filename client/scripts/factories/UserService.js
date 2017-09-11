@@ -1,6 +1,5 @@
 take12App.factory('UserService', ['$http', '$location', 'UtilitiesService',
                   function($http, $location, UtilitiesService){
-  console.log('User Service Loaded');
 
   // Stores logged user information
   var userObject = {};

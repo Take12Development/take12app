@@ -12,6 +12,16 @@
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column">
       <form form name="mainInfoView" ng-submit="goNext(1)">
+        <span ng-if="requestEmail==true && self==true">What is your email?</span>
+        <md-input-container ng-if="requestEmail==true && self==true" layout="column">
+          <div>
+            <label for="email">Email:</label>
+            <input type="text" ng-model="registry.email" required/>
+            <div ng-messages="mainInfoView.registry.email.$error">
+              <div ng-message="required">An email address is required!</div>
+            </div>
+          </div>
+        </md-input-container>
         <span ng-if="self==false">What is your loved one's email?</span>
         <md-input-container ng-if="self==false" layout="column">
           <div>

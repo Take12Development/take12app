@@ -6,6 +6,8 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // variable used to display labels for self or loved one's registry
   $scope.self = true;
+  // variable used to display input for email
+  $scope.requestEmail = true;
 
   // stores information to save a new user into the DB
   $scope.newUser = {
@@ -43,6 +45,15 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // validation's message
   $scope.message = '';
+
+  // checks if email is empty (the user has logged in with facebook)
+  if (UserService.userObject.email) {
+    console.log("NOT EMPTY EMAIL", UserService.userObject.email);
+    $scope.requestEmail = false;
+  } else {
+    console.log("EMPTY EMAIL");
+    $scope.requestEmail = true;
+  }
 
   // starts registration based on parameter(self or lovedOne)
   $scope.startRegistration = function(who) {
@@ -188,7 +199,12 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // Calls factory function that saves registry to the Database
   $scope.saveAndComplete = function() {
-    console.log('Registry:', $scope.registry);
+    // For facebook users we attach fb id to insert email in user account
+    console.log('UserService.userObject.facebookId: ',UserService.userObject.facebookId);
+    if (UserService.userObject.facebookId) {
+      $scope.registry.facebookId = UserService.userObject.facebookId;
+    }
+    console.log('SENDING TO postRegistry', $scope.registry);
     RegistryDataService.postRegistry($scope.registry).then(function() {
       // go to registry dashboard
       UtilitiesService.redirect('/dashboard');
