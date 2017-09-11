@@ -1,4 +1,5 @@
-var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload','textAngular','rzModule']);
+var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload',
+                'textAngular','rzModule','720kb.socialshare']);
 
 // Angular Material Theme Configuration
 take12App.config(['$mdThemingProvider', function($mdThemingProvider) {
@@ -110,4 +111,26 @@ take12App.config(['$routeProvider', '$locationProvider',
     .otherwise({
       redirectTo: 'home'
     });
+}]);
+
+// Facebook authentication
+take12App.run([ function() {
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : FACEBOOK_APP_ID,
+      xfbml      : true,
+      version    : 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
 }]);

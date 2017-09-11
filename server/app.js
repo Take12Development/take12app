@@ -14,6 +14,7 @@ var uploads = require('./routes/uploads');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var registry = require('./routes/registry');
+var fblogin = require('./routes/fblogin');
 
 var mongoDB = require('./modules/db');
 
@@ -43,6 +44,7 @@ app.use('/register', register);
 app.use('/user', user);
 app.use('/registry', registry);
 app.use('/uploads', uploads);
+app.use('/fblogin', fblogin);
 
 // Login error response
 app.get('/error', function(req, res) {

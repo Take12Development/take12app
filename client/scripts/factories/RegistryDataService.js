@@ -1,8 +1,6 @@
 take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
                   function($http,$q,UserService) {
 
-  console.log('Registry Data Service Loaded');
-
   // Stores all registries in the DB
   var registriesObject = {
     allRegistries: [],

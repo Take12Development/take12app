@@ -106,8 +106,15 @@ module.exports = function(grunt){
               'rzslider.min.css',
               'rzslider.css'],
         dest: 'server/public/vendors/angularjsslider/'
+      },
+      angularsocialshare: {
+        expand: true,
+        cwd: 'node_modules/angular-socialshare/dist/',
+        src: ['angular-socialshare.js',
+              'angular-socialshare.js.map',
+              'angular-socialshare.min.js'],
+        dest: 'server/public/vendors/angularsocialshare/'
       }
-
     },
     watch: {
       files: [

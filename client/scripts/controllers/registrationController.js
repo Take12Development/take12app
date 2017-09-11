@@ -6,6 +6,8 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // variable used to display labels for self or loved one's registry
   $scope.self = true;
+  // variable used to display input for email
+  $scope.requestEmail = true;
 
   // stores information to save a new user into the DB
   $scope.newUser = {
@@ -43,6 +45,13 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // validation's message
   $scope.message = '';
+
+  // checks if email is empty (the user has logged in with facebook)
+  if (UserService.userObject.email) {
+    $scope.requestEmail = false;
+  } else {
+    $scope.requestEmail = true;
+  }
 
   // starts registration based on parameter(self or lovedOne)
   $scope.startRegistration = function(who) {
@@ -96,42 +105,75 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     }
   };
 
-// filename stores the picture filename assigned by the uploadPic function
-var filename;
-// Upload picture file Section
-$scope.uploadPic = function(file) {
-  file.upload = Upload.upload({
-    url: '/uploads',
-    data: {file: file},
-  });
-
-  file.upload.then(function (response) {
-    console.log('0 Back from upload with data:',response);
-    // saves filename to use when saving registry
-    filename = response.data.secure_url;
-    $scope.registry.imageURL = filename;
-
-    $timeout(function () {
-      file.result = response.data;
-      console.log('1 Back from upload with data:',response);
-      // saves filename to use when saving registry
-      filename = response.data.secure_url;
-      $scope.registry.imageURL = filename;
-    });
-    }, function (response) {
-      if (response.status > 0)
-        $scope.errorMsg = response.status + ': ' + response.data;
-        console.log('2 Back from upload with data:',response.data);
-        console.log('URL is:',filename);
-    }, function (evt) {
-      // Math.min is to fix IE which reports 200% sometimes
-      file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+  // registers a new user with facebook credentials
+  $scope.fbSignUp = function() {
+    FB.login(function(response) {
+    if (response.authResponse) {
+        FB.api('/me', function(response) {
+          console.log('RC: Good to see you, ' + response.name + '.');
+          var token = FB.getAuthResponse().accessToken;
+          $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
+          function handleSuccess(response) {
+            if(response.data.registries.length != 0) {
+              // Existing user: Presents registry dashboard
+              UtilitiesService.redirect('/main');
+            } else {
+              // New user: Presents registration views
+              UtilitiesService.redirect('/registration');
+            }
+          };
+          function handleFailure(response) {
+            console.log('facebook logged Failure Logging In', response);
+          };
+      });
+    } else {
+      console.log('User cancelled login or did not fully authorize.');
+    }
     });
   };
 
+
+  // filename stores the picture filename assigned by the uploadPic function
+  var filename;
+  // Upload picture file Section
+  $scope.uploadPic = function(file) {
+    file.upload = Upload.upload({
+      url: '/uploads',
+      data: {file: file},
+    });
+
+    file.upload.then(function (response) {
+      console.log('0 Back from upload with data:',response);
+      // saves filename to use when saving registry
+      filename = response.data.secure_url;
+      $scope.registry.imageURL = filename;
+
+      $timeout(function () {
+        file.result = response.data;
+        console.log('1 Back from upload with data:',response);
+        // saves filename to use when saving registry
+        filename = response.data.secure_url;
+        $scope.registry.imageURL = filename;
+      });
+      }, function (response) {
+        if (response.status > 0)
+          $scope.errorMsg = response.status + ': ' + response.data;
+          console.log('2 Back from upload with data:',response.data);
+          console.log('URL is:',filename);
+      }, function (evt) {
+        // Math.min is to fix IE which reports 200% sometimes
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
+    };
+
   // Calls factory function that saves registry to the Database
   $scope.saveAndComplete = function() {
-    console.log('Registry:', $scope.registry);
+    // For facebook users we attach fb id to insert email in user account
+    console.log('UserService.userObject.facebookId: ',UserService.userObject.facebookId);
+    if (UserService.userObject.facebookId) {
+      $scope.registry.facebookId = UserService.userObject.facebookId;
+    }
+    console.log('SENDING TO postRegistry', $scope.registry);
     RegistryDataService.postRegistry($scope.registry).then(function() {
       // go to registry dashboard
       UtilitiesService.redirect('/dashboard');

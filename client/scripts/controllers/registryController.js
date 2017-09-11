@@ -17,9 +17,10 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
       $scope.currentRegistry = data.data;
       $scope.currentRegistry.firstName = UtilitiesService.titleCase($scope.currentRegistry.firstName);
       $scope.currentRegistry.lastName = UtilitiesService.titleCase($scope.currentRegistry.lastName);
+      $scope.fullURL = REGISTRY_URL + $scope.currentRegistry.registryURL;
       $scope.numberOfComments = $scope.currentRegistry.comments.length;
       console.log('$scope.currentRegistry',$scope.currentRegistry);
-      
+
       // PIE Chart
       var ctx = "myChart";
       var myStaticChart = new Chart(ctx, {
