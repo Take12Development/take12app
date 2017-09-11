@@ -22,6 +22,16 @@
             </div>
           </div>
         </md-input-container>
+        <span ng-if="requestEmail==true && self==false">What is your email?</span>
+        <md-input-container ng-if="requestEmail==true && self==false" layout="column">
+          <div>
+            <label for="email">Email:</label>
+            <input type="text" ng-model="registry.organizerEmail" required/>
+            <div ng-messages="mainInfoView.registry.organizerEmail.$error">
+              <div ng-message="required">An email address is required!</div>
+            </div>
+          </div>
+        </md-input-container>
         <span ng-if="self==false">What is your loved one's email?</span>
         <md-input-container ng-if="self==false" layout="column">
           <div>
