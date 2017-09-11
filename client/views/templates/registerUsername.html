@@ -20,14 +20,15 @@
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column">
+      <md-input-container layout="column" layout-align="center center">
+        <div>
+          <md-button class="md-raised fbButton" type="submit" name="facebook"
+          aria-label="Connect with Facebook" value="facebook" ng-click="fbSignUp()">Connect with Facebook</md-button>
+        </div>
+        <br>
+        <span>or</span>
+      </md-input-container>
       <form form name="registerView" ng-submit="registerUser()">
-        <md-input-container layout="column" layout-align="center center">
-          <div>
-            <md-button class="md-raised fbButton" type="submit" name="facebook" aria-label="Connect with Facebook" value="facebook">Connect with Facebook</md-button>
-          </div>
-          <br>
-          <span>or</span>
-        </md-input-container>
         <md-input-container layout="column">
           <div>
             <label for="email">Email:</label>

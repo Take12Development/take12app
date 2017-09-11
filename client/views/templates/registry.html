@@ -73,16 +73,35 @@
             <h2>Share!</h1>
           </div>
           <div layout="row" layout-align="center center">
-              <img class="socialMediaIcon" src="views/assets/twitter.png" alt="Twitter">
-              <img class="socialMediaIcon" src="views/assets/facebook.png" alt="Facebook">
-              <img class="socialMediaIcon" src="views/assets/instagram.png" alt="Instagram">
-              <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
-              <img class="socialMediaIcon" src="views/assets/pinterest.png" alt="Pinterest">
+            <a socialshare
+            socialshare-provider="twitter"
+            socialshare-text="My Take12 Registry"
+            socialshare-hashtags="take12, take12Registry"
+            socialshare-url="{{fullURL}}">
+            <img class="socialMediaIcon" src="views/assets/twitter.png" alt="Twitter"></a>
+            </a>
+            <a socialshare
+            socialshare-provider="facebook"
+            socialshare-url="{{fullURL}}">
+            <img class="socialMediaIcon" src="views/assets/facebook.png" alt="Facebook">
+            </a>
+            <!-- Instagram doesn't have a web sharer -->
+            <!-- <img class="socialMediaIcon" src="views/assets/instagram.png" alt="Instagram"> -->
+            <a socialshare
+            socialshare-provider="google"
+            socialshare-url="{{fullURL}}">
+            <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
+            </a>
+            <a socialshare
+            socialshare-provider="pinterest"
+            socialshare-url="{{fullURL}}"
+            socialshare-text="My Take12 Registry"
+            socialshare-media="{{currentRegistry.imageURL}}">
+            <img class="socialMediaIcon" src="views/assets/pinterest.png" alt="Pinterest">
+            </a>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
 </div>
