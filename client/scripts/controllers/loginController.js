@@ -1,5 +1,6 @@
-take12App.controller('LoginController', ['$scope', '$http', '$location', 'UserService',
-                    function($scope, $http, $location, UserService) {
+take12App.controller('LoginController', ['$scope', '$http', 'UserService',
+                    'UtilitiesService',
+                    function($scope, $http, UserService, UtilitiesService) {
 
   $scope.user = {
     email: '',
@@ -10,7 +11,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$location', 'UserSe
 
   // Facebook methods in UserService:
   $scope.checkLoginState = UserService.checkLoginState;
-  $scope.fblogin = UserService.fblogin;
+  // $scope.fblogin = UserService.fblogin;
 
   // logs a user into the system
   $scope.login = function() {
@@ -24,11 +25,10 @@ take12App.controller('LoginController', ['$scope', '$http', '$location', 'UserSe
           console.log('success: ', response.data);
           if(response.data.registries.length != 0) {
             // Existing user: Presents registry dashboard
-            $location.path('/main');
+            UtilitiesService.redirect('/main');
           } else {
             // New user: Presents registration views
-            // $location.path('/registration',response.data);
-            $location.path('/registration');
+            UtilitiesService.redirect('/registration');
           }
         } else {
           console.log('failure: ', response);
@@ -37,5 +37,44 @@ take12App.controller('LoginController', ['$scope', '$http', '$location', 'UserSe
       });
     }
   };
+
+  // logs a facebook user into the system
+  $scope.fblogin = function() {
+    console.log('LOGIN CONTROLLER fblogin');
+    FB.login(function(response) {
+      if (response.authResponse) {
+        console.log('LC: Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+          console.log(response);
+          console.log('US: Good to see you, ' + response.name + '.');
+          var token = FB.getAuthResponse().accessToken;
+
+          // $http.post('fblogin/auth/facebook/token?access_token=' + token, sendData).then(handleSuccess, handleFailure);
+          $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
+
+          function handleSuccess(response) {
+            console.log('LC CONTROLLER: created or found FB user', response.data);
+            if(response.data.email) {
+              UserService.userObject.email = response.data.email;
+              UserService.userObject.registries = response.data.registries;
+              if(response.data.registries.length != 0) {
+                // Existing user: Presents registry dashboard
+                UtilitiesService.redirect('/main');
+              } else {
+                // New user: Presents registration views
+                UtilitiesService.redirect('/registration');
+              }
+            }
+          };
+          function handleFailure(response) {
+            console.log('facebook logged Failure Logging In', response);
+          };
+        });
+      } else {
+        console.log('User cancelled login or did not fully authorize.');
+      }
+    });
+  };
+
 
 }]);
