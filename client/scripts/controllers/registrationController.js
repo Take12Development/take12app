@@ -100,11 +100,10 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   $scope.fbSignUp = function() {
     FB.login(function(response) {
     if (response.authResponse) {
-      console.log('Welcome!  Fetching your information.... ');
+      console.log('REGISTRATION CONTROLLER: Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
-          console.log('Good to see you, ' + response.name + '.');
+          console.log('RC: Good to see you, ' + response.name + '.');
           var token = FB.getAuthResponse().accessToken;
-          // $cookies.put('accesstoken', access_token);
 
           if(response.name) {
               var fullName = response.name;
@@ -125,80 +124,32 @@ take12App.controller('RegistrationController', ['$scope', '$http',
           sendData.facebookid = response.id;
           sendData.firstName = lowerFirst;
           sendData.lastName = lowerLast;
-          sendData.email = response.id;
+          sendData.email = response.email;
 
-          console.log(sendData);
+          console.log('RC: sendData',sendData);
 
           $http.post('fblogin/auth/facebook/token?access_token=' + token, sendData).then(handleSuccess, handleFailure);
-          // , sendData
 
           function handleSuccess(response) {
-              console.log('created or found fb user', response.data);
-          //     $cookies.put('auth', response);
-          //     var fbUserAuthResponse = response.data;
-          //     $cookies.put('dbacct', response.data['_id']);
-          //     // console.log('fb', response.data['_id']);
-          //     // console.log('fbUserAuthResponse.newaccount', fbUserAuthResponse.newAccount);
-          //
-          //     if(fbUserAuthResponse.newAccount === false) {
-          //       facebookData.registryData.push(response.data);
-          //
-          //       // console.log('Not a new user,Redirecting to dashboard');
-          //       RouteService.registryHomeRoute();
-          //     } else {
-          //
-          //       facebookData.registryData.push(response.data);
-          //       RouteService.fbregistryRoute();
-          //     }
-          //
-          }
+            console.log('REGISTRATION CONTROLLER: created or found FB user', response.data);
+            if(response.data.registries.length != 0) {
+              // Existing user: Presents registry dashboard
+              UtilitiesService.redirect('/main');
+              console.log('MAIN');
+            } else {
+              // New user: Presents registration views
+              UtilitiesService.redirect('/registration');
+              console.log('REGISTRATION');
+            }
+          };
           function handleFailure(response) {
-              console.log('facebook logged Failure Logging In', response);
-          //     // alert('We couldn\'t authenticate with Facebook, please try again.');
-          //     if(sweetAlert) {
-          //     swal({
-          //       html: '<h1 class="sweetAlertTextMagenta">We couldn\'t authenticate with Facebook, please try again.</h1>',
-          //       type: 'error',
-          //       showConfirmButton: false,
-          //       timer: 1500
-          //     }).then(
-          //       function () {},
-          //       // handling the promise rejection
-          //       function (dismiss) {
-          //         RouteService.signinRoute();
-          //         signout();
-          //       }
-          //     )
-          //   } else {
-          //     alert('We couldn\'t authenticate with Facebook, please try again.');
-          //     $location.path('/');
-          //   }
-          }
-
-     });
+            console.log('facebook logged Failure Logging In', response);
+          };
+      });
     } else {
       console.log('User cancelled login or did not fully authorize.');
     }
     });
-
-    // if($scope.newUser.email === '' || $scope.newUser.password === '' || $scope.newUser.confirmPassword === '') {
-    //   $scope.message = "Please enter all the required information";
-    // } else {
-    //     if (comparePasswords()) {
-    //       console.log('sending to server...', $scope.newUser);
-    //       $http.post('/register', $scope.newUser).then(function(response) {
-    //         console.log('success');
-    //         UtilitiesService.showAlert('Your account has been created, please login to create your registry');
-    //         UtilitiesService.redirect('/login');
-    //       },
-    //       function(response) {
-    //         console.log('error');
-    //         $scope.message = "Please try again."
-    //       });
-    //   } else {
-    //     $scope.message = "Password doesn't match password confirmation.";
-    //   }
-    // }
   };
 
 
