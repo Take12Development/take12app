@@ -63,11 +63,11 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
 
   // Slider
   $scope.slider = {
-    minValue: 15,
+    minValue: 20,
     options: {
       floor: 0,
-      ceil: 500,
-      step: 15,
+      ceil: 2000,
+      step: 20,
       showTicks: false,
       hidePointerLabels: true,
     }
