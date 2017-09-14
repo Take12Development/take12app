@@ -41,18 +41,15 @@
         </div>
         <!-- SLIDER -->
         <div class="registrySliderSection" layout="column">
-          <div class="registrySliderMoment" ng-switch="slider.minValue">
-            <span class="registrySliderMoment" ng-switch-when="20">Diaper Time</span>
-            <span class="registrySliderMoment" ng-switch-when="40">Tummy Time</span>
-            <span class="registrySliderMoment" ng-switch-when="60">Nap with Mom</span>
-            <span class="registrySliderMoment" ng-switch-when="80">Baby’s first Giggle</span>
-            <span class="registrySliderMoment" ng-switch-when="100">Read with Mom</span>
-            <span class="registrySliderMoment" ng-switch-when="120">Parent Date Night</span>
-            <span class="registrySliderMoment" ng-switch-when="180">Visit with Grandma!</span>
-            <span class="registrySliderMoment" ng-switch-when="300">Full Night Sleep!</span>
-            <span class="registrySliderMoment" ng-switch-when="500">NICU Visit</span>
-            <span class="registrySliderMoment" ng-switch-default>&nbsp</span>
-          </div>
+          <span class="registrySliderMoment" ng-if="slider.minValue <= 20">Diaper Time</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 20 && slider.minValue <= 40">Tummy Time</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 40 && slider.minValue <= 60">Nap with Mom</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 60 && slider.minValue <= 80">Baby’s first Giggle</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 80 && slider.minValue <= 100">Read with Mom</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 100 && slider.minValue <= 120">Parent Date Night</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 120 && slider.minValue <= 180">Visit with Grandma!</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 180 && slider.minValue <= 300">Full Night Sleep!</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 300 && slider.minValue <= 500">NICU Visit</span>
           <div>
             <rzslider class="custom-slider"
             rz-slider-model="slider.minValue"
