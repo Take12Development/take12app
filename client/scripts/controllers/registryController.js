@@ -7,6 +7,10 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
   console.log('params is:', $routeParams.registryUrl);
 
   $scope.validRegistry = true;
+  // Chart values
+  var numWeeksProvided = 0;
+  var numWeeksGifted = 0;
+  var numWeeksNeeded = 12 - numWeeksProvided - numWeeksGifted;
 
   // Calls Factory function that gets registry information from the database
   RegistryDataService.getRegistry($routeParams.registryUrl).then(function(data){
@@ -21,28 +25,26 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
       $scope.numberOfComments = $scope.currentRegistry.comments.length;
       console.log('$scope.currentRegistry',$scope.currentRegistry);
 
-      var numWeeksProvided = 4 * (100/12);
-      var numWeeksNeeded = (12 - 4) * (100/12);
-
+      calculateChartValues();
 
       // PIE Chart
       var ctx = "myChart";
       var myStaticChart = new Chart(ctx, {
           type: 'pie',
           data: {
-                  labels: ["Weeks Needed", "Weeks Provided"],
+                  labels: ["Weeks Needed", "Weeks Provided", "Weeks Gifted"],
                   datasets: [{
                     backgroundColor: [
                         "#dedede",
-                        "#6acbc4"
-                        // "#f7aca0"
+                        "#6acbc4",
+                        "#f7aca0"
                     ],
                     hoverBackgroundColor: [
                         "#dedede",
-                        "#6acbc4"
-                        // "#f7aca0"
+                        "#6acbc4",
+                        "#f7aca0"
                     ],
-                    data: [numWeeksNeeded, numWeeksProvided]
+                    data: [numWeeksNeeded, numWeeksProvided, numWeeksGifted]
                   }]
               },
             options: {
@@ -76,5 +78,27 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
       hidePointerLabels: true,
     }
   };
+
+  // calculate values for pie chart based on user entries
+  function calculateChartValues() {
+
+    // get number of weeks provided by employer
+    // if ($scope.currentRegistry.paidWeeks) {
+    //   numWeeksProvided = $scope.currentRegistry.paidWeeks;
+    // }
+    numWeeksProvided = 6;
+    
+    // calculate amount to cover One week of maternity leave:
+    var oneWeekAmount = $scope.currentRegistry.goalAmount /
+                        (12 - numWeeksProvided);
+    // calculate number of weeks gifted based on amount being gifted
+    if ($scope.currentRegistry.currentAmount != 0) {
+      numWeeksGifted = oneWeekAmount / $scope.currentRegistry.currentAmount;
+    } else {
+      numWeeksGifted = 0;
+    }
+    // calculate number of weeks needed:
+    numWeeksNeeded = 12 - numWeeksProvided - numWeeksGifted;
+  }
 
 }]);
