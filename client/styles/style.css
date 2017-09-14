@@ -324,8 +324,8 @@ div[contenteditable="true"] {
 }
 
 #primaryImage {
-  width: 100%;
-  height: auto;
+  width: auto;
+  max-height: 350px;
 }
 
 .registryStorySection {
@@ -334,6 +334,8 @@ div[contenteditable="true"] {
   background-color: #136a80;
   color: white;
   padding: 25px;
+  max-height: 200px;
+  overflow: scroll;
 }
 
 .registryCommentCount {

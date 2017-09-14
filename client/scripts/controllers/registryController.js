@@ -21,24 +21,28 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
       $scope.numberOfComments = $scope.currentRegistry.comments.length;
       console.log('$scope.currentRegistry',$scope.currentRegistry);
 
+      var numWeeksProvided = 4 * (100/12);
+      var numWeeksNeeded = (12 - 4) * (100/12);
+
+
       // PIE Chart
       var ctx = "myChart";
       var myStaticChart = new Chart(ctx, {
           type: 'pie',
           data: {
-                  labels: ["Days Left", "Days Provided", "Days Gifted"],
+                  labels: ["Weeks Needed", "Weeks Provided"],
                   datasets: [{
                     backgroundColor: [
                         "#dedede",
-                        "#6acbc4",
-                        "#f7aca0"
+                        "#6acbc4"
+                        // "#f7aca0"
                     ],
                     hoverBackgroundColor: [
                         "#dedede",
-                        "#6acbc4",
-                        "#f7aca0"
+                        "#6acbc4"
+                        // "#f7aca0"
                     ],
-                    data: [20, 50, 30]
+                    data: [numWeeksNeeded, numWeeksProvided]
                   }]
               },
             options: {
