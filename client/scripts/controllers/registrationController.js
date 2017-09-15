@@ -30,7 +30,8 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     organizerEmail: '',
     city: '',
     state: '',
-    paidDays: 0
+    paidDays: 0,
+    goalAmtEntryOpt: 1
   }
 
   // list of states for state selection

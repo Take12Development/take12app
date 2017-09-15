@@ -76,6 +76,12 @@ md-menu-content {
 
 }
 
+.goalAmountBlock {
+  background-color: rgba(0,0,0,.02);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
 .loginContainer, .createRegistryContainer {
   padding-left: 30px;
   padding-right: 30px;
