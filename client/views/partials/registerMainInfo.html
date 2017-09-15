@@ -42,7 +42,7 @@
               <div>
                 <label ng-if="self==false">What is your loved one's first name?</label>
                 <label ng-if="self==true">What's your first name?</label>
-                <input type="text" ng-model="registry.firstName" required/>
+                <input type="text" ng-model="registry.firstName" aria-label="First name" required/>
                 <div ng-messages="mainInfoView.registry.firstName.$error">
                   <div ng-message="required">An first name is required!</div>
                 </div>
@@ -55,7 +55,7 @@
               <div>
                 <label ng-if="self==false">What is your loved one's last name?</label>
                 <label ng-if="self==true">What's your last name?</label>
-                <input type="text" ng-model="registry.lastName" required/>
+                <input type="text" ng-model="registry.lastName" aria-label="First name" required/>
                 <div ng-messages="mainInfoView.registry.lastName.$error">
                   <div ng-message="required">An last name is required!</div>
                 </div>
