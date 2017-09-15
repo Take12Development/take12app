@@ -140,21 +140,24 @@
           </md-input-container>
         </div>
 
-
+        <br><br>
         <!-- CITY AND STATE -->
         <div layout="row">
-          <div flex="45" layout-align="end end">
+          <div flex="45">
+            <!-- <span ng-if="self==true">City:  </span> -->
             <md-input-container layout="column">
-              <label for="city">City:</label>
-              <input type="text" ng-model="registry.city"/>
+              <div>
+                <label for="city">City:</label>
+                <input type="text" ng-model="registry.city"/>
+              </div>
             </md-input-container>
           </div>
           <div flex="10"></div>
-          <div flex="45" layout-align="end end">
+          <div flex="45">
+            <!-- <span ng-if="self==true">State:</span> -->
             <md-input-container class="md-block" flex-gt-sm>
-              <br>
               <label>State:</label>
-              <md-select ng-model="registry.state">
+              <md-select ng-model="registry.state" >
                 <md-option ng-repeat="state in states" value="{{state.abbrev}}">
                   {{state.abbrev}}
                 </md-option>
