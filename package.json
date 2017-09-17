@@ -11,6 +11,7 @@
   "author": "Betsy Rowley and Claudia Calderas",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^6.1.3",
     "angular": "^1.6.4",
     "angular-animate": "^1.6.4",
     "angular-aria": "^1.6.4",
