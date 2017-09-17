@@ -32,7 +32,8 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
       var myStaticChart = new Chart(ctx, {
           type: 'pie',
           data: {
-                  labels: ["Weeks Needed", "Weeks Provided", "Weeks Gifted"],
+                  labels: ["Maternity Leave Needed", "Maternity Leave Provided",
+                          "Maternity Leave Gifted"],
                   datasets: [{
                     backgroundColor: [
                         "#dedede",
@@ -83,11 +84,10 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
   function calculateChartValues() {
 
     // get number of weeks provided by employer
-    // if ($scope.currentRegistry.paidWeeks) {
-    //   numWeeksProvided = $scope.currentRegistry.paidWeeks;
-    // }
-    numWeeksProvided = 6;
-    
+    if ($scope.currentRegistry.paidWeeks) {
+      numWeeksProvided = $scope.currentRegistry.paidWeeks;
+    }
+
     // calculate amount to cover One week of maternity leave:
     var oneWeekAmount = $scope.currentRegistry.goalAmount /
                         (12 - numWeeksProvided);
