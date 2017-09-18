@@ -1,8 +1,8 @@
 take12App.controller('RegistrationController', ['$scope', '$http',
                       '$window', '$timeout', 'Upload', 'UserService',
-                      'UtilitiesService', 'RegistryDataService',
+                      'UtilitiesService', 'RegistryDataService', 'MailService',
                     function($scope, $http, $window, $timeout, Upload,
-                    UserService, UtilitiesService, RegistryDataService) {
+                    UserService, UtilitiesService, RegistryDataService, MailService) {
 
   // variable used to display labels for self or loved one's registry
   $scope.self = true;
@@ -178,6 +178,8 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     }
     console.log('SENDING TO postRegistry', $scope.registry);
     RegistryDataService.postRegistry($scope.registry).then(function() {
+      // send confirmation email
+      MailService.sendMail();
       // go to registry dashboard
       UtilitiesService.redirect('/dashboard');
     }).catch(function(response){
