@@ -12,6 +12,8 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
   var numWeeksGifted = 0;
   var numWeeksNeeded = 12 - numWeeksProvided - numWeeksGifted;
   var chartTooltipData = [];
+  $scope.oneDayAmount = 0;
+  $scope.oneWeekAmount = 0;
 
   // Calls Factory function that gets registry information from the database
   RegistryDataService.getRegistry($routeParams.registryUrl).then(function(data){
@@ -129,6 +131,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
 
         }); // End of Pie Chart
 
+
     } else {
       $scope.validRegistry = false;
     }
@@ -144,11 +147,11 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     options: {
       floor: 0,
       ceil: 2000,
-      step: 20,
+      // ticksArray: [{value:13, legend:"1d"}, {value:67 ,legend:"1w"}],
       showTicks: false,
       hidePointerLabels: true,
     }
-  };
+  }; // End of Slider
 
   // calculate values for pie chart based on user entries
   function calculateChartValues() {
@@ -167,12 +170,12 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     }
 
     // calculate amount to cover one week of maternity leave:
-    var oneWeekAmount = $scope.currentRegistry.goalAmount /
-                        (12 - numWeeksProvided);
-    console.log('oneWeekAmount', oneWeekAmount);
+    $scope.oneWeekAmount = Math.round($scope.currentRegistry.goalAmount /
+                        (12 - numWeeksProvided));
+    console.log('oneWeekAmount', $scope.oneWeekAmount);
     // calculate number of weeks gifted based on amount being gifted
     if ($scope.currentRegistry.currentAmount != 0) {
-      numWeeksGifted = oneWeekAmount / $scope.currentRegistry.currentAmount;
+      numWeeksGifted = $scope.oneWeekAmount / $scope.currentRegistry.currentAmount;
     } else {
       numWeeksGifted = 0;
     }
@@ -181,7 +184,8 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     numWeeksNeeded = 12 - numWeeksProvided - numWeeksGifted;
 
     // calculate day marker:
-    var oneDayAmount = oneWeekAmount / 5;
+    $scope.oneDayAmount = Math.round($scope.oneWeekAmount / 5);
+    console.log('oneDayAmount',$scope.oneDayAmount);
 
     // build array of data to display in chart tooltips
     var amount = 0;
@@ -191,7 +195,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     tooltipText = 'Amount needed: $' + amount.toString();
     chartTooltipData.push(tooltipText);
     // get amount provided:
-    amount = Math.round(oneWeekAmount * numWeeksProvided);
+    amount = Math.round($scope.oneWeekAmount * numWeeksProvided);
     tooltipText = 'Amount provided: $' + amount.toString();
     chartTooltipData.push(tooltipText);
     // get amount gifted:
