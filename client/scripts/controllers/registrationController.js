@@ -172,7 +172,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   // Calls factory function that saves registry to the Database
   $scope.saveAndComplete = function() {
     // calculate goalAmount for users who selected option 1 in goalAmount entry
-    if($scope.registry.goalAmtEntryOpt == 1) {
+    if($scope.registry.goalAmtEntryOpt == '1') {
       calculateGoalAmt();
     }
 
