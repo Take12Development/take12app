@@ -1,8 +1,9 @@
 take12App.controller('RegistrationController', ['$scope', '$http',
                       '$window', '$timeout', 'Upload', 'UserService',
-                      'UtilitiesService', 'RegistryDataService', 'MailService',
+                      'UtilitiesService', 'RegistryDataService', 'MailService', 'StripeService',
                     function($scope, $http, $window, $timeout, Upload,
-                    UserService, UtilitiesService, RegistryDataService, MailService) {
+                    UserService, UtilitiesService, RegistryDataService, MailService,
+                    StripeService) {
 
   // variable used to display labels for self or loved one's registry
   $scope.self = true;
@@ -218,5 +219,14 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     // Calculate goal amount
     $scope.registry.goalAmount = Math.round(twelveWeekIncome - shortTermDisPay);
   }
+
+  //initiates new deferred stripe account
+ $scope.initiateStripe = function() {
+   console.log('Connect to Stripe has been clicked. Registry: ', $scope.registry);
+   StripeService.createAccount($scope.registry);
+   //go to registry dashboard
+   UtilitiesService.redirect('/dashboard');
+ };
+
 
 }]);
