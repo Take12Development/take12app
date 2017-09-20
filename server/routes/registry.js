@@ -136,7 +136,12 @@ router.post('/add', function(req,res) {
           {$push: {registries: createdRegistryURL}},
           {safe: true},
           function(err, model) {
-              console.log(err);
+            if (err) {
+              console.log('Error updating user Information with registries data',err);
+            }
+            else {
+              console.log('User account updated successfully', model);
+            }
           }
       );
       // saves registryURL for organizer user

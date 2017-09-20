@@ -22,7 +22,6 @@ if(process.env.STRIPE_SECRET != undefined) {
 router.post('/newaccount', function(req, res) {
   console.log('req.body', req.body);
   var email = req.body.email;
-  // var id = req.body.id;
 
   if(req.body.email !== undefined) {
     stripe.accounts.create({
@@ -35,8 +34,23 @@ router.post('/newaccount', function(req, res) {
         console.log('error connecting to Stripe', err);
         res.send('error connecting to Stripe');
       } else {
-        console.log('Stripe account created: ' + account);
-        res.send(account);
+        console.log('Stripe account created: ', JSON.stringify(account));
+        // Updates user's information with Stripe account
+        Users.findOneAndUpdate(
+          {email: email},
+          {$set: {stripe_user_id: account.id, stripe_keys: account.keys}},
+          {safe: true},
+          function(err, model) {
+            if (err) {
+              console.log('Error updating user Information with Stripe data',err);
+              res.send('Error updating user Information with Stripe data');
+            }
+            else {
+              console.log('User account updated successfully with Stripe information', model);
+              res.send('User account updated successfully with Stripe information');
+            }
+          }
+        );
       }
     });
   } else {
