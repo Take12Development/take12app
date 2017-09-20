@@ -1,14 +1,14 @@
 <!-- REGISTRY VIEW -->
 <div class="contentBlock" layout="row">
-  <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
+  <div layout="column" flex-gt-md="15" flex-xs="15" flex-sm="15" flex-md="15"></div>
   <div ng-if="validRegistry==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
     <h1>Registry Not Found!</h1>
   </div>
-  <div ng-if="validRegistry==true" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+  <div ng-if="validRegistry==true" layout="column" flex-gt-md="70" flex-xs="70" flex-sm="70" flex-md="70">
     <div class="registryContainer" layout="row">
-      <div layout="column" flex-gt-md="60">
+      <div layout="column" flex-gt-md="50">
         <!-- IMAGE -->
-        <div>
+        <div layout="row" layout-align="center center">
           <img id="primaryImage" ng-src="{{currentRegistry.imageURL}}">
         </div>
         <!-- STORY -->
@@ -31,28 +31,30 @@
         </div>
       </div>
       <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
-      <div layout="column" flex-gt-md="30" flex-xs="30" flex-sm="30" flex-md="30">
+      <div layout="column" flex-gt-md="40" flex-xs="30" flex-sm="30" flex-md="30">
         <div>
           <h2>Let's Make Sure {{currentRegistry.firstName}} Has Time at Home!</h1>
         </div>
         <!-- CHART -->
-        <div class="registryChartSection">
-          <canvas id="myChart" height="100%" width="100%" border="1px"></canvas>
+        <div class="registryChartSection" layout="row">
+          <div id="canvas-holder" style="width: 300px;">
+            <canvas id="myChart" width="300" height="300"></canvas>
+            <div id="chartjs-tooltip" style="font-family: 'Lato', sans-serif">
+          		<table></table>
+          	</div>
+          </div>
         </div>
         <!-- SLIDER -->
         <div class="registrySliderSection" layout="column">
-          <div class="registrySliderMoment" ng-switch="slider.minValue">
-            <span class="registrySliderMoment" ng-switch-when="15">Diaper Time</span>
-            <span class="registrySliderMoment" ng-switch-when="30">Tummy Time</span>
-            <span class="registrySliderMoment" ng-switch-when="45">Nap with Mom</span>
-            <span class="registrySliderMoment" ng-switch-when="60">Baby’s first Giggle</span>
-            <span class="registrySliderMoment" ng-switch-when="75">Read with Mom</span>
-            <span class="registrySliderMoment" ng-switch-when="90">Parent Date Night</span>
-            <span class="registrySliderMoment" ng-switch-when="180">Visit with Grandma!</span>
-            <span class="registrySliderMoment" ng-switch-when="300">Full Night Sleep!</span>
-            <span class="registrySliderMoment" ng-switch-when="495">NICU Visit</span>
-            <span class="registrySliderMoment" ng-switch-default>&nbsp</span>
-          </div>
+          <span class="registrySliderMoment" ng-if="slider.minValue <= 20">Diaper Time</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 20 && slider.minValue <= 40">Tummy Time</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 40 && slider.minValue <= 60">Nap with Mom</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 60 && slider.minValue <= 80">Baby’s first Giggle</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 80 && slider.minValue <= 100">Read with Mom</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 100 && slider.minValue <= 120">Parent Date Night</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 120 && slider.minValue <= 180">Visit with Grandma!</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 180 && slider.minValue <= 300">Full Night Sleep!</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 300 && slider.minValue <= 500">NICU Visit</span>
           <div>
             <rzslider class="custom-slider"
             rz-slider-model="slider.minValue"
@@ -68,7 +70,7 @@
           </div>
         </div>
         <!-- SOCIAL MEDIA -->
-        <div class="regitrySocialMediaSection" layout="column">
+        <div ng-if="currentRegistry.privacy!='private'" class="regitrySocialMediaSection" layout="column">
           <div layout="row" layout-align="center center">
             <h2>Share!</h1>
           </div>
