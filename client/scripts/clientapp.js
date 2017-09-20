@@ -3,7 +3,7 @@ var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUploa
 
 // Angular Material Theme Configuration
 take12App.config(['$mdThemingProvider', function($mdThemingProvider) {
-   $mdThemingProvider.theme('altTheme').primaryPalette('grey').accentPalette('blue-grey');
+   $mdThemingProvider.theme('altTheme').primaryPalette('grey').accentPalette('grey');
 }]);
 
 // textAngular toolbar customization
