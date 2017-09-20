@@ -184,7 +184,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     console.log('SENDING TO postRegistry', $scope.registry);
     RegistryDataService.postRegistry($scope.registry).then(function() {
       // send confirmation email
-      MailService.sendMail();
+      // MailService.sendMail();
       // go to registry dashboard
       UtilitiesService.redirect('/dashboard');
     }).catch(function(response){
