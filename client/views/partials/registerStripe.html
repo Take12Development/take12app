@@ -1,0 +1,57 @@
+<!-- REGISTER NEW USER WHO VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="20" flex-xs="10" flex-sm="10" flex-md="20"></div>
+  <div class="createRegistryBlock" layout="column" flex-gt-md="60" flex-xs="80" flex-sm="80" flex-md="60">
+    <div class="textFormat">
+      <h1 class = "badScriptHeading">Welcome to Take12!</h1>
+      <p>Creating a registry is quick and easy.
+        We'll guide you through the 4 step creation process.</p>
+      <br><br>
+      <span><strong>What would you like to do?</strong></span>
+      <br><br>
+    </div>
+    <h3 ng-if="message != ''">{{message}}</h3>
+    <div class="createRegistryContainer" layout="column">
+      <md-button class="md-raised submitButton" type="submit" name="yourRegistry" aria-label="Create a registry for you" value="yourRegistry" ng-click="startRegistration('self')">Create a registry for you</md-button>
+      <br>
+      <md-button class="md-raised submitButton" type="submit" name="lovedOneRegistry" aria-label="Create a registry for a loved one" value="lovedOneRegistry" ng-click="startRegistration('lovedOne')">Create a registry for a loved one</md-button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Connect User to a Stripe Deferred Account (Standard) -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="20" flex-xs="10" flex-sm="10" flex-md="20"></div>
+  <div class="createRegistryBlock" layout="column" flex-gt-md="60" flex-xs="80" flex-sm="80" flex-md="60">
+    <div class="textFormat">
+      <h1 class = "badScriptHeading">Step 5 of 5</h1>
+      <br>
+      <h2>How to Receive Gifts</h2>
+      <br>
+      <span ng-if="self==true">Initiate a Stripe Account to receive your gifts.
+            By clicking the button below an email will be sent to you with further
+            instructions. Please look for this email and complete the account
+            creation process <b>ASAP</b>. You cannot receive your gifts until
+            this has been completed.</span>
+      <span ng-if="self==false">Initiate her Stripe Account so she can receive her
+            gifts. By clicking the button below an email will be sent to your loved
+            one with further instructions. Please let your loved one know that
+            she should look for this email and complete the account creation process
+            <b>ASAP</b>. You cannot receive your gifts until this has been
+            completed.</span>
+      <br>
+      <span>Stripe is a secure third party vendor that handles all of the gift
+            transactions. Stripe collects payments from the <i>Gifters</i> and
+            securely transfers the money to the <i>Mother's</i> bank account.</span>
+      <br>
+    </div>
+    <h3 ng-if="message != ''">{{message}}</h3>
+    <div class="createRegistryContainer" layout="column">
+      <md-button aria-label ="Initiate Stripe" ng-click = "initiateStripe()">
+        <img src="views/assets/blue-on-light@2x.png" alt="Connect with Stripe">
+      </md-button>
+    </div>
+  </div>
+</div>
