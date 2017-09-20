@@ -17,7 +17,6 @@ var registry = require('./routes/registry');
 var fblogin = require('./routes/fblogin');
 var email = require('./routes/email');
 
-
 var mongoDB = require('./modules/db');
 
 // Body parser middleware
