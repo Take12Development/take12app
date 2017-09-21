@@ -42,9 +42,11 @@ router.post('/newaccount', function(req, res) {
       } else {
         console.log('Stripe account created: ', JSON.stringify(account));
         // Updates user's information with Stripe account
+        
         Users.findOneAndUpdate(
           {email: email},
-          {$set: {stripe_user_id: account.id, stripe_keys: account.keys}},
+          {$set: {stripe_user_id: account.id, stripe_keys: account.keys,
+                  stripeConnected: true, stripeAccountActivated: false}},
           {safe: true},
           function(err, model) {
             if (err) {
