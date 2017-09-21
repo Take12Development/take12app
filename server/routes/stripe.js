@@ -9,13 +9,15 @@ var fs = require('fs');
 
 // Require stripe
 if(process.env.STRIPE_SECRET != undefined) {
-  var stripe = require('stripe')(STRIPE_SECRET);
+  var stripe = require('stripe')(process.env.STRIPE_SECRET);
+  var CONNECTED_ACCOUNT_SECRET_KEY = process.env.STRIPE_SECRET;
 } else {
   var jsonPath = path.join(__dirname, '..', 'conf', 'settings.json');
   var rawdata = fs.readFileSync(jsonPath);
   var configValues = JSON.parse(rawdata);
 
   var stripe = require('stripe')(configValues.stripe.STRIPE_SECRET);
+  var CONNECTED_ACCOUNT_SECRET_KEY = configValues.stripe.STRIPE_SECRET;
 }
 
 //User initiates stripe account
@@ -27,8 +29,12 @@ router.post('/newaccount', function(req, res) {
     stripe.accounts.create({
       type: 'standard',
       country: 'US',
-      email: email
-    }, function(err, account) {
+      email: email,
+      business_url: 'https://www.mytake12.com',
+      business_name: 'Take12',
+      product_description: 'Time/MoneyGiftRegistry',
+      statement_descriptor: 'Take12 Registry'
+    },{ api_key: CONNECTED_ACCOUNT_SECRET_KEY }, function(err, account) {
       // asynchronously called
       if (err) {
         console.log('error connecting to Stripe', err);
@@ -59,6 +65,30 @@ router.post('/newaccount', function(req, res) {
   }
 
 });
+
+//Stripe Webhooks (account activated)
+router.post("/webhook/accountactivated", function(request, response) {
+  // Retrieve the request's body
+  var stripeData = request.body
+
+  if(stripeData) {
+    var userId = stripeData.data.object.id;
+    console.log('Webhook userId', userId);
+
+    Users.findOneAndUpdate({stripe_user_id: userId},
+      {$set: {stripeAccountActivated : true}}, {new: true}, function(err, updatedUser) {
+        if(err){
+          console.log(err);
+        } else {
+          console.log('user claimed their account', updatedUser);
+        }
+      });
+  }
+
+  response.sendStatus(200);
+});
+
+
 
 
 module.exports = router;
