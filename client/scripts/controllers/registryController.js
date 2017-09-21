@@ -204,4 +204,8 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     chartTooltipData.push(tooltipText);
   }
 
+  $scope.goToCheckout = function() {
+    UtilitiesService.redirect('/checkout');
+  }
+
 }]);

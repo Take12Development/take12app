@@ -12,7 +12,7 @@
         <md-input-container ng-if="requestEmail==true && self==true" layout="column">
           <div>
             <label for="email">What is your email?</label>
-            <input type="text" ng-model="registry.email" required/>
+            <input type="email" ng-model="registry.email" required/>
             <div ng-messages="mainInfoView.registry.email.$error">
               <div ng-message="required">An email address is required!</div>
             </div>
@@ -20,8 +20,8 @@
         </md-input-container>
         <md-input-container ng-if="requestEmail==true && self==false" layout="column">
           <div>
-            <label for="email">What is your email?:</label>
-            <input type="text" ng-model="registry.organizerEmail" required/>
+            <label for="organizerEmail">What is your email?:</label>
+            <input type="email" ng-model="registry.organizerEmail" required/>
             <div ng-messages="mainInfoView.registry.organizerEmail.$error">
               <div ng-message="required">An email address is required!</div>
             </div>
@@ -30,7 +30,7 @@
         <md-input-container ng-if="self==false" layout="column">
           <div>
             <label for="email">What is your loved one's email?</label>
-            <input type="text" ng-model="registry.email" required/>
+            <input type="email" ng-model="registry.email" required/>
             <div ng-messages="mainInfoView.registry.email.$error">
               <div ng-message="required">An email address is required!</div>
             </div>

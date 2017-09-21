@@ -29,7 +29,7 @@
         <md-input-container layout="column" class = "loginContent">
           <div>
             <label for="email">Email:</label>
-            <input type="text" ng-model="user.email" required/>
+            <input type="email" ng-model="user.email" required/>
             <div ng-messages="loginView.user.email.$error">
               <div ng-message="required">An email is required!</div>
             </div>
