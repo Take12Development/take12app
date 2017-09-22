@@ -41,6 +41,7 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "promise": "^8.0.1",
-    "textangular": "^1.5.16"
+    "textangular": "^1.5.16",
+    "wrenchmode-express": "0.0.3"
   }
 }
