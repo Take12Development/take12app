@@ -4,7 +4,8 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
   // Stores all registries in the DB
   var registriesObject = {
     allRegistries: [],
-    userRegistries: []
+    userRegistries: [],
+    currentViewedRegistry: {}
   };
 
   // Gets all registries in the database

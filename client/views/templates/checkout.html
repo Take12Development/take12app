@@ -1,0 +1,76 @@
+<!-- REGISTRY VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="20" flex-xs="20" flex-sm="20" flex-md="20"></div>
+  <div class="checkoutContainer" layout="column" flex-gt-md="60" flex-xs="60" flex-sm="60" flex-md="60">
+    <div class="checkoutHeader" layout="row" layout-align="center center">
+      <h1>Registry Checkout</h1>
+    </div>
+
+    <!-- STRIPE ELEMENTS -->
+    <form action="/stripe/charge" method="post" id="payment-form">
+
+      <!-- TOTAL GIFT -->
+      <span>Total Gift:</span>
+      <md-input-container layout="column">
+        <div>
+          <label for="amount">$ </label>
+          <input type="number" name="amount" ng-model="gift" min="20" required/>
+        </div>
+      </md-input-container>
+
+      <!-- EMAIL -->
+      <span>Email Address For Receipt:</span>
+      <md-input-container layout="column">
+        <div>
+          <input type="email" name="emailForReceipt" aria-label="Email for receipt" required/>
+        </div>
+      </md-input-container>
+
+      <!-- MESSAGE -->
+      <span>Leave a message. This will be posted publicly in registry (Optional). If no message is left, you will not appear publicly on registry.</span>
+      <md-input-container layout="column">
+        <textarea id="registry-comment" class="purchaseComment" ng-model="checkoutObject.message" spellcheck="true" name="registryComment" rows="2" maxlength="140" placeholder="Max 140 Characters"></textarea>
+      </md-input-container>
+
+      <!-- NAME -->
+      <span>Name you would like displayed with your message. If there is no message, no name will appear on registry. (Default is the name on your credit card).</span>
+      <md-input-container layout="column">
+        <input id="commentName" name="gifterName" type="text" autocomplete="off" placeholder="example: Grandma">
+      </md-input-container>
+      <br>
+
+      <!-- CODE PROVIDED BY STRIPE: -->
+      <div class="form-row">
+
+        <!-- CARDHOLDER NAME -->
+        <div layout="column">
+          <label for="name" class="control-label">Card Holder Name: </label>
+          <md-input-container>
+            <input name="cardholderName" class="field" placeholder="first & last" required/>
+          </md-input-container>
+        </div>
+
+        <label for="card-element">
+          Credit or debit card:
+        </label>
+        <br><br>
+        <div id="card-element">
+          <!-- a Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display form errors -->
+        <div id="card-errors" role="alert"></div>
+      </div>
+      <br>
+
+      <div layout="row" layout-align="center center">
+        <button class="submitPaymentButton">Submit Payment</button>
+      </div>
+      <!-- END OF CODE PROVIDED BY STRIPE: -->
+    </form>
+
+    <div layout="row" flex="100" layout-align="center start">
+      <img src="views/assets/powered_by_stripe.png" alt="powered by stripe">
+    </div>
+  </div>
+</div>

@@ -1,3 +1,12 @@
+/* COLORS:
+ Teal             #136a80
+ Turquoise        #6acbc4
+ Pink
+ Very light gray  rgba(0,0,0,.02)
+ Brown            #554846
+ Violet           #8f6a89
+*/
+
 body {
   font-family: 'Lato', sans-serif;
   font-size: 14px;
@@ -568,4 +577,60 @@ div[contenteditable="true"] {
   width: 10px;
   height: 10px;
   margin-right: 10px;
+}
+
+.checkoutHeader {
+  background-color: rgba(0,0,0,.02);
+  padding: 25px;
+  margin-bottom: 25px
+}
+
+.checkoutContainer h1 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  color: #136a80;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.submitPaymentButton {
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 5px;
+    height: 40px;
+    width: 300px;
+    margin: 15px auto;
+    color: white !important;
+    justify-content:center;
+    align-items:center;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+    background-color: #6acbc4;
+  }
+
+.submitPaymentButton:hover {
+    background-color: #136a80;
+}
+
+.StripeElement {
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
 }

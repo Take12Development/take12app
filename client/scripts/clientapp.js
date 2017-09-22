@@ -96,6 +96,21 @@ take12App.config(['$routeProvider', '$locationProvider',
       templateUrl: '/views/templates/registry.html',
       controller: 'RegistryController',
     })
+    // checkout
+    .when('/checkout', {
+      templateUrl: '/views/templates/checkout.html',
+      controller: 'CheckoutController',
+    })
+    // Thank you page
+    .when('/thankyou', {
+      templateUrl: '/views/templates/thankYou.html',
+      controller: 'ThankYouController'
+    })
+    // Transaction Error View
+    .when('/transactionError/:errorMessage', {
+      templateUrl: '/views/templates/transactionError.html',
+      controller: 'TransactionErrorController',
+    })
     // Find registry
     .when('/findRegistry', {
       templateUrl: '/views/templates/findRegistry.html',

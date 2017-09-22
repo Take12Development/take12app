@@ -7,6 +7,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
   console.log('params is:', $routeParams.registryUrl);
 
   $scope.validRegistry = true;
+  RegistryDataService.registriesObject.currentViewedRegistry = {};
   // Chart values
   var numWeeksProvided = 0;
   var numWeeksGifted = 0;
@@ -203,5 +204,17 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     tooltipText = 'Amount gifted: $' + amount.toString();
     chartTooltipData.push(tooltipText);
   }
+
+  $scope.goToCheckout = function() {
+
+    // add gift information to $scope.currentRegistry
+    $scope.currentRegistry.gift = $scope.slider.minValue;
+    // save information of current viewed registry in Factory
+    RegistryDataService.registriesObject.currentViewedRegistry = $scope.currentRegistry;
+    console.log('CURRENT VIEWED REGISTRY: ', RegistryDataService.registriesObject.currentViewedRegistry);
+    UtilitiesService.redirect('/checkout');
+  }
+
+
 
 }]);
