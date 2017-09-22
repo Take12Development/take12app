@@ -120,14 +120,13 @@ module.exports = function(grunt){
       files: [
         'client/**/*.*'
       ],
-      tasks: ['uglify','copy']
+      tasks: ['uglify', 'copy']
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  // grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['uglify','copy', 'watch']);
+  grunt.registerTask('default', ['uglify', 'copy', 'watch']);
 };

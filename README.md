@@ -1,7 +1,6 @@
 # Take12App
 ## v2.0
 
-
 ## Technologies
 - MongoDB
 - Express
