@@ -1,12 +1,11 @@
-take12App.controller('TransactionErrorController', ['$scope', '$http', '$routeParams',
-                      '$timeout', 'Upload', 'UserService',
-                      'UtilitiesService', 'RegistryDataService',
-                    function($scope, $http, $routeParams, $timeout, Upload,
-                    UserService, UtilitiesService, RegistryDataService) {
+take12App.controller('TransactionErrorController', ['$scope', '$routeParams', 'UtilitiesService',
+                    function($scope, $routeParams, UtilitiesService) {
 
-console.log('params is:', $routeParams.errorMessage);
+  // uses goHome function from UtilitiesService
+  $scope.goHome = UtilitiesService.goHome;
 
-$scope.errorMessage = $routeParams.errorMessage;
+  console.log('params is:', $routeParams.errorMessage);
+  $scope.errorMessage = $routeParams.errorMessage;
 
 
 }]);

@@ -14,10 +14,7 @@
       <md-input-container layout="column">
         <div>
           <label for="amount">$ </label>
-          <input type="number" name="amount" min="20" required/>
-          <!-- <div ng-messages="checkoutObject.gift.$error">
-            <div ng-message="required">An amount is required!</div>
-          </div> -->
+          <input type="number" name="amount" ng-model="gift" min="20" required/>
         </div>
       </md-input-container>
 
@@ -26,9 +23,6 @@
       <md-input-container layout="column">
         <div>
           <input type="email" name="emailForReceipt" aria-label="Email for receipt" required/>
-          <!-- <div ng-messages="checkoutObject.email.$error">
-            <div ng-message="required">An email address is required!</div>
-          </div> -->
         </div>
       </md-input-container>
 
@@ -53,7 +47,6 @@
           <label for="name" class="control-label">Card Holder Name: </label>
           <md-input-container>
             <input name="cardholderName" class="field" placeholder="first & last" required/>
-            <!-- <input id="name" type="text" class="field" name="cardholder-name" autocomplete="off" placeholder="first & last" data-stripe="name" required> -->
           </md-input-container>
         </div>
 
@@ -79,10 +72,5 @@
     <div layout="row" flex="100" layout-align="center start">
       <img src="views/assets/powered_by_stripe.png" alt="powered by stripe">
     </div>
-
   </div>
-
-
-
-
 </div>

@@ -28,6 +28,12 @@ take12App.factory('UtilitiesService', ['$mdDialog', '$location',
     $location.url(page);
   }
 
+  // redirects to homepage
+  function goHome() {
+    var home = location.host;
+    $location.url(home);
+  };
+
   // Function that checks if an object is empty
   function isObjectEmpty(obj) {
       for(var prop in obj) {
@@ -40,6 +46,7 @@ take12App.factory('UtilitiesService', ['$mdDialog', '$location',
 return {
     showAlert: showAlert,
     redirect : redirect,
+    goHome : goHome,
     titleCase : titleCase,
     states: states,
     isObjectEmpty : isObjectEmpty

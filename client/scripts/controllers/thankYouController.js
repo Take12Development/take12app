@@ -1,10 +1,7 @@
-take12App.controller('ThankYouController', ['$scope', '$http',
-                      '$timeout', 'Upload', 'UserService',
-                      'UtilitiesService', 'RegistryDataService',
-                    function($scope, $http, $timeout, Upload,
-                    UserService, UtilitiesService, RegistryDataService) {
+take12App.controller('ThankYouController', ['$scope', 'UtilitiesService',
+                    function($scope, UtilitiesService) {
 
-
-
+  // uses goHome function from UtilitiesService
+  $scope.goHome = UtilitiesService.goHome;
 
 }]);
