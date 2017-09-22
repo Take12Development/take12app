@@ -28,11 +28,21 @@ take12App.factory('UtilitiesService', ['$mdDialog', '$location',
     $location.url(page);
   }
 
+  // Function that checks if an object is empty
+  function isObjectEmpty(obj) {
+      for(var prop in obj) {
+          if(obj.hasOwnProperty(prop))
+              return false;
+      }
+      return true;
+  }
+
 return {
     showAlert: showAlert,
     redirect : redirect,
     titleCase : titleCase,
-    states: states
+    states: states,
+    isObjectEmpty : isObjectEmpty
 };
 
 }]);

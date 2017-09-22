@@ -5,101 +5,84 @@
     <div class="checkoutHeader" layout="row" layout-align="center center">
       <h1>Registry Checkout</h1>
     </div>
-    <form name="checkoutForm" ng-submit="">
+
+    <!-- STRIPE ELEMENTS -->
+    <form action="/stripe/charge" method="post" id="payment-form">
 
       <!-- TOTAL GIFT -->
+      <span>Total Gift:</span>
       <md-input-container layout="column">
         <div>
-          <label for="amount">Total Gift $:</label>
-          <input type="number" ng-model="checkoutObject.amount" required/>
-          <div ng-messages="checkoutForm.checkoutObject.amount.$error">
+          <label for="amount">$ </label>
+          <input type="number" name="amount" min="20" required/>
+          <!-- <div ng-messages="checkoutObject.gift.$error">
             <div ng-message="required">An amount is required!</div>
-          </div>
+          </div> -->
         </div>
       </md-input-container>
 
       <!-- EMAIL -->
+      <span>Email Address For Receipt:</span>
       <md-input-container layout="column">
         <div>
-          <label for="email">Email Address For Receipt:</label>
-          <input type="email" ng-model="checkoutObject.email" required/>
-          <div ng-messages="checkoutForm.checkoutObject.email.$error">
+          <input type="email" name="emailForReceipt" aria-label="Email for receipt" required/>
+          <!-- <div ng-messages="checkoutObject.email.$error">
             <div ng-message="required">An email address is required!</div>
-          </div>
+          </div> -->
         </div>
       </md-input-container>
 
       <!-- MESSAGE -->
       <span>Leave a message. This will be posted publicly in registry (Optional). If no message is left, you will not appear publicly on registry.</span>
       <md-input-container layout="column">
-        <textarea id="registry-comment" class="purchaseComment" form="checkoutForm" spellcheck="true" name="registryComment" rows="2" maxlength="140" placeholder="Max 140 Characters"></textarea>
+        <textarea id="registry-comment" class="purchaseComment" ng-model="checkoutObject.message" spellcheck="true" name="registryComment" rows="2" maxlength="140" placeholder="Max 140 Characters"></textarea>
       </md-input-container>
 
       <!-- NAME -->
-      <span>Name you would like displayed with your message. If there is no message, no name will appear on registry. (Default is the name on your credit card)</span>
+      <span>Name you would like displayed with your message. If there is no message, no name will appear on registry. (Default is the name on your credit card).</span>
       <md-input-container layout="column">
-        <input id="commentName" type="text" autocomplete="off" placeholder="example: Grandma">
+        <input id="commentName" name="gifterName" type="text" autocomplete="off" placeholder="example: Grandma">
       </md-input-container>
       <br>
 
-      <!-- CARD INFORMATION -->
-      <div layout="row">
-        <div layout="column" flex="100">
-          <!-- CARDHOLDER NAME -->
-          <div layout="column">
-            <label for="name" class="control-label">Card Holder Name: </label>
-            <md-input-container>
-              <input id="name" type="text" class="input-lg form-control" autocomplete="off" placeholder="first & last" data-stripe="name" required>
-            </md-input-container>
-          </div>
-          <!-- CARD NUMBER -->
-          <div layout="column">
-            <label for="cc-number" class="control-label">Card Number: </label>
-            <md-input-container>
-              <input id="cc-number" type="tel" class="input-lg form-control cc-number" autocomplete="cc-number"  data-stripe="number" placeholder="•••• •••• •••• ••••" required>
-            </md-input-container>
-          </div>
-          <!-- EXPIRATION DATE -->
-          <div layout="column">
-            <label for="cc-exp" class="control-label">Expiration Date (MM/YY)</label>
-            <div>
-              <md-input-container>
-                <input id="cc-exp" type="tel" size="3" class="input-lg form-control expDate" data-stripe="exp_month" placeholder="MM" onkeypress='return event.charCode >= 48 && event.charCode <= 57' minlength="2" maxlength="2" required>
-              </md-input-container>
-              <span> /</span>
-              <md-input-container>
-                <input id="cc-exp" type="tel" size="3" class="input-lg form-control expDate" data-stripe="exp_year" onkeypress='return event.charCode >= 48 && event.charCode <= 57' min="17" placeholder="YY" min="17" minlength="2" maxlength="2" required>
-              </md-input-container>
-            </div>
-          </div>
-          <!-- CARD CVC -->
-          <div layout="column">
-            <label for="cc-cvc" class="control-label">Card CVC</label>
-            <div>
-              <md-input-container>
-                <input id="cc-cvc" type="tel" size="8"  autocomplete="off" placeholder="•••" required>
-              </md-input-container>
-            </div>
-          </div>
-          <!-- ZIP CODE -->
-          <div layout="column">
-            <label for="zip" class="control-label">Postal Zip Code</label>
-            <div>
-              <md-input-container>
-                <input id="zip" type="tel" class="input-lg form-control" autocomplete="off" data-stripe="address_zip" placeholder="•••••" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
-              </md-input-container>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- CODE PROVIDED BY STRIPE: -->
+      <div class="form-row">
 
-      <md-input-container layout="column" layout-align="center center">
-        <div>
-          <md-button class="md-raised submitButton" type="submit" id="checkoutSubmit"
-                      name="submit" aria-label="Submit Payment" value="Submit Payment">Submit Payment
-          </md-button>
+        <!-- CARDHOLDER NAME -->
+        <div layout="column">
+          <label for="name" class="control-label">Card Holder Name: </label>
+          <md-input-container>
+            <input name="cardholderName" class="field" placeholder="first & last" required/>
+            <!-- <input id="name" type="text" class="field" name="cardholder-name" autocomplete="off" placeholder="first & last" data-stripe="name" required> -->
+          </md-input-container>
         </div>
-      </md-input-container>
+
+        <label for="card-element">
+          Credit or debit card:
+        </label>
+        <br><br>
+        <div id="card-element">
+          <!-- a Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display form errors -->
+        <div id="card-errors" role="alert"></div>
+      </div>
+      <br>
+
+      <div layout="row" layout-align="center center">
+        <button class="submitPaymentButton">Submit Payment</button>
+      </div>
+      <!-- END OF CODE PROVIDED BY STRIPE: -->
     </form>
+
+    <div layout="row" flex="100" layout-align="center start">
+      <img src="views/assets/powered_by_stripe.png" alt="powered by stripe">
+    </div>
+
   </div>
+
+
+
+
 </div>
