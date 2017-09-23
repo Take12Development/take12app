@@ -51,6 +51,11 @@ take12App.config(['$routeProvider', '$locationProvider',
       templateUrl: '/views/templates/home.html',
       controller: 'LoginController',
     })
+    // Forgot password view
+    .when('/forgotpassword', {
+      templateUrl: '/views/templates/forgotPassword.html',
+      controller: 'LoginController'
+    })
     // Register new user View
     .when('/register', {
       templateUrl: '/views/templates/registerUsername.html',

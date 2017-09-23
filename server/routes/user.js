@@ -6,6 +6,17 @@ var Chance = require('chance');
 var chance = new Chance();
 var fs = require('fs');
 var Users = require('../models/user');
+const sgMail = require('@sendgrid/mail');
+
+if(process.env.SENDGRID_API_KEY != undefined) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+} else {
+  var jsonPath = path.join(__dirname, '..', 'conf', 'settings.json');
+  var rawdata = fs.readFileSync(jsonPath);
+  var configValues = JSON.parse(rawdata);
+
+  sgMail.setApiKey(configValues.sendgrid.SENDGRID_API_KEY);
+}
 
 if(process.env.BASE_URL != undefined) {
   var baseURL = BASE_URL;
@@ -16,7 +27,7 @@ if(process.env.BASE_URL != undefined) {
   var baseURL = configValues.take12app.BASE_URL;
 }
 
-// Handles Ajax request for user information if user is authenticated
+// Handles request for user information if user is authenticated
 router.get('/', function(req, res) {
   // check if logged in
   if(req.isAuthenticated()) {
@@ -26,7 +37,6 @@ router.get('/', function(req, res) {
   } else {
     // failure best handled on the server. do redirect here.
     console.log('not logged in');
-    // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
     res.send(false);
   }
 });
@@ -53,8 +63,23 @@ router.post('/forgotpassword', function(req, res) {
     }
     var emailMessage = 'Reset your password here: ' + baseUrl + '/#/confirmreset/' + code;
 
-    // TODO: mail out that link with sendgrid.
-
+    // Mail out that link with sendgrid.
+    var msg = {
+      to: req.body.email,
+      from: 'Take12 <admin@mytake12.com>',
+      subject: 'Reset Password link',
+      text: 'Reset your Take12 password. This link will expire in 24 hours.',
+      html: emailMessage
+    };
+    sgMail.send(msg, function(err, result) {
+      if (err) {
+        console.log('err');
+        res.send('error sending email');
+      } else {
+        console.log('message sent: ' + result);
+        res.send(result);
+      }
+    });
 
     foundUser.code = code;
     var expireCode = moment().add(1, 'days').format();
