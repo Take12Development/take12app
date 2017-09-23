@@ -5,6 +5,7 @@ var path = require('path');
 var Chance = require('chance');
 var chance = new Chance();
 var fs = require('fs');
+var Users = require('../models/user');
 
 if(process.env.BASE_URL != undefined) {
   var baseURL = BASE_URL;
@@ -46,7 +47,7 @@ router.post('/forgotpassword', function(req, res) {
       length: 20
   });
 
-  User.findOne({"email": req.body.email}, function(err, foundUser) {
+  Users.findOne({"email": req.body.email}, function(err, foundUser) {
     if (err) {
       res.sendStatus(500);
     }
@@ -67,7 +68,27 @@ router.post('/forgotpassword', function(req, res) {
   });
 });
 
-
+// resets password
+router.put('/resetpassword', function(req, res) {
+  Users.findOne({"email": req.body.email}, function(err, foundUser) { //getting ERR with User here
+    if (err) {
+      res.sendStatus(500);
+    }
+    var date = moment().format();
+    foundUser.expiration = Date.now();
+    if (req.body.code != foundUser.code) {
+      res.sendStatus(500);
+    }
+    foundUser.password = req.body.password;
+    foundUser.expiration = Date.now();
+    foundUser.save(function(err, savedUser) {
+      if (err) {
+          console.log(err);
+          res.sendStatus(500);
+      }
+    });
+  });
+});
 
 
 module.exports = router;
