@@ -481,6 +481,11 @@ div[contenteditable="true"] {
     border: 0;
 }
 
+.registryResults {
+  max-height: 500px;
+  overflow: scroll;
+}
+
 .cardTitle {
   font-family: "Lato","Helvetica Neue", Arial, sans-serif;
   color: darkslategray;
