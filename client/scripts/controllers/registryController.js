@@ -12,6 +12,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
   var numWeeksProvided = 0;
   var numWeeksGifted = 0;
   var numWeeksNeeded = 12 - numWeeksProvided - numWeeksGifted;
+  $scope.numDaysGifted = 0;
   var chartTooltipData = [];
   $scope.oneDayAmount = 0;
   $scope.oneWeekAmount = 0;
@@ -109,7 +110,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
             options: {
 			           responsive: true,
 			           legend: {
-	                  display: true,
+	                  display: false,
                     position: 'bottom',
                     labels: {
                       // fontColor: 'rgb(255, 99, 132)'
@@ -161,7 +162,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     if ($scope.currentRegistry.goalAmtEntryOpt == '1') {
       // user entered net income, paid weeks and percentage
       if ($scope.currentRegistry.paidWeeks) {
-        numWeeksProvided = $scope.currentRegistry.paidWeeks * $scope.currentRegistry.paidWeeksPercentage / 100;
+        numWeeksProvided = Math.round(($scope.currentRegistry.paidWeeks * $scope.currentRegistry.paidWeeksPercentage / 100) *10) / 10 ;
       }
     } else {
       // user entered number of paid weeks and goal amount
@@ -170,23 +171,32 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
       }
     }
 
-    // calculate amount to cover one week of maternity leave:
+    // calculate amount to cover one week of maternity leave (week marker)
     $scope.oneWeekAmount = Math.round($scope.currentRegistry.goalAmount /
                         (12 - numWeeksProvided));
     console.log('oneWeekAmount', $scope.oneWeekAmount);
+    // calculate amount to cover one day of maternity leave (day marker)
+    $scope.oneDayAmount = Math.round($scope.oneWeekAmount / 5);
+    console.log('oneDayAmount',$scope.oneDayAmount);
+
     // calculate number of weeks gifted based on amount being gifted
     if ($scope.currentRegistry.currentAmount != 0) {
-      numWeeksGifted = $scope.oneWeekAmount / $scope.currentRegistry.currentAmount;
+      numWeeksGifted = Math.round(($scope.currentRegistry.currentAmount / $scope.oneWeekAmount) *10) / 10;
+      // Calculate how many days have been gifted:
+      console.log('CURRENT AMOUNT',$scope.currentRegistry.currentAmount);
+      $scope.numDaysGifted = Math.round($scope.currentRegistry.currentAmount/$scope.oneDayAmount);
+      console.log('WEEKS GIFTED: ', numWeeksGifted);
+
+      console.log('DAYS GIFTED: ', $scope.numDaysGifted);
     } else {
       numWeeksGifted = 0;
+      $scope.numDaysGifted = 0;
     }
     console.log('numWeeksGifted',numWeeksGifted);
     // calculate number of weeks needed:
     numWeeksNeeded = 12 - numWeeksProvided - numWeeksGifted;
 
-    // calculate day marker:
-    $scope.oneDayAmount = Math.round($scope.oneWeekAmount / 5);
-    console.log('oneDayAmount',$scope.oneDayAmount);
+
 
     // build array of data to display in chart tooltips
     var amount = 0;

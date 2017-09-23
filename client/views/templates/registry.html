@@ -36,13 +36,18 @@
           <h2>Let's Make Sure {{currentRegistry.firstName}} Has Time at Home!</h1>
         </div>
         <!-- CHART -->
-        <div class="registryChartSection" layout="row">
-          <div id="canvas-holder" style="width: 300px;">
+        <div class="registryChartSection" layout="row" layout-align="center center">
+          <div layout-align="center center" flex="80" id="canvas-holder" style="width: 300px;">
             <canvas id="myChart" width="300" height="300"></canvas>
             <div id="chartjs-tooltip" style="font-family: 'Lato', sans-serif">
           		<table></table>
           	</div>
           </div>
+        </div>
+        <div class="registryChartSection" layout="row" layout-align="center center">
+          <span>{{currentRegistry.firstName}} Has
+          <strong>{{numDaysGifted}}</strong>
+           More Days of Maternity Leave!</span>
         </div>
         <!-- SLIDER -->
         <div class="registrySliderSection" layout="column">
