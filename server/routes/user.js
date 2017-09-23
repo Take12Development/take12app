@@ -26,7 +26,6 @@ if(process.env.BASE_URL != undefined) {
   var rawdata = fs.readFileSync(jsonPath);
   var configValues = JSON.parse(rawdata);
   var baseURL = configValues.take12app.BASE_URL;
-  console.log('BASE_URL', baseURL);
 }
 
 // Handles request for user information if user is authenticated
@@ -59,13 +58,13 @@ router.post('/forgotpassword', function(req, res) {
       length: 20
   });
 
-  var baseUrl = 'http://localhost:5000/' // Or environment variable
+  // baseURL = 'http://localhost:5000/' // Or environment variable
 
   Users.findOne({"email": req.body.email}, function(err, foundUser) {
     if (err) {
       res.sendStatus(500);
     }
-    var emailMessage = 'Reset your password here: ' + baseUrl + '/#/confirmreset/' + code;
+    var emailMessage = 'Reset your password here: ' + baseURL + '/#/confirmreset/' + code;
 
     // Mail out that link with sendgrid.
     var msg = {
@@ -80,7 +79,7 @@ router.post('/forgotpassword', function(req, res) {
         console.log('Error (sendgrid)',err);
         res.send('Error sending email');
       } else {
-        console.log('message sent: ' + result);
+        // message sent
         foundUser.code = code;
         var expireCode = moment().add(1, 'days').format();
         foundUser.expiration = expireCode;
