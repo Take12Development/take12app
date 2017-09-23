@@ -13,7 +13,9 @@ var UserSchema = new Schema({
     stripe_keys: {},
     stripeConnected: Boolean,
     stripeAccountActivated: Boolean,
-    registries : []
+    registries : [],
+    code: String, // for password reset
+    expiration: { type: Date, default: Date.now }
 });
 
 // Called before adding a new user to the DB. Encrypts password.

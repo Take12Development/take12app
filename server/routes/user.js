@@ -2,6 +2,18 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var path = require('path');
+var Chance = require('chance');
+var chance = new Chance();
+var fs = require('fs');
+
+if(process.env.BASE_URL != undefined) {
+  var baseURL = BASE_URL;
+} else {
+  var jsonPath = path.join(__dirname, '..', 'conf', 'settings.json');
+  var rawdata = fs.readFileSync(jsonPath);
+  var configValues = JSON.parse(rawdata);
+  var baseURL = configValues.take12app.BASE_URL;
+}
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -25,6 +37,37 @@ router.get('/logout', function(req, res) {
   req.logOut();
   res.sendStatus(200);
 });
+
+// creates and sends a code to reset the password
+router.post('/forgotpassword', function(req, res) {
+  //pool of characters chance will select from to create random string
+  var code = chance.string({
+      pool: 'abcdefghijklmnopqrstuvwxyz1234567890',
+      length: 20
+  });
+
+  User.findOne({"email": req.body.email}, function(err, foundUser) {
+    if (err) {
+      res.sendStatus(500);
+    }
+    var emailMessage = 'Reset your password here: ' + baseUrl + '/#/confirmreset/' + code;
+
+    // TODO: mail out that link with sendgrid.
+
+
+    foundUser.code = code;
+    var expireCode = moment().add(1, 'days').format();
+    foundUser.expiration = expireCode;
+    foundUser.save(function(err, savedUser) {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      }
+    });
+  });
+});
+
+
 
 
 module.exports = router;
