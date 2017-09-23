@@ -1,0 +1,43 @@
+<!-- CHANGE PASSWORD VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="20" flex-xs="10" flex-sm="10" flex-md="20"></div>
+  <div class="createRegistryBlock" layout="column" flex-gt-md="60" flex-xs="80" flex-sm="80" flex-md="60">
+    <div class="textFormat">
+      <h1 class = "badScriptHeading">Change Password</h1>
+      <p>Enter your email address and we will send you link to reset your password.</p>
+      <br><br>
+    </div>
+    <div layout="column" flex-align="center center">
+      <form name="changePasswordView" ng-submit="updatePassword()">
+        <!-- EMAIL INPUT -->
+        <md-input-container layout="column" class = "loginContent">
+          <div>
+            <label for="user.email">Email:</label>
+            <input type="email" ng-model="user.email" required/>
+            <div ng-messages="changePasswordView.user.email.$error">
+              <div ng-message="required">An email is required!</div>
+            </div>
+          </div>
+        </md-input-container>
+        <!-- PASSWORD INPUT -->
+        <md-input-container layout="column" class = "loginContent">
+          <div>
+            <label for="user.password">Password:</label>
+            <input type="password" ng-model="user.password" required/>
+            <div ng-messages="changePasswordView.user.password.$error">
+              <div ng-message="required">A password is required!</div>
+            </div>
+          </div>
+        </md-input-container>
+        <!-- BUTTON -->
+        <md-input-container layout="column" layout-align="center center">
+          <div>
+            <md-button class="md-raised submitButton" type="submit"
+                        name="submit" aria-label="Change Password" value="Submit">Change Password
+            </md-button>
+          </div>
+        </md-input-container>
+      </form>
+    </div>
+  </div>
+</div>
