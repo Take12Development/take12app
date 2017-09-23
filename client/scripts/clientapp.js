@@ -56,6 +56,11 @@ take12App.config(['$routeProvider', '$locationProvider',
       templateUrl: '/views/templates/forgotPassword.html',
       controller: 'LoginController'
     })
+    // change password view (accesible through email link)
+    .when('/confirmreset/:code', {
+      templateUrl: '/views/templates/confirm.html',
+      controller: 'LoginController'
+    })
     // Register new user View
     .when('/register', {
       templateUrl: '/views/templates/registerUsername.html',

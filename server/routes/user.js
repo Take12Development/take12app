@@ -5,6 +5,7 @@ var path = require('path');
 var Chance = require('chance');
 var chance = new Chance();
 var fs = require('fs');
+var moment = require('moment');
 var Users = require('../models/user');
 const sgMail = require('@sendgrid/mail');
 
@@ -19,12 +20,13 @@ if(process.env.SENDGRID_API_KEY != undefined) {
 }
 
 if(process.env.BASE_URL != undefined) {
-  var baseURL = BASE_URL;
+  var baseURL = process.env.BASE_URL;
 } else {
   var jsonPath = path.join(__dirname, '..', 'conf', 'settings.json');
   var rawdata = fs.readFileSync(jsonPath);
   var configValues = JSON.parse(rawdata);
   var baseURL = configValues.take12app.BASE_URL;
+  console.log('BASE_URL', baseURL);
 }
 
 // Handles request for user information if user is authenticated
@@ -57,6 +59,8 @@ router.post('/forgotpassword', function(req, res) {
       length: 20
   });
 
+  var baseUrl = 'http://localhost:5000/' // Or environment variable
+
   Users.findOne({"email": req.body.email}, function(err, foundUser) {
     if (err) {
       res.sendStatus(500);
@@ -73,21 +77,21 @@ router.post('/forgotpassword', function(req, res) {
     };
     sgMail.send(msg, function(err, result) {
       if (err) {
-        console.log('err');
-        res.send('error sending email');
+        console.log('Error (sendgrid)',err);
+        res.send('Error sending email');
       } else {
         console.log('message sent: ' + result);
-        res.send(result);
-      }
-    });
-
-    foundUser.code = code;
-    var expireCode = moment().add(1, 'days').format();
-    foundUser.expiration = expireCode;
-    foundUser.save(function(err, savedUser) {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
+        foundUser.code = code;
+        var expireCode = moment().add(1, 'days').format();
+        foundUser.expiration = expireCode;
+        foundUser.save(function(err, savedUser) {
+          if (err) {
+            console.log(err);
+            res.sendStatus(500);
+          } else {
+            res.send("Code sent successfully.")
+          }
+        });
       }
     });
   });
@@ -110,6 +114,8 @@ router.put('/resetpassword', function(req, res) {
       if (err) {
           console.log(err);
           res.sendStatus(500);
+      } else {
+        res.send("Password updated successfully.")
       }
     });
   });

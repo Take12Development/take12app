@@ -1,6 +1,6 @@
-take12App.controller('LoginController', ['$scope', '$http', 'UserService',
+take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'UserService',
                     'UtilitiesService',
-                    function($scope, $http, UserService, UtilitiesService) {
+                    function($scope, $http, $routeParams, UserService, UtilitiesService) {
 
   $scope.user = {
     email: '',
@@ -77,9 +77,10 @@ take12App.controller('LoginController', ['$scope', '$http', 'UserService',
 
   // sends request to get a link to reset the password
   $scope.sendResetPassword = function() {
-  if($scope.user.username === '') {
-    UtilitiesService.showAlert('Please enter your username.');
+  if($scope.user.email === '') {
+    UtilitiesService.showAlert('Please enter your email address.');
   } else {
+    console.log('$scope.user',$scope.user);
     $http.post('/user/forgotpassword', $scope.user).then(function(response) {
       if(response.data == 'Code sent successfully.') {
         UtilitiesService.showAlert('A link to change the password was sent by email.');
@@ -94,14 +95,14 @@ take12App.controller('LoginController', ['$scope', '$http', 'UserService',
 $scope.updatePassword = function() {
   // Send our password reset request to the server
   // with our username, new password and code
-  if($scope.user.username === '' || $scope.user.password === '') {
-    UtilitiesService.showAlert('Please enter your username and password.');
+  if($scope.user.email === '' || $scope.user.password === '') {
+    UtilitiesService.showAlert('Please enter your email and password.');
   } else {
     $scope.user.code = $routeParams.code;
     $http.put('/user/resetpassword', $scope.user).then(function(response) {
       if(response.data == 'Password updated successfully.') {
         UtilitiesService.showAlert('Password updated successfully.');
-        UserService.redirect('/home');
+        UtilitiesService.redirect('/home');
       } else {
         UtilitiesService.showAlert('There was an error updating the password');
       }
