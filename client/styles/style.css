@@ -558,6 +558,9 @@ div[contenteditable="true"] {
     width: 100%;
     margin-top: 50px;
     text-align: center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 #chartjs-tooltip {
   opacity: 1;
