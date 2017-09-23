@@ -9,6 +9,10 @@ var UserSchema = new Schema({
     name: {type: String, required: false},
     email: {type: String, unique: true, sparse: true},
     facebookId : {type: String, unique: true, sparse: true},
+    stripe_user_id: String,
+    stripe_keys: {},
+    stripeConnected: Boolean,
+    stripeAccountActivated: Boolean,
     registries : []
 });
 

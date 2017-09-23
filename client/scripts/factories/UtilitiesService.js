@@ -28,11 +28,28 @@ take12App.factory('UtilitiesService', ['$mdDialog', '$location',
     $location.url(page);
   }
 
+  // redirects to homepage
+  function goHome() {
+    var home = location.host;
+    $location.url(home);
+  };
+
+  // Function that checks if an object is empty
+  function isObjectEmpty(obj) {
+      for(var prop in obj) {
+          if(obj.hasOwnProperty(prop))
+              return false;
+      }
+      return true;
+  }
+
 return {
     showAlert: showAlert,
     redirect : redirect,
+    goHome : goHome,
     titleCase : titleCase,
-    states: states
+    states: states,
+    isObjectEmpty : isObjectEmpty
 };
 
 }]);

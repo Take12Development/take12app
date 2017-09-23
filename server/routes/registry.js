@@ -111,7 +111,10 @@ router.post('/add', function(req,res) {
     registry.lastName = last;
     registry.goalAmount = req.body.goalAmount;
     registry.currentAmount = 0;
-    registry.paidDays = req.body.paidDays;
+    registry.paidWeeks = req.body.paidWeeks;
+    registry.goalAmtEntryOpt = req.body.goalAmtEntryOpt;
+    registry.netIncome = req.body.netIncome;
+    registry.paidWeeksPercentage = req.body.paidWeeksPercentage;
     registry.createDate = req.body.createDate;
     registry.dueDate = req.body.dueDate;
     registry.city = req.body.city;
@@ -133,7 +136,12 @@ router.post('/add', function(req,res) {
           {$push: {registries: createdRegistryURL}},
           {safe: true},
           function(err, model) {
-              console.log(err);
+            if (err) {
+              console.log('Error updating user Information with registries data',err);
+            }
+            else {
+              console.log('User account updated successfully', model);
+            }
           }
       );
       // saves registryURL for organizer user
