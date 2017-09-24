@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-// var wrenchmodeExpress = require('wrenchmode-express');
+var wrenchmodeExpress = require('wrenchmode-express');
 var bodyParser = require('body-parser');
 // var logger = require('morgan');
 var mongoose = require('mongoose');
@@ -23,7 +23,9 @@ var mongoDB = require('./modules/db');
 
 // Body parser middleware
 // app.use(logger('dev'));
-// app.use(wrenchmodeExpress());
+app.use(wrenchmodeExpress({
+  jwt: "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJQcm9qZWN0OjI2OSIsImV4cCI6MTUwODg2MTU3MSwiaWF0IjoxNTA2MjY5NTcxLCJpc3MiOiJXcmVuY2htb2RlIiwianRpIjoiYjJkMmUwOWYtNzMwMi00YmIyLTg0Y2QtOTY0NmVlM2VlODgyIiwicGVtIjp7fSwic3ViIjoiUHJvamVjdDoyNjkiLCJ0eXAiOiJ0b2tlbiJ9.KWqKw3yR6b1iZnOUKHcL7MlIrepTQ3xy-V9YB8kO5Q4V6xDlUzou8idvMDOAS6mb0uu0UoIfs95GsuzWsSshKA"
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -51,6 +53,8 @@ app.use('/uploads', uploads);
 app.use('/fblogin', fblogin);
 app.use('/email', email);
 app.use('/stripe', stripe);
+
+
 
 // Login error response
 app.get('/error', function(req, res) {
