@@ -1,10 +1,57 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var path = require('path');
+var fs = require('fs');
 var Registry = require('../models/registryModel');
 var UnclaimedRegistry = require('../models/unclaimedRegistryModel');
 var Users = require('../models/user');
 var Promise = require('promise');
+const sgMail = require('@sendgrid/mail');
+
+if(process.env.SENDGRID_API_KEY != undefined) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+} else {
+  var jsonPath = path.join(__dirname, '..', 'conf', 'settings.json');
+  var rawdata = fs.readFileSync(jsonPath);
+  var configValues = JSON.parse(rawdata);
+
+  sgMail.setApiKey(configValues.sendgrid.SENDGRID_API_KEY);
+}
+
+if(process.env.BASE_URL != undefined) {
+  var baseURL = process.env.BASE_URL;
+} else {
+  var jsonPath = path.join(__dirname, '..', 'conf', 'settings.json');
+  var rawdata = fs.readFileSync(jsonPath);
+  var configValues = JSON.parse(rawdata);
+  var baseURL = configValues.take12app.BASE_URL;
+}
+
+// Send email functions:
+function sendEmailNewAcct(emailInfo) {
+  var textEmailMessage = 'A new registry has been created for you, ' +
+                         'please create an account using ' +
+                         'this email address to claim your account. ' +
+                         baseURL + '#/register';
+  // Mail out message with sendgrid.
+  var msg = {
+    to: emailInfo.email,
+    from: 'Take12 <admin@mytake12.com>',
+    subject: 'A Take12 Registry has been created for you',
+    text: textEmailMessage,
+    html: textEmailMessage
+  };
+  sgMail.send(msg, function(err, result) {
+    if (err) {
+      console.log('Error (sendgrid)',err);
+      // res.send('Error sending email');
+    } else {
+      // message sent
+      console.log('Email New Account sent successfully.');
+    }
+  });
+}
 
 // gets all registries from the database
 router.get('/all', function(req,res){
@@ -154,6 +201,10 @@ router.post('/add', function(req,res) {
                 function(err, savedUnclaimedRegistry) {
                   if (err) {
                     console.log("Mongo error:", err);
+                  } else {
+                    // call function that sends email to user
+                    var emailInfo = {name: req.body.firstName, email: email}
+                    sendEmailNewAcct(emailInfo);
                   }
                 }
               );

@@ -1,6 +1,8 @@
 take12App.controller('DialogController', ['$scope','$timeout', '$mdDialog', 'Upload', 'photoURL',
                     function($scope, $timeout, $mdDialog, Upload, photoURL) {
 
+  // Dialog Controller for photo upload in dashboard
+
   var dialogCtrl = this;
   dialogCtrl.photoURL = photoURL;
 
@@ -21,12 +23,10 @@ take12App.controller('DialogController', ['$scope','$timeout', '$mdDialog', 'Upl
       url: '/uploads',
       data: {file: file},
     });
-
     file.upload.then(function (response) {
       // saves filename to use when saving registry
       filename = response.data.secure_url;
       dialogCtrl.photoURL = filename;
-
       $timeout(function () {
         file.result = response.data;
         // saves filename to use when saving registry
