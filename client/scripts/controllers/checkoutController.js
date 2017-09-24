@@ -5,15 +5,12 @@ take12App.controller('CheckoutController', ['$scope', '$http',
                     UserService, UtilitiesService, RegistryDataService) {
 
 $scope.currentViewedRegistry = RegistryDataService.registriesObject.currentViewedRegistry;
-console.log('CURRENT VIEWED REGISTRY in CHECKOUT is', $scope.currentViewedRegistry);
 
 // Checks if currentViewedRegistry exists, if not redirects to findRegistry view
 if (UtilitiesService.isObjectEmpty($scope.currentViewedRegistry)) {
-  console.log('CURRENT VIEWED REGISTRY in CHECKOUT is empty');
   UtilitiesService.redirect('/findRegistry');
 } else {
   $scope.gift = $scope.currentViewedRegistry.gift;
-  console.log ('Gift is:',$scope.gift);
   var registryAccount = $scope.currentViewedRegistry._id;
   var registryEmail = $scope.currentViewedRegistry.email;
 }
@@ -94,10 +91,6 @@ function stripeTokenHandler(token) {
   hiddenInput.setAttribute('value', registryEmail);
   form.appendChild(hiddenInput);
 
-  // Submit the form
-  // form.submit().then(function(result) {
-  //   console.log('In callback function', result);
-  // };
   form.submit();
 }
 

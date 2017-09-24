@@ -8,7 +8,6 @@ var Promise = require('promise');
 
 // gets all registries from the database
 router.get('/all', function(req,res){
-  console.log("/registry/all get route hit");
   Registry.find({},function(err,allRegistries) {
     if(err) {
       console.log('Mongo error: ',err);
@@ -19,7 +18,6 @@ router.get('/all', function(req,res){
 
 // gets a specific registry from the database
 router.get('/:registryURL', function(req,res){
-  console.log("/registry/:registryURL get route hit");
   var searchURL = req.params.registryURL;
   Registry.findOne({registryURL: searchURL},function(err, foundRegistry) {
     if(err) {
@@ -31,7 +29,6 @@ router.get('/:registryURL', function(req,res){
 
 // gets array of unclaimed registries for a specific user
 router.get('/unclaimed/:email', function(req,res){
-  console.log("/registry/unclaimed/:email get route hit");
   var searchEmail = req.params.email;
   UnclaimedRegistry.findOne({email: searchEmail},function(err, foundUnclaimedRegistry) {
     if(err) {
@@ -44,7 +41,6 @@ router.get('/unclaimed/:email', function(req,res){
 
 // gets all registries that are part of array received as a parameter
 router.post('/getuserregistries', function(req,res) {
-  console.log("/getuserregistries post route hit");
   var arrayOfRegistries = req.body.registries;
   Registry.find({ registryURL: { $in: arrayOfRegistries } } ,function(err, foundRegistries) {
     if(err) {
@@ -60,7 +56,6 @@ function createURL(firstName, lastName) {
   var firstName = firstName.replace(/\s+/g, '');
   var lastName = lastName.replace(/\s+/g, '');
   var name = firstName + lastName;
-  console.log('name is:',name);
 
   return new Promise(function(resolve,reject) {
       Registry.count({firstName: firstName, lastName: lastName}, function(err, count){
@@ -68,14 +63,12 @@ function createURL(firstName, lastName) {
           console.log('Mongo error: ',err);
           reject(err);
         } else {
-          console.log('Number of registries with same name', count);
           if(count === 0) {
             newURL = name;
           } else {
             var num = count + 1;
             newURL = name + num;
           }
-          console.log('newURL:',newURL);
           resolve(newURL);
         }
       });
@@ -103,7 +96,6 @@ function updateFBUser(facebookId, email) {
 
 // saves a registry into the database
 router.post('/add', function(req,res) {
-  console.log("/add post route hit");
 
   // for facebook new users we insert email to user in users table
   if (req.body.facebookId) {

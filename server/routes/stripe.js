@@ -77,8 +77,6 @@ router.post("/webhook/accountactivated", function(request, response) {
 
   if(stripeData) {
     var userId = stripeData.data.object.id;
-    console.log('Webhook userId', userId);
-
     Users.findOneAndUpdate({stripe_user_id: userId},
       {$set: {stripeAccountActivated : true}}, {new: true}, function(err, updatedUser) {
         if(err){
@@ -107,8 +105,6 @@ router.post("/charge", function(req, res) {
     var customerEmail = req.body.emailForReceipt;
     var registryAccount = id.toString();
     var registryComment = req.body.registryComment;
-
-    console.log('TotalCoversion in cents/ Type', stripeTotalCoversion, typeof stripeTotalCoversion);
     var take12fee = (checkoutTotal * 100) * .03;
 
     // get Stripe Information from Users account
@@ -139,37 +135,31 @@ router.post("/charge", function(req, res) {
                         case 'StripeCardError':
                             // A declined card error
                             err.message; // => e.g. "Your card's expiration year is invalid."
-                            console.log('error', err.message);
                             res.redirect('/#/transactionError/' + err.message);
                             // res.status(400).send(err.message);
                             break;
                         case 'RateLimitError':
                             // Too many requests made to the API too quickly
-                            console.log('RateLimitError');
                             res.redirect('/#/transactionError/' + 'Rate Limit Error');
                             // res.status(400).send('RateLimitError');
                             break;
                         case 'StripeInvalidRequestError':
                             // Invalid parameters were supplied to Stripe's API
-                            console.log('StripeInvalidRequestError', err);
                             res.redirect('/#/transactionError/' + 'Stripe Invalid Request Error');
                             // res.status(400).send('StripeInvalidRequestError');
                             break;
                         case 'StripeAPIError':
                             // An error occurred internally with Stripe's API
-                            console.log('StripeAPIError');
                             res.redirect('/#/transactionError/' + 'Stripe API Error');
                             // res.status(400).send('StripeAPIError');
                             break;
                         case 'StripeConnectionError':
                             // Some kind of error occurred during the HTTPS communication
-                            console.log('StripeConnectionError');
                             res.redirect('/#/transactionError/' + 'Stripe Connection Error');
                             // res.status(400).send('StripeConnectionError');
                             break;
                         case 'StripeAuthenticationError':
                             // You probably used an incorrect API key
-                            console.log('StripeAuthenticationError', err);
                             res.redirect('/#/transactionError/' + 'Stripe Authentication Error');
                             // res.status(400).send('StripeAuthenticationError');
                             break;
@@ -182,7 +172,7 @@ router.post("/charge", function(req, res) {
                 } else {
                     Registry.findById(id, function(err, foundRegistry) {
                         if (err) {
-                            console.log('Mongo error finding registry: ', err);
+                            // Mongo error finding registry
                             return (err);
                         } else {
                             //TAKE 12 USER REGISTRY INFO
@@ -191,7 +181,6 @@ router.post("/charge", function(req, res) {
                             var RegistryCurrentAmount = checkoutTotal + currentAmount;
                             //GIFTER INFORMATION
                             var nameInput = cardholderName;
-                            console.log('name input', nameInput);
                             var fullName = nameInput.toLowerCase();
                             var firstName = fullName.split(' ').slice(0, -1).join(' ');
                             var lastName = fullName.split(' ').slice(-1).join(' ');
@@ -269,11 +258,9 @@ router.post("/charge", function(req, res) {
                                 new: true
                             }, function(err, updateRegistry) {
                                 if (err) {
-                                    console.log('DIDNT UPDATE REGISTRY AFTER PAYMENT', err);
                                     res.redirect('/#/transactionError/' + "Didn't update registry after payment");
                                     // res.sendStatus(500);
                                 } else {
-                                    console.log('Payment successful and registry updated with new amount');
                                     res.redirect('/#/thankyou');
                                 } // else if (err)
                             }); // Registry.findByIdAndUpdate
@@ -283,12 +270,7 @@ router.post("/charge", function(req, res) {
             } //function(err, charge)
         ) //stripe.charges.create
       } // else if (err)
-}); // Users.findOne
+  }); // Users.findOne
 }); // router.post("/charge"
-
-
-
-
-
 
 module.exports = router;

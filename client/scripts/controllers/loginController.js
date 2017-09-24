@@ -53,7 +53,6 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
             }
           });
         } else {
-          console.log('failure: ', response);
           $scope.message = "Invalid combination of email and password.";
         }
       });
@@ -64,14 +63,10 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
   $scope.fblogin = function() {
     FB.login(function(response) {
       if (response.authResponse) {
-        console.log('LC: Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
-          console.log(response);
-          console.log('LC: Good to see you, ' + response.name + '.');
           var token = FB.getAuthResponse().accessToken;
           $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
           function handleSuccess(response) {
-            console.log('LC CONTROLLER: created or found FB user', response.data);
             if(response.data.email) {
               UserService.userObject.email = response.data.email;
               UserService.userObject.registries = response.data.registries;

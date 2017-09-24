@@ -17,9 +17,6 @@ take12App.controller('ClaimRegistriesController', ['$scope', 'UserService', 'Uti
     console.log('back from server with:', data);
     if (data.data != "") {
       $scope.registriesToClaim = RegistryDataService.registriesObject.registriesToClaim;
-
-      console.log('factory', RegistryDataService.registriesObject.registriesToClaim);
-      console.log('scope',$scope.registriesToClaim);
     }
   })
   .catch(function(response){
