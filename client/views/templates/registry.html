@@ -33,7 +33,7 @@
       <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
       <div layout="column" flex-gt-md="40" flex-xs="30" flex-sm="30" flex-md="30">
         <div>
-          <h2>Let's Make Sure {{currentRegistry.firstName}} Has Time at Home!</h1>
+          <h2>Let's Make Sure {{currentRegistry.firstName}} Has 12 Weeks at Home!</h1>
         </div>
         <!-- CHART -->
         <div class="registryChartSection" layout="row" layout-align="center center">
@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="registryChartSection" layout="row" layout-align="center center">
-          <span>{{currentRegistry.firstName}} Has
+          <span ng-if="numDaysGifted>0">{{currentRegistry.firstName}} Has
           <strong>{{numDaysGifted}}</strong>
            More Days of Maternity Leave!</span>
         </div>
@@ -60,6 +60,8 @@
           <span class="registrySliderMoment" ng-if="slider.minValue > 120 && slider.minValue <= 180">Visit with Grandma!</span>
           <span class="registrySliderMoment" ng-if="slider.minValue > 180 && slider.minValue <= 300">Full Night Sleep!</span>
           <span class="registrySliderMoment" ng-if="slider.minValue > 300 && slider.minValue <= 500">NICU Visit</span>
+          <span class="registrySliderMoment" ng-if="slider.minValue > 500">Gift of time</span>
+
           <div>
             <rzslider class="custom-slider"
             rz-slider-model="slider.minValue"

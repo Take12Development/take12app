@@ -37,7 +37,6 @@ router.get('/', function(req, res) {
     res.send(req.user);
   } else {
     // failure best handled on the server. do redirect here.
-    console.log('not logged in');
     res.send(false);
   }
 });

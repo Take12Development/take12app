@@ -7,7 +7,7 @@ var Registry = require('../models/registryModel');
 var Donor = require('../models/donors');
 var path = require('path');
 var fs = require('fs');
-
+var UnclaimedRegistry = require('../models/unclaimedRegistryModel');
 
 // Require stripe
 if(process.env.STRIPE_SECRET != undefined) {
@@ -24,7 +24,7 @@ if(process.env.STRIPE_SECRET != undefined) {
 
 //User initiates stripe account
 router.post('/newaccount', function(req, res) {
-  console.log('req.body', req.body);
+  console.log('STRIPE RECEIVED INFO req.body', req.body);
   var email = req.body.email;
 
   if(req.body.email !== undefined) {
@@ -50,14 +50,32 @@ router.post('/newaccount', function(req, res) {
           {$set: {stripe_user_id: account.id, stripe_keys: account.keys,
                   stripeConnected: true, stripeAccountActivated: false}},
           {safe: true},
-          function(err, model) {
+          function(err, updatedUser) {
             if (err) {
               console.log('Error updating user Information with Stripe data',err);
               res.send('Error updating user Information with Stripe data');
             }
-            else {
-              console.log('User account updated successfully with Stripe information', model);
+            else if(!updatedUser) {
+              // user not found, save credentials into unclaimed registry
+              UnclaimedRegistry.findOneAndUpdate(
+                {email: email},
+                {$set: {stripe_user_id: account.id, stripe_keys: account.keys,
+                        stripeConnected: true, stripeAccountActivated: false}},
+                {safe: true},
+                function(err, updatedUnclaimedAccount){
+                  if (err) {
+                    console.log('Error updating user Information with Stripe data',err);
+                    res.send('Error updating user Information with Stripe data');
+                  } else {
+                    console.log('Unclaimed registry account updated successfully with Stripe information', updatedUnclaimedAccount);
+                    res.send('Unclaimed registry account updated successfully with Stripe information');
+                  }
+                }
+              );
+            } else {
+              console.log('User account updated successfully with Stripe information', updatedUser);
               res.send('User account updated successfully with Stripe information');
+
             }
           }
         );
