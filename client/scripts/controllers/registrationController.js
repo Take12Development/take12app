@@ -39,9 +39,6 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // list of states for state selection
   $scope.states = UtilitiesService.states;
-
-  console.log('in the controller: ',UserService.userObject);
-
   // variables used for navigation among registration views. Possible values:
   // registerWho = 0, registerMainInfo = 1, registerPhoto = 2,
   // registerStory = 3, registerPrivacy = 4, , registerStripe = 5
@@ -93,14 +90,11 @@ take12App.controller('RegistrationController', ['$scope', '$http',
       $scope.message = "Please enter all the required information";
     } else {
         if (comparePasswords()) {
-          console.log('sending to server...', $scope.newUser);
           $http.post('/register', $scope.newUser).then(function(response) {
-            console.log('success');
             UtilitiesService.showAlert('Your account has been created, please login to create your registry');
             UtilitiesService.redirect('/login');
           },
           function(response) {
-            console.log('error');
             $scope.message = "Please try again.";
           });
       } else {
@@ -114,7 +108,6 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     FB.login(function(response) {
     if (response.authResponse) {
         FB.api('/me', function(response) {
-          console.log('RC: Good to see you, ' + response.name + '.');
           var token = FB.getAuthResponse().accessToken;
           $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
           function handleSuccess(response) {
@@ -147,14 +140,12 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     });
 
     file.upload.then(function (response) {
-      console.log('0 Back from upload with data:',response);
       // saves filename to use when saving registry
       filename = response.data.secure_url;
       $scope.registry.imageURL = filename;
 
       $timeout(function () {
         file.result = response.data;
-        console.log('1 Back from upload with data:',response);
         // saves filename to use when saving registry
         filename = response.data.secure_url;
         $scope.registry.imageURL = filename;
@@ -162,8 +153,6 @@ take12App.controller('RegistrationController', ['$scope', '$http',
       }, function (response) {
         if (response.status > 0)
           $scope.errorMsg = response.status + ': ' + response.data;
-          console.log('2 Back from upload with data:',response.data);
-          console.log('URL is:',filename);
       }, function (evt) {
         // Math.min is to fix IE which reports 200% sometimes
         file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
@@ -182,12 +171,11 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     if (UserService.userObject.facebookId) {
       $scope.registry.facebookId = UserService.userObject.facebookId;
     }
-    console.log('SENDING TO postRegistry', $scope.registry);
-    RegistryDataService.postRegistry($scope.registry).then(function() {
+      RegistryDataService.postRegistry($scope.registry).then(function() {
+
       // send confirmation email
       // MailService.sendMail();
-      // go to registry dashboard
-      // UtilitiesService.redirect('/dashboard');
+
       //Go to final step (Initiate Stripe)
       $scope.goNext(4);
     }).catch(function(response){
@@ -197,13 +185,11 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // moves forward - registration view
   $scope.goNext = function(step) {
-    console.log('Registry:', $scope.registry);
     $scope.visibleStep = parseInt(step) + 1;
   };
 
   // moves backwards - registration view
   $scope.goBack = function(step) {
-    console.log('Registry:', $scope.registry);
     $scope.visibleStep = parseInt(step) - 1;
   };
 
@@ -222,7 +208,6 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   //initiates new deferred stripe account
  $scope.initiateStripe = function() {
-   console.log('Connect to Stripe has been clicked. Registry: ', $scope.registry);
    StripeService.createAccount($scope.registry);
    //go to registry dashboard
    UtilitiesService.redirect('/dashboard');

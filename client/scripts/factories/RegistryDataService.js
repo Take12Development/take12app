@@ -1,19 +1,18 @@
-take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
-                  function($http,$q,UserService) {
+take12App.factory('RegistryDataService', ['$http','$q', 'UserService', 'UtilitiesService',
+                  function($http, $q, UserService, UtilitiesService) {
 
   // Stores all registries in the DB
   var registriesObject = {
     allRegistries: [],
     userRegistries: [],
+    registriesToClaim: [],
     currentViewedRegistry: {}
   };
 
   // Gets all registries in the database
-  getRegistries = function(){
+  getRegistries = function() {
     $http.get('/registry/all').then(function(response) {
-      console.log('Back from the server with:', response);
       registriesObject.allRegistries = response.data;
-      console.log('Updated registriesObject:', registriesObject.allRegistries);
     });
   };
 
@@ -45,6 +44,21 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
     return deferred.promise;
   };
 
+  // gets all registries that are part of array received as a parameter for
+  // registries to claim
+  getRegistriesToClaim = function(arrayOfRegistries) {
+    var deferred = $q.defer();
+    $http.post('/registry/getuserregistries', {registries: arrayOfRegistries})
+    .then(function(response) {
+        deferred.resolve(response);
+        registriesObject.registriesToClaim = response.data;
+    })
+    .catch(function(response) {
+      deferred.reject(response);
+    });
+    return deferred.promise;
+  };
+
   // Posts a new registry to the database
   postRegistry = function(registry) {
     var deferred = $q.defer();
@@ -53,9 +67,7 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
     $http.post('/registry/add', registryToPost)
     .then(function(response) {
         deferred.resolve(response);
-        console.log('Back from POST with', response.data);
         UserService.userObject.currentRegistry = angular.copy(response.data);
-        console.log('factory currentRegistry',UserService.userObject.currentRegistry);
     })
     .catch(function(response) {
       deferred.reject(response);
@@ -66,19 +78,30 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
   // Updates a specific registry
   updateRegistry = function(registry) {
     var registryToUpdate = angular.copy(registry);
-    console.log('Updating registry: ', registryToUpdate);
     $http.put('/registry/update', registryToUpdate).then(function(response) {
-      console.log('success:',response);
+      // console.log('success:',response);
+      UtilitiesService.showAlert('Registry updated successfully');
     });
   };
+
+  // claims registry (adds url to user)
+  claimRegistry = function(registry) {
+    var registryToClaim = angular.copy(registry);
+    console.log('Claiming registry: ', registryToClaim);
+    $http.put('/registry/claim', registryToClaim).then(function(response) {
+      console.log('success:',response);
+    });
+  }
 
   return {
     registriesObject : registriesObject,
     getRegistries : getRegistries,
     getRegistry : getRegistry,
     getUserRegistries : getUserRegistries,
+    getRegistriesToClaim : getRegistriesToClaim,
     postRegistry : postRegistry,
-    updateRegistry : updateRegistry
+    updateRegistry : updateRegistry,
+    claimRegistry : claimRegistry
   };
 
 }]);

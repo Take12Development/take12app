@@ -11,24 +11,25 @@
             instructions. Please look for this email and complete the account
             creation process <b>ASAP</b>. You cannot receive your gifts until
             this has been completed.</span>
-      <br>
+      <br><br>
       <span ng-if="self==false">Initiate her Stripe Account so she can receive her
             gifts. By clicking the button below an email will be sent to your loved
             one with further instructions. Please let your loved one know that
             she should look for this email and complete the account creation process
             <b>ASAP</b>. You cannot receive your gifts until this has been
             completed.</span>
-      <br>
+      <br><br>
       <span>Stripe is a secure third party vendor that handles all of the gift
             transactions. Stripe collects payments from the <i>Gifters</i> and
             securely transfers the money to the <i>Mother's</i> bank account.</span>
       <br><br>
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
-    <div class="createRegistryContainer" layout="column">
-      <md-button aria-label ="Initiate Stripe" ng-click = "initiateStripe()">
+    <div class="createRegistryContainer" layout="column" layout-align="center center">
+      <img ng-src="views/assets/blue-on-light@2x.png"  alt="Connect with Stripe" aria-label ="Initiate Stripe" ng-click="initiateStripe()">
+      <!-- <md-button aria-label ="Initiate Stripe" ng-click = "initiateStripe()">
         <img src="views/assets/blue-on-light@2x.png" alt="Connect with Stripe">
-      </md-button>
+      </md-button> -->
     </div>
   </div>
 </div>
