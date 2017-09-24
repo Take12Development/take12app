@@ -25,7 +25,7 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
         UtilitiesService.redirect("/home");
       }
     });
-  };
+  }
 
   // Logs out the user
   function logout() {
@@ -33,7 +33,7 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
       console.log('logged out');
       UtilitiesService.redirect("/home");
     });
-  };
+  }
 
   // Checks Facebook login status
   function checkLoginState() {
@@ -58,7 +58,7 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
         fblogin();
       }
      }, true);
-  };
+  }
 
 
   return {

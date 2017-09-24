@@ -17,7 +17,8 @@
                    Connect with Facebook
         </md-button>
         <br>
-        <span>or</span>
+        <span class="textFormat">or</span>
+        <p class="textFormat">Enter Email Address</p>
       </md-input-container>
 
       <form name="loginView" ng-submit="login()">
@@ -29,8 +30,8 @@
         <md-input-container layout="column" class = "loginContent">
           <div>
             <label for="email">Email:</label>
-            <input type="email" ng-model="user.email" required/>
-            <div ng-messages="loginView.user.email.$error">
+            <input type="email" ng-model="user.email" required name ="email"/>
+            <div ng-messages="loginView.email.$error">
               <div ng-message="required">An email is required!</div>
             </div>
           </div>
