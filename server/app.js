@@ -15,7 +15,8 @@ var user = require('./routes/user');
 var register = require('./routes/register');
 var registry = require('./routes/registry');
 var fblogin = require('./routes/fblogin');
-var sendgrid = require('./routes/sendgrid');
+var email = require('./routes/email');
+var stripe = require('./routes/stripe');
 
 var mongoDB = require('./modules/db');
 
@@ -46,7 +47,8 @@ app.use('/user', user);
 app.use('/registry', registry);
 app.use('/uploads', uploads);
 app.use('/fblogin', fblogin);
-app.use('/sendgrid', sendgrid);
+app.use('/email', email);
+app.use('/stripe', stripe);
 
 // Login error response
 app.get('/error', function(req, res) {

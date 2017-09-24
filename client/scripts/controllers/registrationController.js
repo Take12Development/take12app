@@ -1,8 +1,9 @@
 take12App.controller('RegistrationController', ['$scope', '$http',
                       '$window', '$timeout', 'Upload', 'UserService',
-                      'UtilitiesService', 'RegistryDataService',
+                      'UtilitiesService', 'RegistryDataService', 'MailService', 'StripeService',
                     function($scope, $http, $window, $timeout, Upload,
-                    UserService, UtilitiesService, RegistryDataService) {
+                    UserService, UtilitiesService, RegistryDataService, MailService,
+                    StripeService) {
 
   // variable used to display labels for self or loved one's registry
   $scope.self = true;
@@ -30,8 +31,11 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     organizerEmail: '',
     city: '',
     state: '',
-    paidDays: 0
-  }
+    paidWeeks: 0,
+    goalAmtEntryOpt: 1,
+    netIncome: 0,
+    paidWeeksPercentage: 0
+  };
 
   // list of states for state selection
   $scope.states = UtilitiesService.states;
@@ -40,7 +44,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // variables used for navigation among registration views. Possible values:
   // registerWho = 0, registerMainInfo = 1, registerPhoto = 2,
-  // registerStory = 3, registerPrivacy 4
+  // registerStory = 3, registerPrivacy = 4, , registerStripe = 5
   $scope.visibleStep = 0;
 
   // validation's message
@@ -81,7 +85,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
       var validPassword = false;
     }
     return validPassword;
-  };
+  }
 
   // registers a new user
   $scope.registerUser = function() {
@@ -97,7 +101,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
           },
           function(response) {
             console.log('error');
-            $scope.message = "Please try again."
+            $scope.message = "Please try again.";
           });
       } else {
         $scope.message = "Password doesn't match password confirmation.";
@@ -121,10 +125,10 @@ take12App.controller('RegistrationController', ['$scope', '$http',
               // New user: Presents registration views
               UtilitiesService.redirect('/registration');
             }
-          };
+          }
           function handleFailure(response) {
             console.log('facebook logged Failure Logging In', response);
-          };
+          }
       });
     } else {
       console.log('User cancelled login or did not fully authorize.');
@@ -168,6 +172,11 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // Calls factory function that saves registry to the Database
   $scope.saveAndComplete = function() {
+    // calculate goalAmount for users who selected option 1 in goalAmount entry
+    if($scope.registry.goalAmtEntryOpt == '1') {
+      calculateGoalAmt();
+    }
+
     // For facebook users we attach fb id to insert email in user account
     console.log('UserService.userObject.facebookId: ',UserService.userObject.facebookId);
     if (UserService.userObject.facebookId) {
@@ -175,8 +184,12 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     }
     console.log('SENDING TO postRegistry', $scope.registry);
     RegistryDataService.postRegistry($scope.registry).then(function() {
+      // send confirmation email
+      // MailService.sendMail();
       // go to registry dashboard
-      UtilitiesService.redirect('/dashboard');
+      // UtilitiesService.redirect('/dashboard');
+      //Go to final step (Initiate Stripe)
+      $scope.goNext(4);
     }).catch(function(response){
         console.log(response.status);
     });
@@ -193,5 +206,27 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     console.log('Registry:', $scope.registry);
     $scope.visibleStep = parseInt(step) - 1;
   };
+
+  function calculateGoalAmt() {
+    // 12 week income considering 6 pay periods in 12 weeks
+    var twelveWeekIncome = $scope.registry.netIncome * 6;
+    // weekly income
+    var weeklyIncome = twelveWeekIncome / 12;
+
+    // Calculate short term disability pay
+    var shortTermDisPay = ($scope.registry.paidWeeks * weeklyIncome) * $scope.registry.paidWeeksPercentage / 100;
+
+    // Calculate goal amount
+    $scope.registry.goalAmount = Math.round(twelveWeekIncome - shortTermDisPay);
+  }
+
+  //initiates new deferred stripe account
+ $scope.initiateStripe = function() {
+   console.log('Connect to Stripe has been clicked. Registry: ', $scope.registry);
+   StripeService.createAccount($scope.registry);
+   //go to registry dashboard
+   UtilitiesService.redirect('/dashboard');
+ };
+
 
 }]);
