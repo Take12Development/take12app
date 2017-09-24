@@ -1,4 +1,4 @@
-take12App.factory('RegistryDataService', ['$http','$q', 'UserService', 'UtilitiesService'
+take12App.factory('RegistryDataService', ['$http','$q', 'UserService', 'UtilitiesService',
                   function($http, $q, UserService, UtilitiesService) {
 
   // Stores all registries in the DB
@@ -10,7 +10,7 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService', 'Utilitie
   };
 
   // Gets all registries in the database
-  getRegistries = function(){
+  getRegistries = function() {
     $http.get('/registry/all').then(function(response) {
       registriesObject.allRegistries = response.data;
     });

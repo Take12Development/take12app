@@ -29,11 +29,20 @@ if(process.env.BASE_URL != undefined) {
 }
 
 // Send email functions:
-function sendEmailNewAcct(emailInfo) {
-  var textEmailMessage = 'A new registry has been created for you, ' +
-                         'please create an account using ' +
-                         'this email address to claim your account. ' +
-                         baseURL + '#/register';
+function sendEmail(emailInfo) {
+
+  if (emailInfo.user == 'new') {
+    var textEmailMessage = 'A new registry has been created for you, ' +
+                           'please create an account using ' +
+                           'this email address to claim your account. ' +
+                           baseURL + '/#/register';
+  } else {
+    var textEmailMessage = 'A new registry has been created for you, ' +
+                           'please login to your account ' +
+                           'to claim your registry. ' +
+                           baseURL + '/#/home';
+  }
+
   // Mail out message with sendgrid.
   var msg = {
     to: emailInfo.email,
@@ -48,7 +57,7 @@ function sendEmailNewAcct(emailInfo) {
       // res.send('Error sending email');
     } else {
       // message sent
-      console.log('Email New Account sent successfully.');
+      console.log('Email New Registry sent successfully.');
     }
   });
 }
@@ -203,8 +212,10 @@ router.post('/add', function(req,res) {
                     console.log("Mongo error:", err);
                   } else {
                     // call function that sends email to user
-                    var emailInfo = {name: req.body.firstName, email: email}
-                    sendEmailNewAcct(emailInfo);
+                    var emailInfo = {name: req.body.firstName,
+                                    email: email,
+                                    user: 'new'}
+                    sendEmail(emailInfo);
                   }
                 }
               );
@@ -220,7 +231,15 @@ router.post('/add', function(req,res) {
             {$push: {registries: createdRegistryURL}},
             {safe: true},
             function(err, model) {
+              if (err) {
                 console.log(err);
+              } else {
+                // call function that sends email to user
+                var emailInfo = {name: req.body.firstName,
+                                email: email,
+                                user: 'existing'}
+                sendEmail(emailInfo);
+              }
             }
         );
       }

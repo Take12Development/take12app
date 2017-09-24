@@ -30,7 +30,7 @@ take12App.controller('ClaimRegistriesController', ['$scope', 'UserService', 'Uti
 
   $scope.claim = function(registry) {
     RegistryDataService.claimRegistry(registry);
-
+    UtilitiesService.redirect('/main');
   };
 
 
