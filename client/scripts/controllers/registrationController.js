@@ -182,12 +182,12 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     if (UserService.userObject.facebookId) {
       $scope.registry.facebookId = UserService.userObject.facebookId;
     }
-    console.log('SENDING TO postRegistry', $scope.registry);
-    RegistryDataService.postRegistry($scope.registry).then(function() {
+      console.log('SENDING TO postRegistry', $scope.registry);
+      RegistryDataService.postRegistry($scope.registry).then(function() {
+
       // send confirmation email
       // MailService.sendMail();
-      // go to registry dashboard
-      // UtilitiesService.redirect('/dashboard');
+
       //Go to final step (Initiate Stripe)
       $scope.goNext(4);
     }).catch(function(response){

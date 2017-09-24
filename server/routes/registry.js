@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Registry = require('../models/registryModel');
+var UnclaimedRegistry = require('../models/unclaimedRegistryModel');
 var Users = require('../models/user');
 var Promise = require('promise');
 
@@ -27,6 +28,19 @@ router.get('/:registryURL', function(req,res){
     res.send(foundRegistry);
   });
 });
+
+// gets array of unclaimed registries for a specific user
+router.get('/unclaimed/:email', function(req,res){
+  console.log("/registry/unclaimed/:email get route hit");
+  var searchEmail = req.params.email;
+  UnclaimedRegistry.findOne({email: searchEmail},function(err, foundUnclaimedRegistry) {
+    if(err) {
+      console.log('Mongo error: ',err);
+    }
+    res.send(foundUnclaimedRegistry);
+  });
+});
+
 
 // gets all registries that are part of array received as a parameter
 router.post('/getuserregistries', function(req,res) {
@@ -124,7 +138,6 @@ router.post('/add', function(req,res) {
     registry.privacy = req.body.privacy;
     registry.email = email;
     registry.organizerEmail = organizerEmail;
-    registry.stripeConnected = false;
     registry.save(function(err, savedRegistry){
     if(err){
       console.log("Mongo error:", err);
@@ -135,12 +148,25 @@ router.post('/add', function(req,res) {
           {email: email},
           {$push: {registries: createdRegistryURL}},
           {safe: true},
-          function(err, model) {
+          function(err, foundUser) {
             if (err) {
               console.log('Error updating user Information with registries data',err);
             }
-            else {
-              console.log('User account updated successfully', model);
+            else if (!foundUser) {
+              // user doesn't have an account (registry created for a loved one)
+              // saves registry url into UnclaimedRegistry table
+              UnclaimedRegistry.findOneAndUpdate(
+                {email: email},
+                {$push: {registries: createdRegistryURL}},
+                {upsert:true},
+                function(err, savedUnclaimedRegistry) {
+                  if (err) {
+                    console.log("Mongo error:", err);
+                  }
+                }
+              );
+            } else {
+              console.log('User account updated successfully', foundUser);
             }
           }
       );
