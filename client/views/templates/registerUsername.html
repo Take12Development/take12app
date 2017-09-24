@@ -21,41 +21,56 @@
       </md-input-container>
       <form form name="registerView" ng-submit="registerUser()">
         <p class="textFormat">Enter Email Address
-          <span class = "form-check"><i class="material-icons">verified_user</i>
-          </span>
+          <!-- <span class = "form-check">
+            <i class="material-icons" ng-if ="">verified_user</i>
+          </span> -->
         </p>
         <md-input-container layout="column">
           <div>
             <label for="email">Email:</label>
-            <input type="text" ng-model="newUser.email" required/>
-            <div ng-messages="registerView.newUser.email.$error">
-              <div ng-message="required">An email address is required!</div>
+            <input type="email" ng-model="newUser.email" required
+                    name = "email" ng-pattern = "/^.+@.+\..+$/"/>
+            <div ng-messages="registerView.email.$error">
+              <div ng-message="required">A valid email address is required!</div>
+              <div ng-message="pattern">A valid email address is required!</div>
             </div>
           </div>
         </md-input-container>
         <p class="textFormat">Create Password
-          <span class = "form-check"><i class="material-icons">verified_user</i>
-          </span>
+          <!-- <span class = "form-check"><i class="material-icons">verified_user</i>
+          </span> -->
         </p>
         <md-input-container layout="column">
           <div>
             <label for="password">Create password:</label>
             <input type="password" ng-model="newUser.password" required
-                    md-maxlength ="20" minlength="4"/>
-            <div ng-messages="registerView.newUser.password.$error"
-                  ng-show = "registerView.newUser.password.$dirty">
+                    md-maxlength ="20" minlength="4" name ="password"
+                    ng-pattern = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[?!*&@#$%]).{8,20}$/"/>
+            <div class="hint">Your password must be between 8 and 20 characters.
+              It must also contain at least one uppercase letter, one lowercase letter
+              and one non-alpha character (number or symbol).
+
+            </div>
+            <div ng-messages="registerView.password.$error">
               <div ng-message="required">A password is required!</div>
               <div ng-message="md-maxlength">Password must be between 8 and 20 characters!</div>
               <div ng-message="minlength">Password must be between 8 and 20 characters!</div>
+              <div ng-message="pattern">Password must also contain at least one uppercase letter, one lowercase letter
+              and one non-alpha character (number or symbol).</div>
             </div>
           </div>
         </md-input-container>
         <md-input-container layout="column">
           <div>
             <label for="password">Confirm password:</label>
-            <input type="password" ng-model="newUser.confirmPassword" required/>
-            <div ng-messages="registerView.newUser.confirmPassword.$error">
+            <input type="password" ng-model="newUser.confirmPassword" required
+                  md-maxlength ="20" minlength="4" name ="confirmPassword"
+                  ng-pattern = "{{newUser.password}}"/>
+            <div ng-messages="registerView.confirmPassword.$error">
               <div ng-message="required">A password confirmation is required!</div>
+              <div ng-message="md-maxlength">Password must be between 8 and 20 characters!</div>
+              <div ng-message="minlength">Password must be between 8 and 20 characters!</div>
+              <div ng-message="pattern">Password must be the same as above!</div>
             </div>
           </div>
         </md-input-container>
