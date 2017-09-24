@@ -5,6 +5,7 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
   var registriesObject = {
     allRegistries: [],
     userRegistries: [],
+    registriesToClaim: [],
     currentViewedRegistry: {}
   };
 
@@ -45,6 +46,21 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
     return deferred.promise;
   };
 
+  // gets all registries that are part of array received as a parameter for
+  // registries to claim
+  getRegistriesToClaim = function(arrayOfRegistries) {
+    var deferred = $q.defer();
+    $http.post('/registry/getuserregistries', {registries: arrayOfRegistries})
+    .then(function(response) {
+        deferred.resolve(response);
+        registriesObject.registriesToClaim = response.data;
+    })
+    .catch(function(response) {
+      deferred.reject(response);
+    });
+    return deferred.promise;
+  };
+
   // Posts a new registry to the database
   postRegistry = function(registry) {
     var deferred = $q.defer();
@@ -72,13 +88,24 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService',
     });
   };
 
+  // claims registry (adds url to user)
+  claimRegistry = function(registry) {
+    var registryToClaim = angular.copy(registry);
+    console.log('Claiming registry: ', registryToClaim);
+    $http.put('/registry/claim', registryToClaim).then(function(response) {
+      console.log('success:',response);
+    });
+  }
+
   return {
     registriesObject : registriesObject,
     getRegistries : getRegistries,
     getRegistry : getRegistry,
     getUserRegistries : getUserRegistries,
+    getRegistriesToClaim : getRegistriesToClaim,
     postRegistry : postRegistry,
-    updateRegistry : updateRegistry
+    updateRegistry : updateRegistry,
+    claimRegistry : claimRegistry
   };
 
 }]);

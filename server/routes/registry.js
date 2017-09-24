@@ -222,4 +222,36 @@ router.put("/update", function(req,res){
   });
 });
 
+// claims register
+router.put("/claim", function(req,res){
+  var email = req.body.email;
+  var registryUrl = req.body.registryURL;
+
+  // Updates users' table
+  Users.findOneAndUpdate(
+      {email: email},
+      {$push: {registries: registryUrl}},
+      {safe: true},
+      function(err, updatedUser) {
+        if (err) {
+          console.log(err);
+        } else {
+          // delete from UnclaimedRegistry
+          UnclaimedRegistry.findOneAndUpdate(
+            {email: email},
+            {$pull: {registries: registryUrl}},
+            function(err, updatedUnclaimedRegistry) {
+              if (err) {
+                console.log("Mongo error:", err);
+              } else {
+                res.send(updatedUser);
+              }
+            }
+          );
+        }
+      }
+  );
+});
+
+
 module.exports = router;

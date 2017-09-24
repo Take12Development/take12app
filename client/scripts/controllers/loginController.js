@@ -26,10 +26,22 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
           // checks if there is a unclaimed registry for this user
           console.log('CHECKING FOR UNCLAIMED REGISTRIES');
           $http.get('/registry/unclaimed/' + UserService.userObject.email).then(function(res) {
-            if(res.data.email) {
-              // a registry has been created for this user
-              console.log('A REGISTRY HAS BEEN CREATED FOR THIS USER');
-              console.log(res);
+            if(res.data) {
+              if(res.data.registries.length > 0) {
+                // a registry has been created for this user
+                console.log('A REGISTRY HAS BEEN CREATED FOR THIS USER');
+                console.log(res);
+                UserService.userObject.registriesToClaim = res.data.registries;
+                UtilitiesService.redirect('/claimregistries');
+              } else {
+                if(UserService.userObject.registries.length != 0) {
+                  // Existing user: Presents registry dashboard
+                  UtilitiesService.redirect('/main');
+                } else {
+                  // New user: Presents registration views
+                  UtilitiesService.redirect('/registration');
+                }
+              }
             } else {
               if(UserService.userObject.registries.length != 0) {
                 // Existing user: Presents registry dashboard
