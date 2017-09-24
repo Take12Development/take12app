@@ -27,7 +27,6 @@ function GetFormattedDate() {
 }
 
 router.post('/testmail', function(req, res){
-
   const msg = {
     to: 'claudia.calderas@gmail.com',
     from: 'Take12 <admin@mytake12.com>',
@@ -44,9 +43,6 @@ router.post('/testmail', function(req, res){
       res.send(result);
     }
   });
-
 });
-
-
 
 module.exports = router;

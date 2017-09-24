@@ -9,7 +9,13 @@ var UserSchema = new Schema({
     name: {type: String, required: false},
     email: {type: String, unique: true, sparse: true},
     facebookId : {type: String, unique: true, sparse: true},
-    registries : []
+    stripe_user_id: String,
+    stripe_keys: {},
+    stripeConnected: Boolean,
+    stripeAccountActivated: Boolean,
+    registries : [],
+    code: String, // for password reset
+    expiration: { type: Date, default: Date.now }
 });
 
 // Called before adding a new user to the DB. Encrypts password.

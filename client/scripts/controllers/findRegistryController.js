@@ -1,6 +1,6 @@
 take12App.controller('FindRegistryController', ['$http',
-                      'RegistryDataService',
-  function($http, RegistryDataService) {
+                      'RegistryDataService', 'UtilitiesService',
+  function($http, RegistryDataService, UtilitiesService) {
 
   //controller reference
   var vm = this;
@@ -10,5 +10,7 @@ take12App.controller('FindRegistryController', ['$http',
   vm.registriesObject = RegistryDataService.registriesObject;
   //Limit for the string length of the story
   vm.limit = 200;
+  //Provides proper capitilization for names
+  vm.titleCase = UtilitiesService.titleCase;
 
   }]);

@@ -3,7 +3,7 @@
   <div layout="column" flex-gt-md="33" flex-xs="10" flex-sm="10" flex-md="20"></div>
   <div class="loginBlock" layout="column" flex-gt-md="33" flex-xs="80" flex-sm="80" flex-md="60">
     <div layout="column" flex-align="center center">
-      <h1 class = "loginHeader">Log In to Take12</h1>
+      <h1 class = "loginHeader">Welcome Back to Take12</h1>
     </div>
     <div class="loginContainer" layout="column" flex-align="center center">
       <!-- ***Use this Facebook button once FB is integrated -->
@@ -17,7 +17,8 @@
                    Connect with Facebook
         </md-button>
         <br>
-        <span>or</span>
+        <span class="textFormat">or</span>
+        <p class="textFormat">Enter Email Address</p>
       </md-input-container>
 
       <form name="loginView" ng-submit="login()">
@@ -29,8 +30,8 @@
         <md-input-container layout="column" class = "loginContent">
           <div>
             <label for="email">Email:</label>
-            <input type="text" ng-model="user.email" required/>
-            <div ng-messages="loginView.user.email.$error">
+            <input type="email" ng-model="user.email" required name ="email"/>
+            <div ng-messages="loginView.email.$error">
               <div ng-message="required">An email is required!</div>
             </div>
           </div>
@@ -46,7 +47,7 @@
         </md-input-container>
         <md-input-container layout="row" layout-align="center center" class = "loginContent">
           <div>
-            <p>Forgot Password?</p>
+            <a href="#forgotpassword">Forgot Password?</a>
           </div>
         </md-input-container>
         <md-input-container layout="column" layout-align="center center">

@@ -1,5 +1,5 @@
-var take12App = angular.module('take12App', ['ngRoute','ngMaterial','ngFileUpload',
-                'textAngular','rzModule','720kb.socialshare']);
+var take12App = angular.module('take12App', ['ngRoute', 'ngMaterial', 'ngFileUpload',
+                'ngMessages', 'textAngular', 'rzModule', '720kb.socialshare']);
 
 // Angular Material Theme Configuration
 take12App.config(['$mdThemingProvider', function($mdThemingProvider) {
@@ -51,6 +51,16 @@ take12App.config(['$routeProvider', '$locationProvider',
       templateUrl: '/views/templates/home.html',
       controller: 'LoginController',
     })
+    // Forgot password view
+    .when('/forgotpassword', {
+      templateUrl: '/views/templates/forgotPassword.html',
+      controller: 'LoginController'
+    })
+    // change password view (accesible through email link)
+    .when('/confirmreset/:code', {
+      templateUrl: '/views/templates/confirm.html',
+      controller: 'LoginController'
+    })
     // Register new user View
     .when('/register', {
       templateUrl: '/views/templates/registerUsername.html',
@@ -95,6 +105,21 @@ take12App.config(['$routeProvider', '$locationProvider',
     .when('/registry/:registryUrl', {
       templateUrl: '/views/templates/registry.html',
       controller: 'RegistryController',
+    })
+    // checkout
+    .when('/checkout', {
+      templateUrl: '/views/templates/checkout.html',
+      controller: 'CheckoutController',
+    })
+    // Thank you page
+    .when('/thankyou', {
+      templateUrl: '/views/templates/thankYou.html',
+      controller: 'ThankYouController'
+    })
+    // Transaction Error View
+    .when('/transactionError/:errorMessage', {
+      templateUrl: '/views/templates/transactionError.html',
+      controller: 'TransactionErrorController',
     })
     // Find registry
     .when('/findRegistry', {
