@@ -3,9 +3,6 @@ take12App.controller('TransactionErrorController', ['$scope', '$routeParams', 'U
 
   // uses goHome function from UtilitiesService
   $scope.goHome = UtilitiesService.goHome;
-
-  console.log('params is:', $routeParams.errorMessage);
+  // error message received from Stripe transaction in server
   $scope.errorMessage = $routeParams.errorMessage;
-
-
 }]);

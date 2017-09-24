@@ -91,6 +91,16 @@ take12App.config(['$routeProvider', '$locationProvider',
         }]
       }
     })
+    // Claim registries view
+    .when('/claimregistries', {
+      templateUrl: '/views/templates/claimRegistries.html',
+      controller: 'ClaimRegistriesController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
     // Registry dashboard
     .when('/dashboard', {
       templateUrl: '/views/templates/dashboard.html',

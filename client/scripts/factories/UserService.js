@@ -6,21 +6,16 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
 
   // Gets logged user
   function getuser() {
-    console.log('IN GETUSER');
     $http.get('/user').then(function(response) {
-      console.log('GETUSER', response);
       if(response.data.email) {
         // user has a curret session on the server
         userObject.email = response.data.email;
         userObject.registries = response.data.registries;
-        console.log('GETUSER: User Data: ', userObject);
       } else if (response.data.facebookId)  {
         userObject.facebookId = response.data.facebookId;
         userObject.registries = response.data.registries;
         console.log('FB GETUSER: User Data: ', userObject);
       } else {
-        console.log('NO SESSION: ', response);
-
         // user has no session, bounce them back to the login page
         UtilitiesService.redirect("/home");
       }
@@ -50,16 +45,13 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
       } else if (response.status === 'not_authorized') {
         // the user is logged in to Facebook,
         // but has not authenticated your app
-        console.log('Not logged in but i can handle that 1', response);
         fblogin();
       } else {
         // the user isn't logged in to Facebook.
-        console.log('Not logged in but i can handle that 2', response);
         fblogin();
       }
      }, true);
   }
-
 
   return {
     userObject : userObject,

@@ -22,16 +22,37 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
         if(response.data.email) {
           UserService.userObject.email = response.data.email;
           UserService.userObject.registries = response.data.registries;
-          console.log('success: ', response.data);
-          if(response.data.registries.length != 0) {
-            // Existing user: Presents registry dashboard
-            UtilitiesService.redirect('/main');
-          } else {
-            // New user: Presents registration views
-            UtilitiesService.redirect('/registration');
-          }
+          console.log('*** success: ', response.data);
+          // checks if there is a unclaimed registry for this user
+          console.log('CHECKING FOR UNCLAIMED REGISTRIES');
+          $http.get('/registry/unclaimed/' + UserService.userObject.email).then(function(res) {
+            if(res.data) {
+              if(res.data.registries.length > 0) {
+                // a registry has been created for this user
+                console.log('A REGISTRY HAS BEEN CREATED FOR THIS USER');
+                console.log(res);
+                UserService.userObject.registriesToClaim = res.data.registries;
+                UtilitiesService.redirect('/claimregistries');
+              } else {
+                if(UserService.userObject.registries.length != 0) {
+                  // Existing user: Presents registry dashboard
+                  UtilitiesService.redirect('/main');
+                } else {
+                  // New user: Presents registration views
+                  UtilitiesService.redirect('/registration');
+                }
+              }
+            } else {
+              if(UserService.userObject.registries.length != 0) {
+                // Existing user: Presents registry dashboard
+                UtilitiesService.redirect('/main');
+              } else {
+                // New user: Presents registration views
+                UtilitiesService.redirect('/registration');
+              }
+            }
+          });
         } else {
-          console.log('failure: ', response);
           $scope.message = "Invalid combination of email and password.";
         }
       });
@@ -42,14 +63,10 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
   $scope.fblogin = function() {
     FB.login(function(response) {
       if (response.authResponse) {
-        console.log('LC: Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
-          console.log(response);
-          console.log('LC: Good to see you, ' + response.name + '.');
           var token = FB.getAuthResponse().accessToken;
           $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
           function handleSuccess(response) {
-            console.log('LC CONTROLLER: created or found FB user', response.data);
             if(response.data.email) {
               UserService.userObject.email = response.data.email;
               UserService.userObject.registries = response.data.registries;
