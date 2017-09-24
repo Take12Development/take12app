@@ -220,6 +220,9 @@ router.post('/add', function(req,res) {
                     console.log("Mongo error:", err);
                   } else {
                     UnclaimedRegistryScenario = true;
+                    console.log('1 EMAIL FLAGS:');
+                    console.log('1 lovedOneScenario', lovedOneScenario);
+                    console.log('1 UnclaimedRegistryScenario', UnclaimedRegistryScenario);
                   }
                 }
               );
@@ -239,14 +242,17 @@ router.post('/add', function(req,res) {
               console.log(err);
             } else {
               lovedOneScenario = true;
+              console.log('2 EMAIL FLAGS:');
+              console.log('2 lovedOneScenario', lovedOneScenario);
+              console.log('2 UnclaimedRegistryScenario', UnclaimedRegistryScenario);
             }
           }
         );
       }
       // call function that sends email to user
-      console.log('EMAIL FLAGS:');
-      console.log('lovedOneScenario', lovedOneScenario);
-      console.log('UnclaimedRegistryScenario', UnclaimedRegistryScenario);
+      console.log('3 EMAIL FLAGS:');
+      console.log('3 lovedOneScenario', lovedOneScenario);
+      console.log('3 UnclaimedRegistryScenario', UnclaimedRegistryScenario);
       if (lovedOneScenario) {
         if (UnclaimedRegistryScenario) {
           // registry for a loved one with no account on Take12
