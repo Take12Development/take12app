@@ -44,6 +44,7 @@
     "path": "0.12.7",
     "promise": "8.0.1",
     "stripe": "5.0.0",
-    "textangular": "1.5.16"
+    "textangular": "1.5.16",
+    "wrenchmode-express": "0.0.3"
   }
 }

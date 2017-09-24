@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var wrenchmodeExpress = require('wrenchmode-express');
 var bodyParser = require('body-parser');
 // var logger = require('morgan');
 var mongoose = require('mongoose');
@@ -22,6 +23,7 @@ var mongoDB = require('./modules/db');
 
 // Body parser middleware
 // app.use(logger('dev'));
+app.use(wrenchmodeExpress());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
