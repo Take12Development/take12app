@@ -4,8 +4,8 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
                       RegistryDataService, $mdDialog) {
 
   $scope.validRegistry = true;
+  var homeUrl = 'https://' + location.host + '/#/registry/';
 
-  console.log('currentRegistry in dashboard:', UserService.userObject.currentRegistry);
   $scope.dashboardRegistry = UserService.userObject.currentRegistry;
 
   // list of states for state selection
@@ -13,7 +13,7 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
 
   // validates that there is information to display
   if ($scope.dashboardRegistry) {
-    $scope.fullURL = REGISTRY_URL + $scope.dashboardRegistry.registryURL;
+    $scope.fullURL = homeUrl + $scope.dashboardRegistry.registryURL;
     $scope.dashboardRegistry.firstName = UtilitiesService.titleCase($scope.dashboardRegistry.firstName);
     $scope.dashboardRegistry.lastName = UtilitiesService.titleCase($scope.dashboardRegistry.lastName);
   } else {
@@ -36,11 +36,9 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
       fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
     })
     .then(function(response) {
-      console.log('.then',response);
       if(response != 'cancel') {
         if(response != '') {
           $scope.dashboardRegistry.imageURL = response;
-          console.log('OK $scope.dashboardRegistry.imageURL',$scope.dashboardRegistry.imageURL);
         }
       }
     }, function() {
@@ -56,7 +54,6 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
 
   // Updates registry in the DB
   $scope.saveChanges = function() {
-    console.log('Dashboard Registry:', $scope.dashboardRegistry);
     RegistryDataService.updateRegistry($scope.dashboardRegistry);
 
     // go to main page

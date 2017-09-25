@@ -1,0 +1,35 @@
+<!-- MAIN VIEW -->
+<div class="contentBlock" layout="row">
+  <div layout="column" flex-gt-md="20" flex-xs="10" flex-sm="10" flex-md="20"></div>
+  <div class="mainViewContainer" layout="column" flex-gt-md="60" flex-xs="80" flex-sm="80" flex-md="60">
+    <div class="textFormat">
+      <h1 class = "badScriptHeading">Claim your registry</h1>
+      <p>One or more registries have been created for you:</p>
+      <br>
+    </div>
+    <div layout="column">
+      <md-content flex>
+          <md-list>
+            <md-list-item class="md-1-line" ng-repeat="registry in registriesToClaim" layout-align="center center">
+              <div layout="row" flex="100">
+                <div layout="row" flex="80">
+                  <img src="views/assets/Take12Logo100px.png" alt="Take12 Logo"
+                      ng-if = "registry.imageURL === ''" class="md-avatar">
+                  <img ng-src="{{registry.imageURL}}" alt="profile picture"
+                        ng-if = "registry.imageURL !== ''" class="md-avatar">
+                  <div class="md-list-item-text">
+                    <span class="md-headline cardTitle" layout-align="center center" ng-click="goToRegistry(registry)">{{registry.firstName}} {{registry.lastName}}</span>
+                  </div>
+                </div>
+                <div flex="20" layout-align="end end">
+                  <md-button class="md-raised submitButton" aria-label="Claim" ng-click="claim(registry)">Claim</md-button>
+                </div>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+     </div>
+  </div>
+  <div layout="column" flex="10"></div>
+
+</div>

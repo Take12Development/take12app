@@ -37,12 +37,10 @@ var upload = multer({ storage: storage });
 
 // Uploads file into Cloudinary
 router.post('/', upload.single('file'), function(req, res){
-  console.log('looking for file', req.file);
   cloudinary.uploader.upload(req.file.path, function(error, result) {
     if (error) {
       res.send(error);
     } else {
-      console.log('cloudinary inside function', result.secure_url);
       var imagePath = result.secure_url;
       res.send(imagePath);
     }

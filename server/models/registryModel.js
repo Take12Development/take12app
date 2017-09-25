@@ -22,13 +22,8 @@ var RegistrySchema = mongoose.Schema({
   goalAmtEntryOpt: Number,
   netIncome: Number,
   paidWeeksPercentage: Number,
-  stripeConnected: Boolean,
   comments: [],
   facebookId: String,
-  stripeAccountActivated: Boolean,
-  stripe_user_id: String,
-  stripe_refresh_token: String,
-  stripe_access_token: String
 });
 
 module.exports = mongoose.model('registry', RegistrySchema, 'registries');
