@@ -34,7 +34,8 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     paidWeeks: 0,
     goalAmtEntryOpt: 1,
     netIncome: 0,
-    paidWeeksPercentage: 0
+    paidWeeksPercentage: 0,
+    forWhom: ''
   };
 
   // list of states for state selection
@@ -60,17 +61,19 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     if (who == 'self') {
       $scope.self = true;
       $scope.registry.email = UserService.userObject.email;
+      $scope.registry.forWhom = 'self';
     } else {
       $scope.self = false;
       $scope.registry.organizerEmail = UserService.userObject.email;
+      $scope.registry.forWhom = 'lovedone';
     }
     $scope.visibleStep = 1;
   };
 
   // opens how to plan information on separate window
   $scope.goToHowToPlan = function() {
-    // THIS HAS TO BE REPLACED WITH CORRECT URL
-    $window.open(HOW_TO_PLAN_URL, '_blank');
+    var howToPlanUrl = 'https://' + location.host + '/#/howToPlan';
+    $window.open(howToPlanUrl, '_blank');
   };
 
   // compares pasword and password confirmation entered by the user
@@ -165,22 +168,27 @@ take12App.controller('RegistrationController', ['$scope', '$http',
     if($scope.registry.goalAmtEntryOpt == '1') {
       calculateGoalAmt();
     }
-
     // For facebook users we attach fb id to insert email in user account
     console.log('UserService.userObject.facebookId: ',UserService.userObject.facebookId);
     if (UserService.userObject.facebookId) {
       $scope.registry.facebookId = UserService.userObject.facebookId;
     }
-      RegistryDataService.postRegistry($scope.registry).then(function() {
-
-      // send confirmation email
-      // MailService.sendMail();
-
-      //Go to final step (Initiate Stripe)
-      $scope.goNext(4);
-    }).catch(function(response){
-        console.log(response.status);
-    });
+    // checks if it is a registry for the user or for a loved one
+    if ($scope.registry.forWhom == 'self') {
+      RegistryDataService.postSelfRegistry($scope.registry).then(function() {
+        //Go to final step (Initiate Stripe)
+        $scope.goNext(4);
+      }).catch(function(response){
+          console.log(response.status);
+      });
+    } else {
+      RegistryDataService.postLovedOneRegistry($scope.registry).then(function() {
+        //Go to final step (Initiate Stripe)
+        $scope.goNext(4);
+      }).catch(function(response){
+          console.log(response.status);
+      });
+    }
   };
 
   // moves forward - registration view
