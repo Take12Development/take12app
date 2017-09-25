@@ -1,6 +1,6 @@
-take12App.controller('FindRegistryController', ['$http',
+take12App.controller('FindRegistryController', ['$http', '$scope',
                       'RegistryDataService', 'UtilitiesService',
-  function($http, RegistryDataService, UtilitiesService) {
+  function($http, $scope, RegistryDataService, UtilitiesService) {
 
   //controller reference
   var vm = this;
@@ -12,5 +12,12 @@ take12App.controller('FindRegistryController', ['$http',
   vm.limit = 200;
   //Provides proper capitilization for names
   vm.titleCase = UtilitiesService.titleCase;
+
+  vm.redirect = UtilitiesService.redirect;
+
+  $scope.showRegistry = function(registryURL) {
+    var registryFullPath = '/registry/' + registryURL;
+    UtilitiesService.redirect(registryFullPath);
+  }
 
   }]);
