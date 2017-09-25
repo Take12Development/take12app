@@ -1,11 +1,10 @@
 <!--Find Registry View -->
-
-  <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap
+<div class="contentBlock textFormat" layout="row">
+  <div layout="column" flex-gt-md="15" flex-xs="5" flex-sm="5" flex-md="5"></div>
+  <div layout="column" flex-gt-md="70" flex-xs="90" flex-sm="90" flex-md="90">
+    <md-content layout-xs="column" layout="column" layout-wrap
               ng-init = "vm.getRegistries()">
-    <!-- Search Feature - Searches All Registries -->
-    <div class="contentBlock textFormat" layout="row">
-      <div layout="column" flex = "15"></div>
-      <div layout="column" flex = "70">
+        <!-- Search Feature - Searches All Registries -->
         <h1 class = "badScriptHeading">Find a Registry</h1>
         <p>Find your loved one by name. Regardless of the privacy setting your
           loved one has selected, you can search for their registry listing here.
@@ -55,7 +54,6 @@
             <md-divider ></md-divider>
           </md-list>
         </md-content>
-
-      </div>
-    </div>
-  </md-content>
+    </md-content>
+  </div>
+</div>
