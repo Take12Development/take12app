@@ -22,7 +22,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
         if(response.data.email) {
           UserService.userObject.email = response.data.email;
           UserService.userObject.registries = response.data.registries;
-          // checks if there is a unclaimed registry for this user
+          // checks if there is an unclaimed registry for this user
           $http.get('/registry/unclaimed/' + UserService.userObject.email).then(function(res) {
             if(res.data) {
               if(res.data.registries.length > 0) {
@@ -64,19 +64,40 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
           var token = FB.getAuthResponse().accessToken;
           $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
           function handleSuccess(response) {
+            console.log('Response.data.email',response.data.email);
             if(response.data.email) {
               UserService.userObject.email = response.data.email;
               UserService.userObject.registries = response.data.registries;
-              if(response.data.registries.length != 0) {
-                // Existing user: Presents registry dashboard
-                UtilitiesService.redirect('/main');
-              } else {
-                // New user: Presents registration views
-                UtilitiesService.redirect('/registration');
-              }
+              // checks if there is an unclaimed registry for this user
+              $http.get('/registry/unclaimed/' + UserService.userObject.email).then(function(res) {
+                if(res.data) {
+                  if(res.data.registries.length > 0) {
+                    // a registry has been created for this user
+                    console.log('A REGISTRY HAS BEEN CREATED FOR THIS USER');
+                    UserService.userObject.registriesToClaim = res.data.registries;
+                    UtilitiesService.redirect('/claimregistries');
+                  } else {
+                    if(UserService.userObject.registries.length != 0) {
+                      // Existing user: Presents registry dashboard
+                      UtilitiesService.redirect('/main');
+                    } else {
+                      // New user: Presents registration views
+                      UtilitiesService.redirect('/registration');
+                    }
+                  }
+                } else {
+                  if(UserService.userObject.registries.length != 0) {
+                    // Existing user: Presents registry dashboard
+                    UtilitiesService.redirect('/main');
+                  } else {
+                    // New user: Presents registration views
+                    UtilitiesService.redirect('/registration');
+                  }
+                }
+              });
             } else {
-              // New user: Presents registration views
-              UtilitiesService.redirect('/registration');
+              // request email address
+              UtilitiesService.redirect('/requestemail');
             }
           };
           function handleFailure(response) {

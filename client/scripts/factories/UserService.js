@@ -1,5 +1,5 @@
-take12App.factory('UserService', ['$http', 'UtilitiesService',
-                  function($http, UtilitiesService){
+take12App.factory('UserService', ['$http', '$q', 'UtilitiesService',
+                  function($http, $q, UtilitiesService){
 
   // Stores logged user information
   var userObject = {};
@@ -53,10 +53,27 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
      }, true);
   }
 
+  function updateFBUserEmail(parameterObject) {
+    var deferred = $q.defer();
+    var parameters = angular.copy(parameterObject);
+
+    $http.post('/user/updatefbuseremail', parameters)
+    .then(function(response) {
+        deferred.resolve(response);
+        UserService.userObject = angular.copy(response.data);
+        console.log('updateFBUserEmail UserService.userObject', UserService.userObject);
+    })
+    .catch(function(response) {
+      deferred.reject(response);
+    });
+    return deferred.promise;
+  }
+
   return {
     userObject : userObject,
     getuser : getuser,
     logout : logout,
-    checkLoginState : checkLoginState
+    checkLoginState : checkLoginState,
+    updateFBUserEmail : updateFBUserEmail
   };
 }]);

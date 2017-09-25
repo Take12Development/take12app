@@ -392,7 +392,7 @@ router.put("/claim", function(req,res){
             }
             if (foundUser) {
               foundUser.stripeAccountActivated = foundUnclaimed.stripeAccountActivated;
-              foundUser.stripeConnected = foundUnclaimed.stripeAccountActivated;
+              foundUser.stripeConnected = foundUnclaimed.stripeConnected;
               foundUser.stripe_keys = foundUnclaimed.stripe_keys;
               foundUser.stripe_user_id = foundUnclaimed.stripe_user_id;
               foundUser.registries.push(registryUrl);
