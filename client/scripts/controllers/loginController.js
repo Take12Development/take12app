@@ -27,7 +27,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
             if(res.data) {
               if(res.data.registries.length > 0) {
                 // a registry has been created for this user
-                console.log('A REGISTRY HAS BEEN CREATED FOR THIS USER');
+                // console.log('A REGISTRY HAS BEEN CREATED FOR THIS USER');
                 UserService.userObject.registriesToClaim = res.data.registries;
                 UtilitiesService.redirect('/claimregistries');
               } else {
@@ -64,7 +64,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
           var token = FB.getAuthResponse().accessToken;
           $http.post('fblogin/auth/facebook/token?access_token=' + token).then(handleSuccess, handleFailure);
           function handleSuccess(response) {
-            console.log('Response.data.email',response.data.email);
+            // console.log('Response.data.email',response.data.email);
             if(response.data.email) {
               UserService.userObject.email = response.data.email;
               UserService.userObject.registries = response.data.registries;
@@ -73,7 +73,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
                 if(res.data) {
                   if(res.data.registries.length > 0) {
                     // a registry has been created for this user
-                    console.log('A REGISTRY HAS BEEN CREATED FOR THIS USER');
+                    // console.log('A REGISTRY HAS BEEN CREATED FOR THIS USER');
                     UserService.userObject.registriesToClaim = res.data.registries;
                     UtilitiesService.redirect('/claimregistries');
                   } else {
@@ -115,7 +115,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
   if($scope.user.email === '') {
     UtilitiesService.showAlert('Please enter your email address.');
   } else {
-    console.log('$scope.user',$scope.user);
+    // console.log('$scope.user',$scope.user);
     $http.post('/user/forgotpassword', $scope.user).then(function(response) {
       if(response.data == 'Code sent successfully.') {
         UtilitiesService.showAlert('A link to change the password was sent by email.');

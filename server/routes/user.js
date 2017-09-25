@@ -118,8 +118,6 @@ router.put('/resetpassword', function(req, res) {
 
 // inserts user email address for facebook users
 router.post('/updatefbuseremail', function(req, res) {
-
-
   Users.findOne({'facebookId': req.body.facebookId}, function(err, foundUser){
     if(err){
       console.log('Error finding user in claim',err);
@@ -130,7 +128,6 @@ router.post('/updatefbuseremail', function(req, res) {
         if(err){
           console.log('Error updating users table with facebook email', err);
         } else {
-          console.log('UPDATEFBUSEREMAIL: Updated user',savedUser);
           res.send(savedUser);
         }
       });

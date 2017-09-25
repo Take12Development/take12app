@@ -277,7 +277,7 @@ router.post('/addlovedoneregistry', function(req,res) {
               {$push: {'registries': createdRegistryURL}},
               {safe: true},
               function(err, foundUser) {
-                console.log('FOUNDUSER IS' , JSON.stringify(foundUser));
+                // console.log('FOUNDUSER IS' , JSON.stringify(foundUser));
                 if (err) {
                   console.log('Error updating user Information with registries data',err);
                 }
@@ -368,15 +368,12 @@ router.put("/update", function(req,res){
 // claims register
 router.put("/claim", function(req,res){
   if(req.isAuthenticated()) {
-    console.log('CLAIMING ACCOUNT');
     var email = req.body.email;
     var registryUrl = req.body.registryURL;
     var stripeAccountActivated;
     var stripeConnected;
     var stripe_keys;
     var stripe_user_id;
-    console.log('EMAIL IS', email);
-    console.log('REGISTRYURL IS',registryUrl);
     // get information from UnclaimedRegistry table
     UnclaimedRegistry.findOneAndRemove(
       {'email': email},
@@ -384,7 +381,7 @@ router.put("/claim", function(req,res){
         if (err) {
           console.log('Finding user in UnclaimedRegistry error: ',err);
         } else {
-          console.log('Finding user in UnclaimedRegistry: ', JSON.stringify(foundUnclaimed));
+          // console.log('Finding user in UnclaimedRegistry: ', JSON.stringify(foundUnclaimed));
           // Copy data to user table
           Users.findOne({'email': email}, function(err, foundUser){
             if(err){
@@ -401,7 +398,6 @@ router.put("/claim", function(req,res){
                 if(err){
                   console.log('Error updating users table in claim', err);
                 } else {
-                  console.log('CLAIM: Updated user',savedUser);
                   res.send(savedUser);
                 }
               });
