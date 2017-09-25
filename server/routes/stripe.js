@@ -24,7 +24,6 @@ if(process.env.STRIPE_SECRET != undefined) {
 
 //User initiates stripe account
 router.post('/newaccount', function(req, res) {
-  console.log('STRIPE RECEIVED INFO req.body', req.body);
   var email = req.body.email;
 
   if(req.body.email !== undefined) {
@@ -42,7 +41,7 @@ router.post('/newaccount', function(req, res) {
         console.log('error connecting to Stripe', err);
         res.send('error connecting to Stripe');
       } else {
-        console.log('Stripe account created: ', JSON.stringify(account));
+        console.log('Stripe account created ');
         // Updates user's information with Stripe account
 
         Users.findOneAndUpdate(
@@ -67,13 +66,13 @@ router.post('/newaccount', function(req, res) {
                     console.log('Error updating user Information with Stripe data',err);
                     res.send('Error updating user Information with Stripe data');
                   } else {
-                    console.log('Unclaimed registry account updated successfully with Stripe information', updatedUnclaimedAccount);
+                    console.log('Unclaimed registry account updated successfully with Stripe information');
                     res.send('Unclaimed registry account updated successfully with Stripe information');
                   }
                 }
               );
             } else {
-              console.log('User account updated successfully with Stripe information', updatedUser);
+              console.log('User account updated successfully with Stripe information');
               res.send('User account updated successfully with Stripe information');
 
             }
@@ -100,7 +99,7 @@ router.post("/webhook/accountactivated", function(request, response) {
         if(err){
           console.log(err);
         } else {
-          console.log('user claimed their account', updatedUser);
+          console.log('user claimed their account');
         }
       });
   }
@@ -111,7 +110,7 @@ router.post("/webhook/accountactivated", function(request, response) {
 // Charges amount via Stripe and updates registry information
 router.post("/charge", function(req, res) {
     var chargeData = req.body;
-    console.log('CHARGE DATA RECEIVED', JSON.stringify(chargeData));
+    // console.log('CHARGE DATA RECEIVED', JSON.stringify(chargeData));
 
     var stripeToken = req.body.stripeToken;
     var total = req.body.amount;
@@ -133,7 +132,7 @@ router.post("/charge", function(req, res) {
       } else {
           var stripeAccount = foundUser.stripe_user_id;
           // console.log('FOUNDUSER', JSON.stringify(foundUser));
-          console.log('STRIPE account:', foundUser.stripe_user_id);
+          // console.log('STRIPE account:', foundUser.stripe_user_id);
 
           stripe.charges.create({
                 amount: stripeTotalCoversion,

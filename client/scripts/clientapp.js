@@ -66,6 +66,16 @@ take12App.config(['$routeProvider', '$locationProvider',
       templateUrl: '/views/templates/registerUsername.html',
       controller: 'RegistrationController'
     })
+    // Request email view (for facebook users)
+    .when('/requestemail', {
+      templateUrl: '/views/templates/requestEmail.html',
+      controller: 'RequestEmailController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
     // Register new user (step0)
     .when('/registration', {
       templateUrl: '/views/templates/registration.html',

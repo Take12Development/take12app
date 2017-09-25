@@ -169,7 +169,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
       calculateGoalAmt();
     }
     // For facebook users we attach fb id to insert email in user account
-    console.log('UserService.userObject.facebookId: ',UserService.userObject.facebookId);
+    // console.log('UserService.userObject.facebookId: ',UserService.userObject.facebookId);
     if (UserService.userObject.facebookId) {
       $scope.registry.facebookId = UserService.userObject.facebookId;
     }
