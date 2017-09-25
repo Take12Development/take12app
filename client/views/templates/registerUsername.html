@@ -47,9 +47,8 @@
                     md-maxlength ="20" minlength="4" name ="password"
                     ng-pattern = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[?!*&@#$%]).{8,20}$/"/>
             <div class="hint">Your password must be between 8 and 20 characters.
-              It must also contain at least one uppercase letter, one lowercase letter
-              and one non-alpha character (number or symbol).
-
+              It must also contain at least one uppercase letter, one lowercase letter,
+              one number and one symbol.
             </div>
             <div ng-messages="registerView.password.$error">
               <div ng-message="required">A password is required!</div>
