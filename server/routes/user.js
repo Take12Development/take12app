@@ -56,9 +56,6 @@ router.post('/forgotpassword', function(req, res) {
       pool: 'abcdefghijklmnopqrstuvwxyz1234567890',
       length: 20
   });
-
-  // baseURL = 'http://localhost:5000/' // Or environment variable
-
   Users.findOne({"email": req.body.email}, function(err, foundUser) {
     if (err) {
       res.sendStatus(500);
@@ -116,6 +113,27 @@ router.put('/resetpassword', function(req, res) {
         res.send("Password updated successfully.")
       }
     });
+  });
+});
+
+// inserts user email address for facebook users
+router.post('/updatefbuseremail', function(req, res) {
+  Users.findOne({'facebookId': req.body.facebookId}, function(err, foundUser){
+    if(err){
+      console.log('Error finding user in claim',err);
+    }
+    if (foundUser) {
+      foundUser.email = req.body.email;
+      foundUser.save(function(err, savedUser){
+        if(err){
+          console.log('Error updating users table with facebook email', err);
+        } else {
+          res.send(savedUser);
+        }
+      });
+    } else {
+      res.send('There was a problem finding your user account');
+    }
   });
 });
 

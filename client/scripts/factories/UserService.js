@@ -1,5 +1,5 @@
-take12App.factory('UserService', ['$http', 'UtilitiesService',
-                  function($http, UtilitiesService){
+take12App.factory('UserService', ['$http', '$q', 'UtilitiesService',
+                  function($http, $q, UtilitiesService){
 
   // Stores logged user information
   var userObject = {};
@@ -14,7 +14,7 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
       } else if (response.data.facebookId)  {
         userObject.facebookId = response.data.facebookId;
         userObject.registries = response.data.registries;
-        console.log('FB GETUSER: User Data: ', userObject);
+        // console.log('FB GETUSER: User Data: ', userObject);
       } else {
         // user has no session, bounce them back to the login page
         UtilitiesService.redirect("/home");
@@ -41,7 +41,7 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
         // and signed request each expire
         var uid = response.authResponse.userID;
         var accessToken = response.authResponse.accessToken;
-        console.log('Already logged into facebook, here is your data', response);
+        // console.log('Already logged into facebook, here is your data', response);
       } else if (response.status === 'not_authorized') {
         // the user is logged in to Facebook,
         // but has not authenticated your app
@@ -53,10 +53,27 @@ take12App.factory('UserService', ['$http', 'UtilitiesService',
      }, true);
   }
 
+  function updateFBUserEmail(parameterObject) {
+    var deferred = $q.defer();
+    var parameters = angular.copy(parameterObject);
+
+    $http.post('/user/updatefbuseremail', parameters)
+    .then(function(response) {
+        deferred.resolve(response);
+        UserService.userObject = angular.copy(response.data);
+        // console.log('updateFBUserEmail UserService.userObject', UserService.userObject);
+    })
+    .catch(function(response) {
+      deferred.reject(response);
+    });
+    return deferred.promise;
+  }
+
   return {
     userObject : userObject,
     getuser : getuser,
     logout : logout,
-    checkLoginState : checkLoginState
+    checkLoginState : checkLoginState,
+    updateFBUserEmail : updateFBUserEmail
   };
 }]);

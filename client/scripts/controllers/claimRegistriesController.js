@@ -6,15 +6,15 @@ take12App.controller('ClaimRegistriesController', ['$scope', 'UserService', 'Uti
   $scope.redirect = UtilitiesService.redirect;
   $scope.registriesToClaim = RegistryDataService.registriesObject.registriesToClaim;
 
-  console.log('userObject:', $scope.userObject);
+  // console.log('userObject:', $scope.userObject);
 
   var registriesArray = $scope.userObject.registriesToClaim;
-  console.log('registriesArray', registriesArray);
+  // console.log('registriesArray', registriesArray);
 
   // Calls Factory function that gets registries information for current user from the database
   RegistryDataService.getRegistriesToClaim($scope.userObject.registriesToClaim).then(function(data){
 
-    console.log('back from server with:', data);
+    // console.log('back from server with:', data);
     if (data.data != "") {
       $scope.registriesToClaim = RegistryDataService.registriesObject.registriesToClaim;
     }
