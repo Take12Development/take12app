@@ -60,11 +60,27 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService', 'Utilitie
   };
 
   // Posts a new registry to the database
-  postRegistry = function(registry) {
+  postSelfRegistry = function(registry) {
     var deferred = $q.defer();
     var registryToPost = angular.copy(registry);
 
-    $http.post('/registry/add', registryToPost)
+    $http.post('/registry/addselfregistry', registryToPost)
+    .then(function(response) {
+        deferred.resolve(response);
+        UserService.userObject.currentRegistry = angular.copy(response.data);
+    })
+    .catch(function(response) {
+      deferred.reject(response);
+    });
+    return deferred.promise;
+  };
+
+  // Posts a new registry to the database
+  postLovedOneRegistry = function(registry) {
+    var deferred = $q.defer();
+    var registryToPost = angular.copy(registry);
+
+    $http.post('/registry/addlovedoneregistry', registryToPost)
     .then(function(response) {
         deferred.resolve(response);
         UserService.userObject.currentRegistry = angular.copy(response.data);
@@ -99,7 +115,8 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService', 'Utilitie
     getRegistry : getRegistry,
     getUserRegistries : getUserRegistries,
     getRegistriesToClaim : getRegistriesToClaim,
-    postRegistry : postRegistry,
+    postSelfRegistry : postSelfRegistry,
+    postLovedOneRegistry : postLovedOneRegistry,
     updateRegistry : updateRegistry,
     claimRegistry : claimRegistry
   };

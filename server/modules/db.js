@@ -9,11 +9,7 @@ if(process.env.MONGODB_URI != undefined) {
   mongoURI = process.env.MONGODB_URI;
 } else {
   // use the local database server
-  // mongoURI = 'mongodb://localhost:27017/take12db';
-  //mlab Heroku Add On for Development
-  mongoURI = 'mongodb://heroku_b2qkgz11:hb000ec6gbahvtv41r1r9h2onc@ds161713.mlab.com:61713/heroku_b2qkgz11';
-  //mlab Heroku Add On for Production (Live)
-  // mongoURI = 'mongodb://heroku_t2q304zx:<dbpassword>@ds141174-a0.mlab.com:41174,ds141174-a1.mlab.com:41174/heroku_t2q304zx?replicaSet=rs-ds141174';
+  mongoURI = 'mongodb://localhost:27017/take12db';
 }
 
 var mongoDB = mongoose.connect(mongoURI).connection;

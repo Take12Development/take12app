@@ -4,6 +4,7 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
                       RegistryDataService, $mdDialog) {
 
   $scope.validRegistry = true;
+  var homeUrl = 'https://' + location.host + '/#/registry/';
 
   $scope.dashboardRegistry = UserService.userObject.currentRegistry;
 
@@ -12,7 +13,7 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
 
   // validates that there is information to display
   if ($scope.dashboardRegistry) {
-    $scope.fullURL = REGISTRY_URL + $scope.dashboardRegistry.registryURL;
+    $scope.fullURL = homeUrl + $scope.dashboardRegistry.registryURL;
     $scope.dashboardRegistry.firstName = UtilitiesService.titleCase($scope.dashboardRegistry.firstName);
     $scope.dashboardRegistry.lastName = UtilitiesService.titleCase($scope.dashboardRegistry.lastName);
   } else {

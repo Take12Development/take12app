@@ -14,6 +14,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
   var chartTooltipData = [];
   $scope.oneDayAmount = 0;
   $scope.oneWeekAmount = 0;
+  var homeUrl = 'https://' + location.host + '/#/registry/';
 
   // Calls Factory function that gets registry information from the database
   RegistryDataService.getRegistry($routeParams.registryUrl).then(function(data){
@@ -23,7 +24,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
       $scope.currentRegistry = data.data;
       $scope.currentRegistry.firstName = UtilitiesService.titleCase($scope.currentRegistry.firstName);
       $scope.currentRegistry.lastName = UtilitiesService.titleCase($scope.currentRegistry.lastName);
-      $scope.fullURL = REGISTRY_URL + $scope.currentRegistry.registryURL;
+      $scope.fullURL = homeUrl + $scope.currentRegistry.registryURL;
       $scope.numberOfComments = $scope.currentRegistry.comments.length;
 
       calculateChartValues();
