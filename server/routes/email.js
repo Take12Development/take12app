@@ -27,22 +27,26 @@ function GetFormattedDate() {
 }
 
 router.post('/testmail', function(req, res){
-  const msg = {
-    to: 'claudia.calderas@gmail.com',
-    from: 'Take12 <admin@mytake12.com>',
-    subject: 'Sending with SendGrid is Fun',
-    text: 'and easy to do anywhere, even with Node.js',
-    html: "<strong>and easy 'Some One <someone@example.org>', to do anywhere, even with Node.js</strong>"
-  };
-  sgMail.send(msg, function(err, result) {
-    if (err) {
-      console.log('err');
-      res.send('error sending email');
-    } else {
-      console.log('message sent: ' + result);
-      res.send(result);
-    }
-  });
+  if(req.isAuthenticated()) {
+    const msg = {
+      to: 'claudia.calderas@gmail.com',
+      from: 'Take12 <admin@mytake12.com>',
+      subject: 'Sending with SendGrid is Fun',
+      text: 'and easy to do anywhere, even with Node.js',
+      html: "<strong>and easy 'Some One <someone@example.org>', to do anywhere, even with Node.js</strong>"
+    };
+    sgMail.send(msg, function(err, result) {
+      if (err) {
+        console.log('err');
+        res.send('error sending email');
+      } else {
+        console.log('message sent: ' + result);
+        res.send(result);
+      }
+    });
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 module.exports = router;
