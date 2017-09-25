@@ -37,14 +37,18 @@ var upload = multer({ storage: storage });
 
 // Uploads file into Cloudinary
 router.post('/', upload.single('file'), function(req, res){
-  cloudinary.uploader.upload(req.file.path, function(error, result) {
-    if (error) {
-      res.send(error);
-    } else {
-      var imagePath = result.secure_url;
-      res.send(imagePath);
-    }
-  })
+  if(req.isAuthenticated()) {
+    cloudinary.uploader.upload(req.file.path, function(error, result) {
+      if (error) {
+        res.send(error);
+      } else {
+        var imagePath = result.secure_url;
+        res.send(imagePath);
+      }
+    })
+  } else {
+    res.sendStatus(401);
+  }
 });
 
 module.exports = router;
