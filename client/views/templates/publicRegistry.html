@@ -1,6 +1,6 @@
 <!--Public Registry View -->
 <!--Defaults to Displaying all registries with a Public Setting-->
-  <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap
+  <md-content class="md-padding" layout-gt-sm="column" layout="row" layout-wrap
                ng-init = "vm.getRegistries()">
     <div class="contentBlock textFormat" layout="Row">
       <div layout="column" flex = "15"></div>
@@ -15,33 +15,33 @@
             <md-button class = "md-raised submitButton"
                         href = "#/findRegistry">Find a Loved One</md-button>
         </div>
-        <div class="registryResults">
-          <div ng-repeat = "registry in vm.registriesObject.allRegistries | filter:searchText"
-                 ng-if = "registry.privacy === 'public'">
-            <md-card id="registryCard">
-              <md-card-title>
-                <md-card-title-media>
-                  <img src="views/assets/Take12Logo100px.png" alt="Take12 Logo"
-                        ng-if = "registry.imageURL === ''" id = "resultsImg">
-                  <img ng-src="{{registry.imageURL}}" alt="profile picture"
-                        ng-if = "registry.imageURL !==''" id = "resultsImg">
-                </md-card-title-media>
-                <md-card-title-text>
-                  <span class="md-headline">{{vm.titleCase(registry.firstName)}} {{vm.titleCase(registry.lastName)}}</span>
-                  <span class="md-subhead">Baby Due: {{registry.dueDate | date}}</span>
-                </md-card-title-text>
-              </md-card-title>
-              <md-card-content>
-                <p ng-bind-html ="registry.story | limitTo: vm.limit"></p>
-              </md-card-content>
-              <md-card-actions layout="row" layout-align="end center">
-                <md-button class = "md-raised submitButton"
-                            href = "#/registry/{{registry.registryURL}}">
-                            View Full Regisry</md-button>
-              </md-card-actions>
-            </md-card>
-          </div>
-        </div>
+
+      <md-content class="registryResults">
+        <md-list flex>
+          <md-divider ></md-divider>
+          <md-list-item class="md-3-line"
+                ng-repeat= "registry in vm.registriesObject.allRegistries | filter:searchText"
+                ng-if = "registry.privacy === 'public'"
+                ng-click="null">
+            <img src="views/assets/Take12Logo100px.png" class="md-avatar"
+                  ng-if = "registry.imageURL === ''" alt="Take12 Logo">
+            <img ng-src="{{registry.imageURL}}" alt="profile picture"
+                  ng-if = "registry.imageURL !==''"  class="md-avatar">
+            <div class="md-list-item-text" layout="column">
+              <h3>{{vm.titleCase(registry.firstName)}} {{vm.titleCase(registry.lastName)}}</h3>
+              <h4>Baby Due: {{registry.dueDate | date}}</h4>
+              <p ng-bind-html ="registry.story | limitTo: vm.limit"></p>
+            </div>
+            <div layout-align="end end">
+              <md-button class = "md-raised submitButton"
+                          href = "#/registry/{{registry.registryURL}}">
+                          View Full Regisry</md-button>
+            </div>
+            <md-divider ></md-divider>
+          </md-list-item>
+          <md-divider ></md-divider>
+        </md-list>
+      </md-content>
       </div>
     </div>
   </md-content>

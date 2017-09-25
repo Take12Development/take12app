@@ -48,16 +48,6 @@ md-menu-content {
   max-height: 90vh;
 }
 
-#registryCard {
-  height: 300px;
-  background-color: #8f6a89;
-}
-
-#resultsImg {
-    width: 150px;
-    height: 150px;
-}
-
 .navBar {
   position: fixed;
   width: 100%;
