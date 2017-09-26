@@ -204,6 +204,7 @@ md-menu-content {
   font-weight: 300 !important;
   padding-left: 20px;
   padding-right: 20px;
+  white-space: normal !important;
 }
 
 .md-raised.textEditorButton {
@@ -361,11 +362,20 @@ div[contenteditable="true"] {
   overflow: scroll;
 }
 
-/*.registryStorySection h1 {
-  font-family: 'Bad Script', Arial, sans-serif;
-  font-size: 25px;
-  font-weight: 500;
-}*/
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+  .registryName {
+    font-family: 'Bad Script', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .registryName {
+    font-family: 'Bad Script', Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+  }
+}
 
 @media screen and (max-device-width: 480px) and (orientation: portrait) {
   .registryStorySection h1 {

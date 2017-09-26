@@ -1,21 +1,23 @@
 <!-- REGISTRY VIEW -->
 <div class="contentBlock" layout="row">
-  <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
-  <div ng-if="validRegistry==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+  <div layout="column" flex-gt-md="10" flex-xs="5" flex-sm="5" flex-md="5"></div>
+  <div ng-if="validRegistry==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="90" flex-sm="90" flex-md="90">
     <h1>Registry Not Found!</h1>
   </div>
   <div ng-if="validRegistry==true" class="dashboardContainer" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
       <form name="editRegistryForm" ng-submit="saveChanges()">
         <!-- IMAGE -->
-        <div class="dashboardHeader" layout="row">
-          <div class="regitryPhotoSection" flex="30" layout="column" layout-align="center center">
+        <div class="dashboardHeader" layout-gt-md="row" layout-md="column" layout-sm="column" layout-xs="column">
+          <div class="regitryPhotoSection" flex-gt-md="30" flex-md="100" flex-sm="100" flex-xs="100" layout="column" layout-align="center center">
             <img id="dashboardImage" ng-src="{{dashboardRegistry.imageURL}}">
             <md-button class="md-raised submitButton" name="changePhoto" aria-label="Change Photo" value="changePhoto" ng-click="showPhotoDialog($event)">Change photo</md-button>
             <span>This is the photo that will be displayed in your Registry.</span>
           </div>
-          <div flex="20"></div>
-          <div class="regitryName" flex="50" layout="column" layout-align="center center">
-            <h1> {{dashboardRegistry.firstName}} {{dashboardRegistry.lastName}} & Family</h1>
+          <div flex="20" hide-md hide-xs hide-sm></div>
+          <div flex-gt-md="50" layout="column" flex-md="100" flex-sm="100" flex-xs="100" layout-align="center center">
+            <div layout-align="center center">
+              <h1 class="registryName"> {{dashboardRegistry.firstName}} {{dashboardRegistry.lastName}} & Family</h1>
+            </div>
             <!-- SOCIAL MEDIA -->
             <div class="regitrySocialMediaSection" layout="column">
               <div layout="column" layout-align="center center">
@@ -59,9 +61,9 @@
         <!-- MAIN INFO -->
         <div class="dasboardMainInfo" layout="column">
           <!-- FIRST AND LAST NAME -->
-          <div layout="row">
+          <div layout-gt-md="row" layout-md="column" layout-sm="column" layout-xs="column">
             <!-- FIRST NAME -->
-            <div flex="45">
+            <div flex-gt-md="45" flex-md="100" flex-sm="100" flex-xs="100">
               <md-input-container layout="column">
                 <div>
                   <label for="firstName">First name:</label>
@@ -72,9 +74,9 @@
                 </div>
               </md-input-container>
             </div>
-            <div flex="10"></div>
+            <div flex="10" hide-md hide-sm hide-xs></div>
             <!-- LAST NAME -->
-            <div flex="45">
+            <div flex-gt-md="45" flex-md="100" flex-sm="100" flex-xs="100">
               <md-input-container layout="column">
                 <div>
                   <label for="firstName">Last name:</label>
@@ -87,9 +89,9 @@
             </div>
           </div>
           <!-- LOCATION -->
-          <div layout="row">
+          <div layout-gt-md="row" layout-md="column" layout-sm="column" layout-xs="column">
             <!-- CITY -->
-            <div flex="45">
+            <div flex-gt-md="45" flex-md="100" flex-sm="100" flex-xs="100">
               <md-input-container layout="column">
                 <div>
                   <label for="city">City:</label>
@@ -97,9 +99,9 @@
                 </div>
               </md-input-container>
             </div>
-            <div flex="10"></div>
+            <div flex="10" hide-md hide-sm hide-xs></div>
             <!-- STATE -->
-            <div flex="45">
+            <div flex-gt-md="45" flex-md="100" flex-sm="100" flex-xs="100">
               <md-input-container class="md-block" flex-gt-sm>
                 <label>State</label>
                 <md-select ng-model="dashboardRegistry.state">
@@ -111,11 +113,11 @@
             </div>
           </div>
           <!-- DUE DATE AND AMOUNTS -->
-          <div layout="row">
+          <div layout-gt-md="row" layout-md="column" layout-sm="column" layout-xs="column">
             <!-- BABY'S DUE DATE -->
-            <div flex="45">
+            <div flex-gt-md="45" flex-md="100" flex-sm="100" flex-xs="100">
               <span>Baby's due date:</span>
-              <md-input-container layout="column" flex="45" class="eventInputs">
+              <md-input-container layout="column" class="eventInputs">
                 <div>
                   <md-datepicker ng-model="dashboardRegistry.dueDate" md-current-view="year" md-placeholder="Enter date" required></md-datepicker>
                   <div ng-messages="editRegistryForm.dashboardRegistry.dueDate.$error" ng-if='submitted'>
@@ -124,9 +126,9 @@
                 </div>
               </md-input-container>
             </div>
-            <div flex="10"></div>
+            <div flex="10" hide-md hide-sm hide-xs></div>
             <!-- AMOUNTS -->
-            <div flex="45" layout="column">
+            <div flex-gt-md="45" flex-md="100" flex-sm="100" flex-xs="100">
               <!-- REGISTRY GOAL AMOUNT -->
               <div>
                 <md-input-container layout="column">
