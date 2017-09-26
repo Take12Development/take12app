@@ -353,9 +353,33 @@ div[contenteditable="true"] {
   margin-bottom: 25px;
   background-color: #136a80;
   color: white;
-  padding: 25px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   max-height: 200px;
   overflow: scroll;
+}
+
+/*.registryStorySection h1 {
+  font-family: 'Bad Script', Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+}*/
+
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+  .registryStorySection h1 {
+    font-family: 'Bad Script', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .registryStorySection h1 {
+    font-family: 'Bad Script', Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+  }
 }
 
 .registryCommentCount {

@@ -5,8 +5,9 @@
     <h1>Registry Not Found!</h1>
   </div>
   <div ng-if="validRegistry==true" layout="column" flex-gt-md="70" flex-xs="70" flex-sm="70" flex-md="70">
-    <div class="registryContainer" layout="row">
-      <div layout="column" flex-gt-md="50">
+    <div class="registryContainer" layout-gt-md="row" layout-sm="column" flex="90" layout-align="center start">
+
+      <div layout="column" flex-gt-md="50" flex-md="100" flex-sm="100" flex-xs="100">
         <!-- IMAGE -->
         <div layout="row" layout-align="center center">
           <img id="primaryImage" ng-src="{{currentRegistry.imageURL}}">
@@ -17,7 +18,7 @@
           <div class="registryStoryText" ng-bind-html="currentRegistry.story"></div>
         </div>
         <!-- COMMENTS -->
-        <div class="registryCommentSection">
+        <div class="registryCommentSection" hide-md hide-sm hide-xs>
           <div class="registryCommentCount" layout="row">
             <span class="commentContainerCount">{{numberOfComments}}</span>
             <span class="commentContainerCount">&nbsp comments</span>
@@ -30,9 +31,9 @@
           </div>
         </div>
       </div>
-      <div layout="column" flex-gt-md="10" flex-xs="10" flex-sm="10" flex-md="10"></div>
-      <div layout="column" flex-gt-md="40" flex-xs="30" flex-sm="30" flex-md="30">
-        <div>
+      <div layout="column" flex-gt-md="10" hide-md hide-sm hide-xs></div>
+      <div layout="column" flex-gt-md="40" flex-xs="100" flex-sm="100" flex-md="100">
+        <div layout="row" layout-align="center center">
           <h2>Let's Make Sure {{currentRegistry.firstName}} Has 12 Weeks at Home!</h1>
         </div>
         <!-- CHART -->
@@ -108,6 +109,19 @@
             socialshare-media="{{currentRegistry.imageURL}}">
             <img class="socialMediaIcon" src="views/assets/pinterest.png" alt="Pinterest">
             </a>
+          </div>
+        </div>
+        <!-- COMMENTS MOBILE -->
+        <div class="registryCommentSection" hide-gt-md>
+          <div class="registryCommentCount" layout="row">
+            <span class="commentContainerCount">{{numberOfComments}}</span>
+            <span class="commentContainerCount">&nbsp comments</span>
+          </div>
+          <div layout="column" ng-repeat="comment in currentRegistry.comments">
+            <div class="commentContainer" layout="column" layout-align="start start">
+              <span class="commentContainerDonorName">{{comment.donorName}}</span>
+              <span class="commentContainerComment">{{comment.comment}}</span>
+            </div>
           </div>
         </div>
       </div>
