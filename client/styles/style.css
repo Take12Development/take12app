@@ -204,6 +204,7 @@ md-menu-content {
   font-weight: 300 !important;
   padding-left: 20px;
   padding-right: 20px;
+  white-space: normal !important;
 }
 
 .md-raised.textEditorButton {
