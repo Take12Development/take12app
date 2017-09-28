@@ -1,5 +1,5 @@
 //For Heroku-Dev
-const FACEBOOK_APP_ID = '1798936316813029';
+const FACEBOOK_APP_ID = '353670281753488';
 const STRIPE_PUBLIC = 'pk_test_ASBdjhXFpe8PhYFPm6edjhkh';
 
 //For Heroku-Live
