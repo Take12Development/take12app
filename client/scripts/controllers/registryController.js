@@ -136,7 +136,7 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     minValue: 20,
     options: {
       floor: 0,
-      ceil: 2000,
+      ceil: 500,
       step: 20,
       // ticksArray: [{value:13, legend:"1d"}, {value:67 ,legend:"1w"}],
       showTicks: false,

@@ -120,7 +120,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
       if(response.data == 'Code sent successfully.') {
         UtilitiesService.showAlert('A link to change the password was sent by email.');
       } else {
-        UtilitiesService.showAlert('There was an error sending the link to change the password.');
+        UtilitiesService.showAlert('There was an error sending the link to change your password: ' + response.data);
       }
     });
   }
