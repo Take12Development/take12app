@@ -68,7 +68,7 @@ router.post('/forgotpassword', function(req, res) {
       foundUser.save(function(err, savedUser) {
         if (err) {
           console.log('PASSWORD RESET ERROR: ', err);
-          res.sendStatus(500);
+          res.send('Password reset error');
         } else {
           var emailMessage = 'Reset your password here: ' + baseURL + '/#/confirmreset/' + code;
           // Mail out that link with sendgrid.
@@ -92,7 +92,7 @@ router.post('/forgotpassword', function(req, res) {
       });
 
     } else { // no user found
-      console.log('PASSWORD RESET ERROR (Sendgrid):',err);
+      console.log('PASSWORD RESET ERROR: User not found',err);
       res.send('User not found.');
     }
 
@@ -127,7 +127,7 @@ router.put('/resetpassword', function(req, res) {
 router.post('/updatefbuseremail', function(req, res) {
   Users.findOne({'facebookId': req.body.facebookId}, function(err, foundUser){
     if(err){
-      console.log('Error finding user in claim',err);
+      console.log('Error finding user in update FB user Email',err);
     }
     if (foundUser) {
       foundUser.email = req.body.email;
