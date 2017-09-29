@@ -79,7 +79,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   // compares pasword and password confirmation entered by the user
   function comparePasswords() {
     var validPassword = false;
-    if ($scope.newUser.password === $scope.newUser.confirmPassword) {
+    if ($scope.newUser.password === $scope.newUser.password) {
       var validPassword = true;
     } else {
       var validPassword = false;

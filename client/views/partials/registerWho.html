@@ -12,9 +12,9 @@
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column">
-      <md-button class="md-raised submitButton" type="submit" name="yourRegistry" aria-label="Create a registry for you" value="yourRegistry" ng-click="startRegistration('self')">Create a registry for you</md-button>
+      <md-button class="md-raised registerWhoButton" type="submit" name="yourRegistry" aria-label="Create a registry for you" value="yourRegistry" ng-click="startRegistration('self')">Create a registry for you</md-button>
       <br>
-      <md-button class="md-raised submitButton" type="submit" name="lovedOneRegistry" aria-label="Create a registry for a loved one" value="lovedOneRegistry" ng-click="startRegistration('lovedOne')">Create a registry for a loved one</md-button>
+      <md-button class="md-raised registerWhoButton" type="submit" name="lovedOneRegistry" aria-label="Create a registry for a loved one" value="lovedOneRegistry" ng-click="startRegistration('lovedOne')">Create a registry for a loved one</md-button>
     </div>
   </div>
 </div>
