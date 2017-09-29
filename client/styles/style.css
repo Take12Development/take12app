@@ -516,12 +516,8 @@ div[contenteditable="true"] {
 .registryCardContainer {
   width: 230px;
   height: 200px;
-
   text-align:center;
   line-height:200px;
-
-  /*align-items:center;*/
-  /*position: relative;*/
   overflow: hidden;
 }
 
@@ -700,4 +696,9 @@ div[contenteditable="true"] {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.myRegistriesListItem:focus {
+  outline: none;
+  border: 0;
 }

@@ -12,7 +12,7 @@
           <md-list>
             <md-list-item class="md-2-line" ng-repeat="registry in userRegistries" layout-align="center center">
               <div layout="row" flex="100">
-                <div layout="row" flex="80">
+                <div class="myRegistriesListItem" layout="row" flex-gt-md="80" flex-md="100" flex-sm="100" flex-xs="100" ng-click="goToRegistryDashboard(registry)">
                   <img src="views/assets/Take12Logo100px.png" alt="Take12 Logo"
                       ng-if = "registry.imageURL === ''" class="md-avatar">
                   <img ng-src="{{registry.imageURL}}" alt="profile picture"
@@ -23,9 +23,11 @@
                     <h4>Baby Due: {{registry.dueDate | date}}</h4>
                   </div>
                 </div>
-                <md-button class = "md-raised submitButton"
-                            ng-click="goToRegistryDashboard(registry)">
-                            View</md-button>
+                <div layout-align="end end" hide-md hide-sm hide-xs>
+                  <md-button class = "md-raised submitButton"
+                             ng-click="goToRegistryDashboard(registry)">
+                              View dashboard</md-button>
+                </div>
               </div>
             </md-list-item>
           </md-list>
