@@ -8,11 +8,12 @@
       <md-card class="registryCard" ng-repeat="registry in userRegistries">
          <!-- <img ng-src="{{registry.imageURL}}" class="md-card-image registryCardPhoto"
          alt="" ng-click="goToRegistryDashboard(registry)"> -->
-
-         <img src="views/assets/Take12Logo100px.png" alt="Take12 Logo"
-             ng-if = "registry.imageURL === ''" ng-click="goToRegistryDashboard(registry)">
-         <img ng-src="{{registry.imageURL}}" alt="profile picture"
-               ng-if = "registry.imageURL !== ''" ng-click="goToRegistryDashboard(registry)">
+         <div class="registryCardContainer">
+           <img src="views/assets/Take12Logo100px.png" alt="Take12 Logo" class="md-card-image registryCardPhoto"
+               ng-if = "registry.imageURL === ''" ng-click="goToRegistryDashboard(registry)">
+           <img ng-src="{{registry.imageURL}}" alt="profile picture" class="md-card-image registryCardPhoto"
+                 ng-if = "registry.imageURL !== ''" ng-click="goToRegistryDashboard(registry)">
+         </div>
          <md-card-title layout="column">
            <md-card-title-text>
            </md-card-title-text>
@@ -26,7 +27,9 @@
          </md-card-actions>
        </md-card>
        <md-card class="registryCard">
-          <img ng-src="views/assets/plusImage.png" class="md-card-image registryCardPhoto" alt="New registry" ng-click="newRegistry()">
+           <div class="registryCardContainer">
+             <img ng-src="views/assets/plusImage.png" class="md-card-image registryCardPhoto" alt="New registry" ng-click="newRegistry()">
+           </div>
           <md-card-title layout="column">
             <md-card-title-text>
             </md-card-title-text>

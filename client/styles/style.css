@@ -510,12 +510,21 @@ div[contenteditable="true"] {
   width: 230px;
   height: 300px;
   font-size: 10px;
+
+}
+
+.registryCardContainer {
+  width: 230px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
 }
 
 .registryCardPhoto {
+  position: absolute;
   display: block;
-  width: 100%;
-  height: auto;
+  top: 0;
+  left: 0;
 }
 
 .registryCardPhoto:focus {
@@ -523,8 +532,13 @@ div[contenteditable="true"] {
     border: 0;
 }
 
+.publicRegistryText {
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+}
+
 .registryResults {
-  max-height: 500px;
+  max-height: 1000px;
   overflow: scroll;
 }
 

@@ -58,37 +58,44 @@ router.post('/forgotpassword', function(req, res) {
   });
   Users.findOne({"email": req.body.email}, function(err, foundUser) {
     if (err) {
+      console.log('PASSWORD RESET ERROR: ', err);
       res.sendStatus(500);
     }
-    var emailMessage = 'Reset your password here: ' + baseURL + '/#/confirmreset/' + code;
+    if (foundUser) {
+      foundUser.code = code;
+      var expireCode = moment().add(1, 'days').format();
+      foundUser.expiration = expireCode;
+      foundUser.save(function(err, savedUser) {
+        if (err) {
+          console.log('PASSWORD RESET ERROR: ', err);
+          res.sendStatus(500);
+        } else {
+          var emailMessage = 'Reset your password here: ' + baseURL + '/#/confirmreset/' + code;
+          // Mail out that link with sendgrid.
+          var msg = {
+            to: req.body.email,
+            from: 'Take12 <admin@mytake12.com>',
+            subject: 'Reset Password link',
+            text: 'Reset your Take12 password. This link will expire in 24 hours.',
+            html: emailMessage
+          };
+          sgMail.send(msg, function(err, result) {
+            if (err) {
+              console.log('PASSWORD RESET ERROR (Sendgrid):',err);
+              res.send('Error sending email');
+            } else {
+              // message sent
+              res.send("Code sent successfully.")
+            }
+          });
+        }
+      });
 
-    // Mail out that link with sendgrid.
-    var msg = {
-      to: req.body.email,
-      from: 'Take12 <admin@mytake12.com>',
-      subject: 'Reset Password link',
-      text: 'Reset your Take12 password. This link will expire in 24 hours.',
-      html: emailMessage
-    };
-    sgMail.send(msg, function(err, result) {
-      if (err) {
-        console.log('Error (sendgrid)',err);
-        res.send('Error sending email');
-      } else {
-        // message sent
-        foundUser.code = code;
-        var expireCode = moment().add(1, 'days').format();
-        foundUser.expiration = expireCode;
-        foundUser.save(function(err, savedUser) {
-          if (err) {
-            console.log(err);
-            res.sendStatus(500);
-          } else {
-            res.send("Code sent successfully.")
-          }
-        });
-      }
-    });
+    } else { // no user found
+      console.log('PASSWORD RESET ERROR (Sendgrid):',err);
+      res.send('User not found.');
+    }
+
   });
 });
 
