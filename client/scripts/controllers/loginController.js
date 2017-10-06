@@ -20,6 +20,7 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
     } else {
       $http.post('/', $scope.user).then(function(response) {
         if(response.data.email) {
+          UserService.userObject.loggedInUser = true;
           UserService.userObject.email = response.data.email;
           UserService.userObject.registries = response.data.registries;
           // checks if there is an unclaimed registry for this user

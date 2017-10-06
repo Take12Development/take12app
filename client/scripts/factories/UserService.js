@@ -3,6 +3,8 @@ take12App.factory('UserService', ['$http', '$q', 'UtilitiesService',
 
   // Stores logged user information
   var userObject = {};
+  userObject.loggedInUser = false;
+  console.log('UserService', userObject.loggedInUser);
 
   // Gets logged user
   function getuser() {
@@ -14,6 +16,8 @@ take12App.factory('UserService', ['$http', '$q', 'UtilitiesService',
       } else if (response.data.facebookId)  {
         userObject.facebookId = response.data.facebookId;
         userObject.registries = response.data.registries;
+        userObject.loggedInUser = true;
+        console.log('UserService get user', userObject.loggedInUser);
         // console.log('FB GETUSER: User Data: ', userObject);
       } else {
         // user has no session, bounce them back to the login page
@@ -26,6 +30,7 @@ take12App.factory('UserService', ['$http', '$q', 'UtilitiesService',
   function logout() {
     $http.get('/user/logout').then(function(response) {
       console.log('logged out');
+      userObject.loggedInUser = false;
       UtilitiesService.redirect("/home");
     });
   }
