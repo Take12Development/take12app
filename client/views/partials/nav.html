@@ -24,8 +24,9 @@
         <span class="navBarDivider">/</span>
         <a class="menuOption" href="https://mytake12.com/contact">
           Contact</a>
-        <a ng-if="loggedInUser==false" class="loginOption" href="#login">Login</a>
-        <a ng-if="loggedInUser==true" class="loginOption">Sign Out</a>
+        <!-- <a class="loginOption" href="#login">Login/Logout</a> -->
+        <md-button class="menuButton loginButton" ng-click="loginout()">
+          Login/Logout</md-button>
       </div>
       <div layout="row" flex="90" layout-align="end center" hide-gt-md>
         <md-menu md-position-mode="target-right target" md-offset="0 60">
@@ -56,10 +57,9 @@
                 Contact</md-button>
             </md-menu-item>
             <md-menu-item>
-              <md-button ng-if="loggedInUser==false" class="menuButton loginButton"ng-click="redirect('/Login')">
-                Login</md-button>
-              <md-button ng-if="loggedInUser==true" class="menuButton loginButton"ng-click="">
-                Sign Out</md-button>
+              <!-- <md-button class="menuButton loginButton" ng-click="redirect('/Login')"> -->
+              <md-button class="menuButton loginButton" ng-click="loginout()">
+                Login/Logout</md-button>
             </md-menu-item>
           </md-menu-content>
         </md-menu>
