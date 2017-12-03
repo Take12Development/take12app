@@ -28,7 +28,7 @@
             <md-list-item class="md-3-line"
             ng-repeat = "registry in vm.registriesObject.allRegistries | filter:search"
                   ng-if = "search.toLowerCase() === registry.firstName || search.toLowerCase() === registry.lastName"
-                  ng-click="null">
+                  ng-click="showRegistry(registry.registryURL)">
               <img src="views/assets/Take12Logo100px.png" class="md-avatar"
                     ng-if = "registry.privacy === 'private' ||
                       registry.imageURL === ''" alt="Take12 Logo">
