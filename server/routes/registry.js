@@ -50,17 +50,19 @@ function sendEmail(emailInfo) {
     //                        'Please login to your account ' +
     //                        'to see your registry. ' +
     //                        baseURL + '/#/home';
-    subjectMessage = 'Welcome to Take12!';
+    // subjectMessage = 'Welcome to Take12!';
     template = '067973b1-e2a4-4754-869c-3488d86a82a1';
   }
   // Mail out message with sendgrid.
   var msg = {
-    to: emailInfo.email,
+    to: [emailInfo.email],
+    bcc: ['admin@mytake12.com'],
     from: 'Take12 <admin@mytake12.com>',
-    subject: subjectMessage,
-    text: subjectMessage,
-    html: '<p>Welcome to Take12!</p>',
-    templateID: template
+    // subject: subjectMessage,
+    // text: 'Hello plain world',
+    // html: '<p>Hello HTML world!</p>',
+    template_id: template,
+    substitutionWrappers: ['{{', '}}'],
   };
   sgMail.send(msg, function(err, result) {
     if (err) {
