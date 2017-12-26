@@ -31,6 +31,7 @@ if(process.env.BASE_URL != undefined) {
 // Send email functions:
 function sendEmail(emailInfo) {
   var textEmailMessage = '';
+  var template = '';
   var subjectMessage = '';
   if (emailInfo.user == 'new') {
     textEmailMessage = 'A new registry has been created for you, ' +
@@ -45,19 +46,23 @@ function sendEmail(emailInfo) {
                            baseURL + '/#/home';
     subjectMessage = 'A Take12 Registry has been created for you';
   } else {
-    textEmailMessage = 'Welcome to take12. ' +
-                           'Please login to your account ' +
-                           'to see your registry. ' +
-                           baseURL + '/#/home';
-    subjectMessage = 'Welcome to Take12!';
+    // textEmailMessage = 'Welcome to take12. ' +
+    //                        'Please login to your account ' +
+    //                        'to see your registry. ' +
+    //                        baseURL + '/#/home';
+    // subjectMessage = 'Welcome to Take12!';
+    template = '067973b1-e2a4-4754-869c-3488d86a82a1';
   }
   // Mail out message with sendgrid.
   var msg = {
-    to: emailInfo.email,
+    to: [emailInfo.email],
+    bcc: ['admin@mytake12.com'],
     from: 'Take12 <admin@mytake12.com>',
-    subject: subjectMessage,
-    text: textEmailMessage,
-    html: textEmailMessage
+    // subject: subjectMessage,
+    // text: 'Hello plain world',
+    // html: '<p>Hello HTML world!</p>',
+    template_id: template,
+    substitutionWrappers: ['{{', '}}'],
   };
   sgMail.send(msg, function(err, result) {
     if (err) {
