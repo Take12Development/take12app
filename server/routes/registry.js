@@ -46,12 +46,9 @@ function sendEmail(emailInfo) {
                            baseURL + '/#/home';
     subjectMessage = 'A Take12 Registry has been created for you';
   } else {
-    // textEmailMessage = 'Welcome to take12. ' +
-    //                        'Please login to your account ' +
-    //                        'to see your registry. ' +
-    //                        baseURL + '/#/home';
-    // subjectMessage = 'Welcome to Take12!';
+    //Sendgrid Live
     // template = '067973b1-e2a4-4754-869c-3488d86a82a1';
+    //Sendgrid Dev
     template = '75664e9a-f5aa-47d0-a7fc-4aa5ea59643b';
   }
   // Mail out message with sendgrid.
@@ -59,11 +56,10 @@ function sendEmail(emailInfo) {
     to: [emailInfo.email],
     bcc: ['admin@mytake12.com'],
     from: 'Take12 <admin@mytake12.com>',
-    // subject: subjectMessage,
-    // text: 'Hello plain world',
-    // html: '<p>Hello HTML world!</p>',
+    subject: subjectMessage,
+    text: textEmailMessage,
+    html: textEmailMessage,
     template_id: template,
-    substitutionWrappers: ['{{', '}}'],
   };
   sgMail.send(msg, function(err, result) {
     if (err) {
