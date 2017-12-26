@@ -51,7 +51,8 @@ function sendEmail(emailInfo) {
     //                        'to see your registry. ' +
     //                        baseURL + '/#/home';
     // subjectMessage = 'Welcome to Take12!';
-    template = '067973b1-e2a4-4754-869c-3488d86a82a1';
+    // template = '067973b1-e2a4-4754-869c-3488d86a82a1';
+    template = '75664e9a-f5aa-47d0-a7fc-4aa5ea59643b';
   }
   // Mail out message with sendgrid.
   var msg = {
