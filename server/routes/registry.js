@@ -7,7 +7,7 @@ var Registry = require('../models/registryModel');
 var UnclaimedRegistry = require('../models/unclaimedRegistryModel');
 var Users = require('../models/user');
 var Promise = require('promise');
-const sgMail = require('@sendgrid/mail');
+var sgMail = require('@sendgrid/mail');
 
 if(process.env.SENDGRID_API_KEY != undefined) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -30,21 +30,29 @@ if(process.env.BASE_URL != undefined) {
 
 // Send email functions:
 function sendEmail(emailInfo) {
-  var textEmailMessage = '';
+  // var textEmailMessage = '';
   var template = '';
-  var subjectMessage = '';
+  // var subjectMessage = '';
   if (emailInfo.user == 'new') {
-    textEmailMessage = 'A new registry has been created for you, ' +
-                           'please create an account using ' +
-                           'your email address to claim your registry. ' +
-                           baseURL + '/#/register';
-    subjectMessage = 'A Take12 Registry has been created for you';
+    // textEmailMessage = 'A new registry has been created for you, ' +
+    //                        'please create an account using ' +
+    //                        'your email address to claim your registry. ' +
+    //                        baseURL + '/#/register';
+    // subjectMessage = 'A Take12 Registry has been created for you';
+    //Sendgrid Live
+    // template = '';
+    //Sendgrid Dev
+    template = '84aa998d-4011-472a-9880-cfc23b36dff9';
   } else if (emailInfo.user == 'existing') {
-    textEmailMessage = 'A new registry has been created for you, ' +
-                           'please login to your account ' +
-                           'to see your registry. ' +
-                           baseURL + '/#/home';
-    subjectMessage = 'A Take12 Registry has been created for you';
+    // textEmailMessage = 'A new registry has been created for you, ' +
+    //                        'please login to your account ' +
+    //                        'to see your registry. ' +
+    //                        baseURL + '/#/home';
+    // subjectMessage = 'A Take12 Registry has been created for you';
+    //Sendgrid Live
+    // template = '';
+    //Sendgrid Dev
+    template = '3b3d2f94-e7ed-4fe8-834d-055231ad48dd';
   } else {
     //Sendgrid Live
     // template = '067973b1-e2a4-4754-869c-3488d86a82a1';
@@ -56,9 +64,9 @@ function sendEmail(emailInfo) {
     to: [emailInfo.email],
     bcc: ['admin@mytake12.com'],
     from: 'Take12 <admin@mytake12.com>',
-    subject: subjectMessage,
-    text: textEmailMessage,
-    html: textEmailMessage,
+    // subject: subjectMessage,
+    // text: textEmailMessage,
+    // html: textEmailMessage,
     template_id: template,
   };
   sgMail.send(msg, function(err, result) {
@@ -128,8 +136,8 @@ router.post('/getuserregistries', function(req,res) {
 // creates newURL based on first and last name
 function createURL(firstName, lastName) {
   var newURL;
-  var firstName = firstName.replace(/\s+/g, '');
-  var lastName = lastName.replace(/\s+/g, '');
+  firstName = firstName.replace(/\s+/g, '');
+  lastName = lastName.replace(/\s+/g, '');
   var name = firstName + lastName;
 
   return new Promise(function(resolve,reject) {
@@ -175,7 +183,7 @@ router.post('/addselfregistry', function(req,res) {
     // for facebook new users we insert email to user in users table
     if (req.body.facebookId) {
       updateFBUser(req.body.facebookId,req.body.email);
-    };
+    }
 
     var first = req.body.firstName.toLowerCase();
     var last = req.body.lastName.toLowerCase();
@@ -240,7 +248,7 @@ router.post('/addlovedoneregistry', function(req,res) {
     // for facebook new users we insert email to user in users table
     if (req.body.facebookId) {
       updateFBUser(req.body.facebookId,req.body.email);
-    };
+    }
     var first = req.body.firstName.toLowerCase();
     var last = req.body.lastName.toLowerCase();
     var email = req.body.email.toLowerCase();
