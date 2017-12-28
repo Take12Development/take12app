@@ -30,43 +30,22 @@ if(process.env.BASE_URL != undefined) {
 
 // Send email functions:
 function sendEmail(emailInfo) {
-  // var textEmailMessage = '';
   var template = '';
-  // var subjectMessage = '';
   if (emailInfo.user == 'new') {
-    // textEmailMessage = 'A new registry has been created for you, ' +
-    //                        'please create an account using ' +
-    //                        'your email address to claim your registry. ' +
-    //                        baseURL + '/#/register';
-    // subjectMessage = 'A Take12 Registry has been created for you';
-    //Sendgrid Live
-    // template = '';
-    //Sendgrid Dev
-    template = '84aa998d-4011-472a-9880-cfc23b36dff9';
+    //From Sendgrid Production Account
+    template = 'b1ee71ac-31ee-485f-a6f6-4fa7a5b09228';
   } else if (emailInfo.user == 'existing') {
-    // textEmailMessage = 'A new registry has been created for you, ' +
-    //                        'please login to your account ' +
-    //                        'to see your registry. ' +
-    //                        baseURL + '/#/home';
-    // subjectMessage = 'A Take12 Registry has been created for you';
-    //Sendgrid Live
-    // template = '';
-    //Sendgrid Dev
-    template = '3b3d2f94-e7ed-4fe8-834d-055231ad48dd';
+    //From Sendgrid Production Account
+    template = '61204c51-b9a8-412d-9b86-f4f0e704fbd5';
   } else {
-    //Sendgrid Live
-    // template = '067973b1-e2a4-4754-869c-3488d86a82a1';
-    //Sendgrid Dev
-    template = '75664e9a-f5aa-47d0-a7fc-4aa5ea59643b';
+    //From Sendgrid Production Account
+    template = '067973b1-e2a4-4754-869c-3488d86a82a1';
   }
   // Mail out message with sendgrid.
   var msg = {
     to: [emailInfo.email],
-    bcc: ['admin@mytake12.com'],
+    bcc: ['admin@mytake12.com', 'margi@mytake12.com'],
     from: 'Take12 <admin@mytake12.com>',
-    // subject: subjectMessage,
-    // text: textEmailMessage,
-    // html: textEmailMessage,
     template_id: template,
   };
   sgMail.send(msg, function(err, result) {
