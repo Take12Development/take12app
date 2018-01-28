@@ -122,7 +122,7 @@ router.post("/charge", function(req, res) {
     var customerEmail = req.body.emailForReceipt;
     var registryAccount = id.toString();
     var registryComment = req.body.registryComment;
-    var take12fee = (checkoutTotal * 100) * .03;
+    var take12fee = (checkoutTotal * 100) * 0.03;
 
     // get Stripe Information from Users account
     Users.findOne({email: registryEmail}, function(err, foundUser) {
@@ -202,7 +202,7 @@ router.post("/charge", function(req, res) {
                             var firstName = fullName.split(' ').slice(0, -1).join(' ');
                             var lastName = fullName.split(' ').slice(-1).join(' ');
                             var donorFirstName = firstName;
-                            var donorLastName = lastName
+                            var donorLastName = lastName;
                             var zipcode = charge.source['address_zip'];
                             var date = new Date();
                             var lastGiftDate = date.toDateString();
@@ -285,7 +285,7 @@ router.post("/charge", function(req, res) {
                     }); // Registry.findById
                 } // else if (err)
             } //function(err, charge)
-        ) //stripe.charges.create
+        ); //stripe.charges.create
       } // else if (err)
   }); // Users.findOne
 }); // router.post("/charge"

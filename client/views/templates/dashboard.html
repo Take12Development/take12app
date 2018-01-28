@@ -4,6 +4,9 @@
   <div ng-if="validRegistry==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="90" flex-sm="90" flex-md="90">
     <h1>Registry Not Found!</h1>
   </div>
+  <div ng-if={{UserObject.StripeAccountActivated}}==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="90" flex-sm="90" flex-md="90">
+    <h1>https://dashboard.stripe.com/account/activate?client_id=ca_8smosntmpkM1quL5NLYJgChMzxH6PFc3&user_id=acct_14qyt6Alijdnw0EA</h1>
+  </div>
   <div ng-if="validRegistry==true" class="dashboardContainer" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
       <form name="editRegistryForm" ng-submit="saveChanges()">
         <!-- IMAGE -->
@@ -69,7 +72,7 @@
                   <label for="firstName">First name:</label>
                   <input type="text" ng-model="dashboardRegistry.firstName" required/>
                   <div ng-messages="editRegistryForm.dashboardRegistry.firstName.$error">
-                    <div ng-message="required">An first name is required!</div>
+                    <div ng-message="required">A first name is required!</div>
                   </div>
                 </div>
               </md-input-container>
@@ -82,7 +85,7 @@
                   <label for="firstName">Last name:</label>
                   <input type="text" ng-model="dashboardRegistry.lastName" required/>
                   <div ng-messages="editRegistryForm.dashboardRegistry.lastName.$error">
-                    <div ng-message="required">An last name is required!</div>
+                    <div ng-message="required">A last name is required!</div>
                   </div>
                 </div>
               </md-input-container>

@@ -107,7 +107,7 @@ take12App.factory('RegistryDataService', ['$http','$q', 'UserService', 'Utilitie
     $http.put('/registry/claim', registryToClaim).then(function(response) {
       console.log('success:',response);
     });
-  }
+  };
 
   return {
     registriesObject : registriesObject,
