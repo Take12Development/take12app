@@ -4,10 +4,11 @@
   <div ng-if="validRegistry==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="90" flex-sm="90" flex-md="90">
     <h1>Registry Not Found!</h1>
   </div>
-  <div ng-if={{UserObject.StripeAccountActivated}}==false" layout="row" layout-align="center center" flex-gt-md="80" flex-xs="90" flex-sm="90" flex-md="90">
-    <h1>https://dashboard.stripe.com/account/activate?client_id=ca_8smosntmpkM1quL5NLYJgChMzxH6PFc3&user_id=acct_14qyt6Alijdnw0EA</h1>
-  </div>
   <div ng-if="validRegistry==true" class="dashboardContainer" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+    <div ng-if="validRegistry==true" layout="column" layout-align="center center" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
+      <h1>Complete Your Stripe Account Here!</h1>
+      <p>You cannot collect your gifts until your account has been set up.</p>
+    </div>
       <form name="editRegistryForm" ng-submit="saveChanges()">
         <!-- IMAGE -->
         <div class="dashboardHeader" layout-gt-md="row" layout-md="column" layout-sm="column" layout-xs="column">
