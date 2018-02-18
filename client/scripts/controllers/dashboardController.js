@@ -7,7 +7,8 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
   var homeUrl = 'https://' + location.host + '/#/registry/';
 
   $scope.dashboardRegistry = UserService.userObject.currentRegistry;
-
+//pulls info needed for Stripe Reminder
+  $scope.stripeInfo = UserService.userObject;
   // list of states for state selection
   $scope.states = UtilitiesService.states;
 
@@ -18,7 +19,7 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
     $scope.dashboardRegistry.lastName = UtilitiesService.titleCase($scope.dashboardRegistry.lastName);
   } else {
     $scope.validRegistry = false;
-  };
+  }
 
   $scope.customFullscreen = false;
 
@@ -50,7 +51,7 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
   $scope.discardChanges = function() {
     // go to main page
     UtilitiesService.redirect('/main');
-  }
+  };
 
   // Updates registry in the DB
   $scope.saveChanges = function() {
@@ -58,7 +59,7 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
 
     // go to main page
     UtilitiesService.redirect('/main');
-  }
+  };
 
 
 }]);

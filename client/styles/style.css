@@ -599,6 +599,12 @@ div[contenteditable="true"] {
   height: auto;
 }
 
+.dashboardStripeReminder {
+  background-color: #ff6666;
+  padding: 25px;
+  margin-bottom: 25px
+}
+
 .photoDialog {
   width: 40%;
 }

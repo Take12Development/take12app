@@ -15,9 +15,17 @@ take12App.controller('FindRegistryController', ['$http', '$scope',
 
   vm.redirect = UtilitiesService.redirect;
 
-  $scope.showRegistry = function(registryURL) {
-    var registryFullPath = '/registry/' + registryURL;
-    UtilitiesService.redirect(registryFullPath);
-  }
+  // $scope.showRegistry = function(registryURL) {
+  //   var registryFullPath = '/registry/' + registryURL;
+  //   UtilitiesService.redirect(registryFullPath);
+  // };
+
+  $scope.showRegistry = function(registry) {
+    if(registry.privacy !== 'private') {
+      var registryFullPath = '/registry/' + registry.registryURL;
+      UtilitiesService.redirect(registryFullPath);
+    } else {
+    }
+  };
 
   }]);

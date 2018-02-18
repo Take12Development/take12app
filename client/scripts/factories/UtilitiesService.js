@@ -32,7 +32,7 @@ take12App.factory('UtilitiesService', ['$mdDialog', '$location',
   function goHome() {
     var home = location.host;
     $location.url(home);
-  };
+  }
 
   // Function that checks if an object is empty
   function isObjectEmpty(obj) {
