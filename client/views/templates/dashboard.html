@@ -5,7 +5,7 @@
     <h1>Registry Not Found!</h1>
   </div>
   <div ng-if="validRegistry==true" class="dashboardContainer" layout="column" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
-    <div ng-if="validRegistry==true" class = "dashboardStripeReminder"
+    <div ng-if="stripeInfo.stripeAccountActivated==false" class = "dashboardStripeReminder"
         layout="column" layout-align="center center" flex-gt-md="80" flex-xs="80"
         flex-sm="80" flex-md="80">
       <h2>Complete Your Stripe Account
