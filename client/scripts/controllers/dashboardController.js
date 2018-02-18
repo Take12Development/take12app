@@ -7,9 +7,8 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
   var homeUrl = 'https://' + location.host + '/#/registry/';
 
   $scope.dashboardRegistry = UserService.userObject.currentRegistry;
-//betsy testing below
+//pulls info needed for Stripe Reminder
   $scope.stripeInfo = UserService.userObject;
-//end of testing
   // list of states for state selection
   $scope.states = UtilitiesService.states;
 
