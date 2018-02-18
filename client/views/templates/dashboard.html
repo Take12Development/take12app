@@ -8,6 +8,8 @@
     <div ng-if="validRegistry==true" layout="column" layout-align="center center" flex-gt-md="80" flex-xs="80" flex-sm="80" flex-md="80">
       <h1>Complete Your Stripe Account Here!</h1>
       <p>You cannot collect your gifts until your account has been set up.</p>
+      <p>{{stripeInfo.stripe_user_id}}</p>
+      <a ng-href="https://dashboard.stripe.com/account/activate?client_id=ca_32D88BD1qLklliziD7gYQvctJIhWBSQ7&user_id=acct_14qyt6Alijdnw0EA">Stripe Link</a>
     </div>
       <form name="editRegistryForm" ng-submit="saveChanges()">
         <!-- IMAGE -->

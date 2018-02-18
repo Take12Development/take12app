@@ -11,9 +11,11 @@ take12App.factory('UserService', ['$http', '$q', 'UtilitiesService',
         // user has a curret session on the server
         userObject.email = response.data.email;
         userObject.registries = response.data.registries;
+        userObject.stripe_user_id = response.data.stripe_user_id;
       } else if (response.data.facebookId)  {
         userObject.facebookId = response.data.facebookId;
         userObject.registries = response.data.registries;
+        userObject.stripe_user_id = response.data.stripe_user_id;
         // console.log('FB GETUSER: User Data: ', userObject);
       } else {
         // user has no session, bounce them back to the login page
