@@ -4,32 +4,35 @@
   <div class="createRegistryBlock" layout="column" flex-gt-md="60" flex-xs="80" flex-sm="80" flex-md="60">
     <div class="textFormat">
       <h1 class = "badScriptHeading">Step 5 of 5</h1>
-      <h2>How to Receive Gifts</h2>
-      <br>
-      <span ng-if="self==true">Initiate a Stripe Account to receive your gifts.
-            By clicking the button below an email will be sent to you with further
-            instructions. Please look for this email and complete the account
-            creation process <b>ASAP</b>. You cannot receive your gifts until
-            this has been completed.</span>
-      <br><br>
-      <span ng-if="self==false">Initiate her Stripe Account so she can receive her
-            gifts. By clicking the button below an email will be sent to your loved
-            one with further instructions. Please let your loved one know that
-            she should look for this email and complete the account creation process
-            <b>ASAP</b>. You cannot receive your gifts until this has been
-            completed.</span>
-      <br><br>
-      <span>Stripe is a secure third party vendor that handles all of the gift
+      <h2>Receive Gifts</h2>
+      <div class="createRegistryContainer" layout="column" layout-align="center center">
+        <img src="views/assets/powered_by_stripe.png" alt="Powered by Stripe">
+      </div>
+      <span ng-if="self==true">By Completing the Registry below an email will be sent
+            to you with further instructions on how to complete your Stripe Account.
+            Stripe is a secure third party vendor that handles all of the gift
             transactions. Stripe collects payments from the <i>Gifters</i> and
-            securely transfers the money to the <i>Mother's</i> bank account.</span>
+            securely transfers the money to the <i>Mother's</i> bank account.
+            Please look for this email and complete the Stripe Account <b>ASAP</b>.
+            You cannot receive your gifts until this has been completed.
+      </span>
+      <br><br>
+      <span ng-if="self==false">By Completing the Registry below an email will be sent
+            to your loved one with further instructions on how she can complete
+            her Stripe Account. Stripe is a secure third party vendor that handles
+            all of the gift transactions. Stripe collects payments from the <i>Gifters</i>
+            and securely transfers the money to the <i>Mother's</i> bank account.
+            Please have her look for this email and complete the Stripe Account <b>ASAP</b>.
+            She cannot receive her gifts until this has been completed.
+      </span>
       <br><br>
     </div>
     <h3 ng-if="message != ''">{{message}}</h3>
     <div class="createRegistryContainer" layout="column" layout-align="center center">
-      <img ng-src="views/assets/blue-on-light@2x.png"  alt="Connect with Stripe" aria-label ="Initiate Stripe" ng-click="initiateStripe()">
-      <!-- <md-button aria-label ="Initiate Stripe" ng-click = "initiateStripe()">
-        <img src="views/assets/blue-on-light@2x.png" alt="Connect with Stripe">
-      </md-button> -->
+      <!-- <img ng-src="views/assets/blue-on-light@2x.png"  alt="Connect with Stripe" aria-label ="Initiate Stripe" ng-click="initiateStripe()"> -->
+      <md-button class="md-raised submitButton" aria-label ="Initiate Stripe" ng-click = "initiateStripe()">Complete Registry
+      </md-button>
     </div>
+
   </div>
 </div>

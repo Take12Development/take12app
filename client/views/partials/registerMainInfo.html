@@ -108,20 +108,20 @@
         <!-- NET INCOME, PAID WEEKS AND PERCENTAGE -->
         <div layout="column" ng-if="registry.goalAmtEntryOpt == 1">
           <md-input-container layout="column">
-            <label for="netIncome">What's your take home pay per pay period (2 weeks)?</label>
+            <label for="netIncome">What's your take home amount per pay period (2 weeks)?</label>
             <input ng-model="registry.netIncome" type="number" min="0">
           </md-input-container>
           <div layout="row" flex="100">
             <div flex="45">
               <md-input-container layout="column">
-                <label for="paidWeeks">Weeks:</label>
+                <label for="paidWeeks"># of Weeks Paid by Employer:</label>
                 <input ng-model="registry.paidWeeks" type="number" step="1.00" min="0" max="12">
               </md-input-container>
             </div>
             <div flex="10"></div>
             <div flex="45">
               <md-input-container layout="column">
-                <label for="paidWeeksPercentage">Percentage %:</label>
+                <label for="paidWeeksPercentage">% at which the Weeks are paid by Employer:</label>
                 <input ng-model="registry.paidWeeksPercentage" type="number" step="1.00" min="0" max="100">
               </md-input-container>
             </div>
@@ -135,7 +135,7 @@
             <input ng-model="registry.goalAmount" type="number" min="0">
           </md-input-container>
           <md-input-container layout="column">
-            <label for="paidWeeks">Weeks:</label>
+            <label for="paidWeeks"># of Weeks Paid by Employer:</label>
             <input ng-model="registry.paidWeeks" type="number" step="1.00" min="0" max="12">
           </md-input-container>
         </div>
