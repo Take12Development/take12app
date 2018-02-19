@@ -26,7 +26,7 @@
           <md-list-item class="md-3-line"
                 ng-repeat= "registry in vm.registriesObject.allRegistries | filter:searchText"
                 ng-if = "registry.privacy === 'public'"
-                ng-click="showRegistry(registry.registryURL)">
+                ng-click="showRegistry(registry)">
             <img src="views/assets/Take12Logo100px.png" class="md-avatar"
                   ng-if = "registry.imageURL === ''" alt="Take12 Logo">
             <img ng-src="{{registry.imageURL}}" alt="profile picture"
