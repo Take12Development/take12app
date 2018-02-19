@@ -11,6 +11,11 @@ var path = require('path');
 var passport = require('./strategies/userStrategy');
 var session = require('express-session');
 
+//Used to handle memory leak caused by express-session's memory-cache
+var cookieParser = require('cookie-parser');
+var MemoryStore = require('session-memory-store')(session);
+
+
 // Route includes
 var index = require('./routes/index');
 var uploads = require('./routes/uploads');
@@ -32,6 +37,9 @@ app.use(wrenchmodeExpress({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//for memory leak
+app.use(cookieParser());
+
 // Serve back static files
 app.use(express.static('./server/public'));
 
@@ -41,7 +49,8 @@ app.use(session({
    key: 'user',
    resave: 'true',
    saveUninitialized: false,
-   cookie: { maxage: 60000, secure: false }
+   cookie: { maxage: 60000, secure: false },
+   store: new MemoryStore(options)
 }));
 
 // start up passport sessions
