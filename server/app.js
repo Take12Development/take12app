@@ -50,7 +50,7 @@ app.use(session({
    resave: 'true',
    saveUninitialized: false,
    cookie: { maxage: 60000, secure: false },
-   store: new MemoryStore(options)
+   store: new MemoryStore()
 }));
 
 // start up passport sessions
