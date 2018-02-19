@@ -1,7 +1,7 @@
 require('newrelic');
 
 var express = require('express');
-var app = module.exports = express();
+var app = express();
 var wrenchmodeExpress = require('wrenchmode-express');
 var bodyParser = require('body-parser');
 // var logger = require('morgan');
