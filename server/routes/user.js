@@ -7,7 +7,7 @@ var chance = new Chance();
 var fs = require('fs');
 var moment = require('moment');
 var Users = require('../models/user');
-const sgMail = require('@sendgrid/mail');
+var sgMail = require('@sendgrid/mail');
 
 if(process.env.SENDGRID_API_KEY != undefined) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);

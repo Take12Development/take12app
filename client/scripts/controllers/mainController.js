@@ -20,7 +20,7 @@ take12App.controller('MainController', ['$scope', 'UserService', 'UtilitiesServi
   });
 
   $scope.newRegistry = function() {
-    UtilitiesService.redirect('/registration')
+    UtilitiesService.redirect('/registration');
   };
 
   $scope.goToRegistryDashboard = function(registry) {
