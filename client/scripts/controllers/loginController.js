@@ -99,10 +99,10 @@ take12App.controller('LoginController', ['$scope', '$http', '$routeParams', 'Use
               // request email address
               UtilitiesService.redirect('/requestemail');
             }
-          };
+          }
           function handleFailure(response) {
             console.log('facebook logged Failure Logging In', response);
-          };
+          }
         });
       } else {
         console.log('User cancelled login or did not fully authorize.');

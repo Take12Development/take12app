@@ -197,6 +197,6 @@ take12App.controller('RegistryController', ['$scope', '$http', '$routeParams',
     // save information of current viewed registry in Factory
     RegistryDataService.registriesObject.currentViewedRegistry = $scope.currentRegistry;
     UtilitiesService.redirect('/checkout');
-  }
+  };
 
 }]);
