@@ -198,6 +198,13 @@ md-menu-content {
   padding-right: 20px;
 }
 
+.md-button.giftNowButton {
+  color: white !important;
+  background-color: #6acbc4 !important;
+  font-weight: 300 !important;
+  width: 100%;
+}
+
 .md-button.submitButton {
   color: white !important;
   background-color: #6acbc4 !important;
@@ -446,7 +453,6 @@ div[contenteditable="true"] {
 }
 
 .registrySliderSection {
-  margin-top: 25px;
   margin-bottom: 25px;
   border: 1px solid #dedede;
   padding-left: 10px;
@@ -456,7 +462,7 @@ div[contenteditable="true"] {
 }
 
 .registrySliderMoment {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   color: #6acbc4;
   font-family: "Lato","Helvetica Neue", Arial, sans-serif;
