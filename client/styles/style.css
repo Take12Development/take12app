@@ -466,10 +466,16 @@ div[contenteditable="true"] {
   color: #6acbc4;
   font-family: "Lato","Helvetica Neue", Arial, sans-serif;
 }
+.slider-div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
 .custom-slider.rzslider .rz-bar {
   background: #dedede;
   height: 5px;
+  width: 100%;
+  align-self: center;
 }
 .custom-slider.rzslider .rz-selection {
   background: orange;
