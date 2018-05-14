@@ -204,6 +204,8 @@ md-menu-content {
   font-weight: 300 !important;
   width: 100%;
   margin: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .md-button.submitButton {
@@ -460,14 +462,16 @@ div[contenteditable="true"] {
   padding-bottom: 25px;
 }
 
-.registrySliderMoment {
-  padding-top: 30px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #6acbc4;
-  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
-}
-.slider-div {
+/*OMITTED 5.14.18 AFTER MOVING giftNow BUTTON*/
+/*.registrySliderMoment {*/
+  /*padding-top: 30px;*/
+  /*font-size: 18px;*/
+  /*font-weight: bold;*/
+  /*color: #6acbc4;*/
+  /*font-family: "Lato","Helvetica Neue", Arial, sans-serif;*/
+/*}*/
+
+.sliderDiv {
   padding-left: 10px;
   padding-right: 10px;
 }
