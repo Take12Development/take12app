@@ -461,6 +461,7 @@ div[contenteditable="true"] {
 }
 
 .registrySliderMoment {
+  padding-top: 30px;
   font-size: 18px;
   font-weight: bold;
   color: #6acbc4;
