@@ -40,6 +40,7 @@ take12App.controller('RegistrationController', ['$scope', '$http',
 
   // list of states for state selection
   $scope.states = UtilitiesService.states;
+
   // variables used for navigation among registration views. Possible values:
   // registerWho = 0, registerMainInfo = 1, registerPhoto = 2,
   // registerStory = 3, registerPrivacy = 4, , registerStripe = 5
@@ -80,9 +81,9 @@ take12App.controller('RegistrationController', ['$scope', '$http',
   function comparePasswords() {
     var validPassword = false;
     if ($scope.newUser.password === $scope.newUser.password) {
-      var validPassword = true;
+      validPassword = true;
     } else {
-      var validPassword = false;
+      validPassword = false;
     }
     return validPassword;
   }

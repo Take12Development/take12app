@@ -14,7 +14,7 @@
       <md-input-container layout="column">
         <div>
           <label for="amount">$ </label>
-          <input type="number" name="amount" ng-model="gift" min="20" required/>
+          <input type="number" name="amount" ng-model="gift" min="1" required/>
         </div>
       </md-input-container>
 
@@ -29,7 +29,7 @@
       <!-- MESSAGE -->
       <span>Leave a message. This will be posted publicly in registry (Optional). If no message is left, you will not appear publicly on registry.</span>
       <md-input-container layout="column">
-        <textarea id="registry-comment" class="purchaseComment" ng-model="checkoutObject.message" spellcheck="true" name="registryComment" rows="2" maxlength="140" placeholder="Max 140 Characters"></textarea>
+        <textarea id="registry-comment" class="purchaseComment" ng-model="checkoutObject.message" spellcheck="true" name="registryComment" rows="2" maxlength="1000" placeholder="Max 1,000 Characters"></textarea>
       </md-input-container>
 
       <!-- NAME -->
