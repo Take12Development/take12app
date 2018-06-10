@@ -198,6 +198,16 @@ md-menu-content {
   padding-right: 20px;
 }
 
+.md-button.giftNowButton {
+  color: white !important;
+  background-color: #6acbc4 !important;
+  font-weight: 300 !important;
+  width: 100%;
+  margin: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
 .md-button.submitButton {
   color: white !important;
   background-color: #6acbc4 !important;
@@ -449,22 +459,28 @@ div[contenteditable="true"] {
   margin-top: 25px;
   margin-bottom: 25px;
   border: 1px solid #dedede;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 25px;
   padding-bottom: 25px;
 }
 
-.registrySliderMoment {
-  font-size: 14px;
-  font-weight: bold;
-  color: #6acbc4;
-  font-family: "Lato","Helvetica Neue", Arial, sans-serif;
+/*OMITTED 5.14.18 AFTER MOVING giftNow BUTTON*/
+/*.registrySliderMoment {*/
+  /*padding-top: 30px;*/
+  /*font-size: 18px;*/
+  /*font-weight: bold;*/
+  /*color: #6acbc4;*/
+  /*font-family: "Lato","Helvetica Neue", Arial, sans-serif;*/
+/*}*/
+
+.sliderDiv {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .custom-slider.rzslider .rz-bar {
   background: #dedede;
   height: 5px;
+  width: 100%;
+  align-self: center;
 }
 .custom-slider.rzslider .rz-selection {
   background: orange;

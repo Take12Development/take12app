@@ -50,31 +50,32 @@
           <strong>{{numDaysGifted}}</strong>
            More Days of Maternity Leave!</span>
         </div>
-        <!-- SLIDER -->
+        <!--REGISTRY SLIDER SECTION-->
         <div class="registrySliderSection" layout="column">
-          <span class="registrySliderMoment" ng-if="slider.minValue <= 20">Diaper Time</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 20 && slider.minValue <= 40">Tummy Time</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 40 && slider.minValue <= 60">Nap with Mom</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 60 && slider.minValue <= 80">Baby’s first Giggle</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 80 && slider.minValue <= 100">Read with Mom</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 100 && slider.minValue <= 120">Parent Date Night</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 120 && slider.minValue <= 180">Visit with Grandma!</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 180 && slider.minValue <= 300">Full Night Sleep!</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 300 && slider.minValue <= 500">NICU Visit</span>
-          <span class="registrySliderMoment" ng-if="slider.minValue > 500">Gift of time</span>
-
-          <div>
+            <!--GIFT NOW BUTTON-->
+            <div layout="row" layout-align="center center">
+                <md-button class="md-raised giftNowButton" name="giftNow" aria-label="Gift now" value="giftNow" ng-click="goToCheckout()">Gift Now!</md-button>
+            </div>
+            <!-- SLIDER -->
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue <= 20">Diaper Time</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 20 && slider.minValue <= 40">Tummy Time</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 40 && slider.minValue <= 60">Nap with Mom</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 60 && slider.minValue <= 80">Baby’s first Giggle</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 80 && slider.minValue <= 100">Read with Mom</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 100 && slider.minValue <= 120">Parent Date Night</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 120 && slider.minValue <= 180">Visit with Grandma!</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 180 && slider.minValue <= 300">Full Night Sleep!</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 300 && slider.minValue <= 500">NICU Visit</h2>
+            <h2 layout="row" layout-align="center center" ng-if="slider.minValue > 500">Gift of time</h2>
+          <div class="sliderDiv" layout="row" layout-align="center center">
             <rzslider class="custom-slider"
             rz-slider-model="slider.minValue"
             rz-slider-high="slider.maxValue"
             rz-slider-options="slider.options"></rzslider>
           </div>
           <div layout="row" layout-align="center center">
-            <span>Your Gift:&nbsp&nbsp</span>
-            <h2>${{slider.minValue}}</h2>
-          </div>
-          <div layout="row" layout-align="center center">
-            <md-button class="md-raised submitButton" name="giftNow" aria-label="Gift now" value="giftNow" ng-click="goToCheckout()">Gift Now!</md-button>
+              <span class="yourGift">Your Gift:&nbsp&nbsp</span>
+              <h2>${{slider.minValue}}</h2>
           </div>
         </div>
         <!-- SOCIAL MEDIA -->
