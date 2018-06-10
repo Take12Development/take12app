@@ -36,6 +36,11 @@
               </div>
               <div layout="row" layout-align="center center">
                 <a socialshare
+                   socialshare-provider="google"
+                   socialshare-url="{{fullURL}}">
+                  <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
+                </a>
+                <a socialshare
                 socialshare-provider="twitter"
                 socialshare-text="My Take12 Registry"
                 socialshare-hashtags="take12, take12Registry"
@@ -50,9 +55,10 @@
                 <!-- Instagram doesn't have a web sharer -->
                 <!-- <img class="socialMediaIcon" src="views/assets/instagram.png" alt="Instagram"> -->
                 <a socialshare
-                socialshare-provider="google"
-                socialshare-url="{{fullURL}}">
-                <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
+                   socialshare-provider="email"
+                   socialshare-subject="My Take12 Registry"
+                   socialshare-body="My Take12 Registry: {{fullURL}}">
+                  <img class="socialMediaIcon" src="views/assets/email.png" alt="Email">
                 </a>
                 <a socialshare
                 socialshare-provider="pinterest"
@@ -196,30 +202,36 @@
           </div>
           <div layout="row" layout-align="center center">
             <a socialshare
-            socialshare-provider="twitter"
-            socialshare-text="My Take12 Registry"
-            socialshare-hashtags="take12, take12Registry"
-            socialshare-url="{{fullURL}}">
-            <img class="socialMediaIcon" src="views/assets/twitter.png" alt="Twitter"></a>
+               socialshare-provider="google"
+               socialshare-url="{{fullURL}}">
+              <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
             </a>
             <a socialshare
-            socialshare-provider="facebook"
-            socialshare-url="{{fullURL}}">
-            <img class="socialMediaIcon" src="views/assets/facebook.png" alt="Facebook">
+               socialshare-provider="twitter"
+               socialshare-text="My Take12 Registry"
+               socialshare-hashtags="take12, take12Registry"
+               socialshare-url="{{fullURL}}">
+              <img class="socialMediaIcon" src="views/assets/twitter.png" alt="Twitter"></a>
+            </a>
+            <a socialshare
+               socialshare-provider="facebook"
+               socialshare-url="{{fullURL}}">
+              <img class="socialMediaIcon" src="views/assets/facebook.png" alt="Facebook">
             </a>
             <!-- Instagram doesn't have a web sharer -->
             <!-- <img class="socialMediaIcon" src="views/assets/instagram.png" alt="Instagram"> -->
             <a socialshare
-            socialshare-provider="google"
-            socialshare-url="{{fullURL}}">
-            <img class="socialMediaIcon" src="views/assets/googleplus.png" alt="Google Plus">
+               socialshare-provider="email"
+               socialshare-subject="My Take12 Registry"
+               socialshare-body="My Take12 Registry: {{fullURL}}">
+            <img class="socialMediaIcon" src="views/assets/email.png" alt="Email">
             </a>
             <a socialshare
-            socialshare-provider="pinterest"
-            socialshare-url="{{fullURL}}"
-            socialshare-text="My Take12 Registry"
-            socialshare-media="{{dashboardRegistry.imageURL}}">
-            <img class="socialMediaIcon" src="views/assets/pinterest.png" alt="Pinterest">
+               socialshare-provider="pinterest"
+               socialshare-url="{{fullURL}}"
+               socialshare-text="My Take12 Registry"
+               socialshare-media="{{dashboardRegistry.imageURL}}">
+              <img class="socialMediaIcon" src="views/assets/pinterest.png" alt="Pinterest">
             </a>
           </div>
         </div>

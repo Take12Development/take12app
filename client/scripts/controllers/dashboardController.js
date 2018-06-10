@@ -17,6 +17,7 @@ take12App.controller('DashboardController', ['$scope', 'UserService',
     $scope.fullURL = homeUrl + $scope.dashboardRegistry.registryURL;
     $scope.dashboardRegistry.firstName = UtilitiesService.titleCase($scope.dashboardRegistry.firstName);
     $scope.dashboardRegistry.lastName = UtilitiesService.titleCase($scope.dashboardRegistry.lastName);
+
   } else {
     $scope.validRegistry = false;
   }

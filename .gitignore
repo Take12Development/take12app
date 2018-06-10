@@ -5,3 +5,4 @@ node_modules/
 *.log
 uploads/
 sendgrid.env
+.idea/workspace.xml
